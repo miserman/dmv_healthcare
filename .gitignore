@@ -8,3 +8,4 @@ node-module
 package-lock.json
 build.R
 docs/data/original
+docs/dist

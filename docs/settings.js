@@ -5,7 +5,7 @@ const site = {
     "color_by_order": false,
     "boxplots": true,
     "theme_dark": false,
-    "partial_init": true,
+    "partial_init": false,
     "palette": "rdylbu7",
     "hide_url_parameters": false,
     "background_shapes": true

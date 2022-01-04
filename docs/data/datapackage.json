@@ -1,0 +1,912 @@
+{
+  "name": "dmv_healthcare",
+  "title": "Dmv Healthcare",
+  "licence": {
+    "url": "http://opendatacommons.org/licenses/pddl",
+    "name": "Open Data Commons Public Domain",
+    "version": "1.0",
+    "id": "odc-pddl"
+  },
+  "resources": [
+    {
+      "bytes": 1371,
+      "encoding": "ISO-8859-1",
+      "md5": "e8ca21c59f70d8921bbba9e93efcd9fb",
+      "sha512": "C5SJNvrWVVhs7/Om2MxQ6x2gr+JodZkMQsfFCwKKVoTd/mHCBYxuFsmkbSkpBvjxU43Qh8MWo00vEFNYYuTI+Q==",
+      "format": "csv",
+      "name": "counties",
+      "filename": "counties.csv",
+      "source": [],
+      "ids": [
+        {
+          "variable": "GEOID"
+        }
+      ],
+      "time": {},
+      "profile": "data-resource",
+      "created": "2022-01-03 18:55:26",
+      "last_modified": "2022-01-03 14:43:55",
+      "rowcount": 8,
+      "schema": {
+        "fields": [
+          {
+            "name": "population",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Total Population",
+              "description": "Total population as estimated by the U.S. Census Bureau.",
+              "statement": "There are {value} people in {features.name}.",
+              "type": "count",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "integer",
+            "missing": 0,
+            "mean": 575060.875,
+            "sd": 430600.460266,
+            "min": 23531,
+            "max": 1145862
+          },
+          {
+            "name": "percent_female",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Female Percent of the Population",
+              "description": "Percent of the population identified as female.",
+              "statement": "{value} of the population in {features.name} identified as Female.",
+              "type": "percent",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 51.36728,
+            "sd": 1.028571,
+            "min": 49.840136,
+            "max": 52.804224
+          },
+          {
+            "name": "percent_white",
+            "duplicates": 0,
+            "type": "float",
+            "missing": 0,
+            "mean": 56.879356,
+            "sd": 18.727906,
+            "min": 17.425195,
+            "max": 73.508737
+          },
+          {
+            "name": "percent_over_49",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Older Percent of the Population",
+              "description": "Percent of the population who are 50 years old or older.",
+              "statement": "{value} of the population in {features.name} reported being over 49 years old.",
+              "type": "percent",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 26.394981,
+            "sd": 2.800239,
+            "min": 22.230826,
+            "max": 30.508041
+          },
+          {
+            "name": "access_3sfca",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area)",
+              "short_name": "Doctors (3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 2002,
+            "sd": 1423.451273,
+            "min": 60.729236,
+            "max": 3512.803669
+          },
+          {
+            "name": "access_2sfca",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (2-Step Floating Catchment Area)",
+              "short_name": "Doctors (2SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 2002,
+            "sd": 1386.86724,
+            "min": 71.551461,
+            "max": 3543.811674
+          },
+          {
+            "name": "access_3sfca_30",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
+              "short_name": "Doctors (3SFCA30)",
+              "description": "Number of doctors available in the region, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 1905,
+            "sd": 1402.878523,
+            "min": 56.719884,
+            "max": 3426.238755
+          },
+          {
+            "name": "access_3sfca_gauss",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
+              "short_name": "Doctors (KD3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 1875.75,
+            "sd": 1455.850012,
+            "min": 50.86183,
+            "max": 4079.691041
+          },
+          {
+            "name": "access_3sfca_commute",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
+              "short_name": "Doctors (CB3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                },
+                {
+                  "name": "Longitudinal Employer-Household Dynamics",
+                  "date_accessed": 2019,
+                  "url": "https://lehd.ces.census.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 2002,
+            "sd": 1386.655652,
+            "min": 65.552504,
+            "max": 3461.766582
+          }
+        ]
+      },
+      "_references": {
+        "lou09": {
+          "author": [
+            {
+              "given": "Wei",
+              "family": "Lou"
+            },
+            {
+              "given": "Yi",
+              "family": "Qi"
+            }
+          ],
+          "year": 2009,
+          "title": "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial accessibility to primary care physicians",
+          "journal": "Health & Place",
+          "volume": 15,
+          "page": "1100-1107",
+          "doi": "10.1016/j.healthplace.2009.06.002"
+        },
+        "wan12": {
+          "author": [
+            {
+              "given": "Neng",
+              "family": "Wan"
+            },
+            {
+              "given": "Bin",
+              "family": "Zou"
+            },
+            {
+              "given": "Troy",
+              "family": "Sternberg"
+            }
+          ],
+          "year": 2012,
+          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
+          "journal": "International Journal of Geographical Information Science",
+          "volume": 26,
+          "page": "1073-1089",
+          "doi": "10.1080/13658816.2011.624987"
+        }
+      }
+    },
+    {
+      "bytes": 160740,
+      "encoding": "ISO-8859-1",
+      "md5": "3771af882344f494d0d765975f61fa44",
+      "sha512": "vmn57Q33LTAKlV1pVC3svq2Bwr40oYqI4hdy0CJnMy838Vct3AxE3NmXOAugDhRxSl8ZPuScnhXZ2UnUVgVHrw==",
+      "format": "csv",
+      "name": "tracts",
+      "filename": "tracts.csv",
+      "source": [],
+      "ids": [
+        {
+          "variable": "GEOID"
+        }
+      ],
+      "time": {},
+      "profile": "data-resource",
+      "created": "2022-01-03 18:55:25",
+      "last_modified": "2022-01-03 14:35:22",
+      "rowcount": 1033,
+      "schema": {
+        "fields": [
+          {
+            "name": "population",
+            "duplicates": 87,
+            "info": {
+              "long_name": "Total Population",
+              "description": "Total population as estimated by the U.S. Census Bureau.",
+              "statement": "There are {value} people in {features.name}.",
+              "type": "count",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "integer",
+            "missing": 0,
+            "mean": 4453.520813,
+            "sd": 1857.009245,
+            "min": 4,
+            "max": 19438
+          },
+          {
+            "name": "percent_female",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Female Percent of the Population",
+              "description": "Percent of the population identified as female.",
+              "statement": "{value} of the population in {features.name} identified as Female.",
+              "type": "percent",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 51.433157,
+            "sd": 4.889288,
+            "min": 0,
+            "max": 100
+          },
+          {
+            "name": "percent_white",
+            "duplicates": 4,
+            "type": "float",
+            "missing": 0,
+            "mean": 48.986245,
+            "sd": 27.396142,
+            "min": 0,
+            "max": 100
+          },
+          {
+            "name": "percent_over_49",
+            "duplicates": 1,
+            "info": {
+              "long_name": "Older Percent of the Population",
+              "description": "Percent of the population who are 50 years old or older.",
+              "statement": "{value} of the population in {features.name} reported being over 49 years old.",
+              "type": "percent",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 26.975944,
+            "sd": 9.133035,
+            "min": 0,
+            "max": 100
+          },
+          {
+            "name": "access_3sfca",
+            "duplicates": 4,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area)",
+              "short_name": "Doctors (3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 15.504356,
+            "sd": 9.580816,
+            "min": 0.015045,
+            "max": 120.874632
+          },
+          {
+            "name": "access_2sfca",
+            "duplicates": 4,
+            "info": {
+              "long_name": "Doctors (2-Step Floating Catchment Area)",
+              "short_name": "Doctors (2SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 15.504356,
+            "sd": 8.098896,
+            "min": 0.016717,
+            "max": 66.328853
+          },
+          {
+            "name": "access_3sfca_30",
+            "duplicates": 4,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
+              "short_name": "Doctors (3SFCA30)",
+              "description": "Number of doctors available in the region, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 14.753146,
+            "sd": 7.899123,
+            "min": 0.012752,
+            "max": 99.023688
+          },
+          {
+            "name": "access_3sfca_gauss",
+            "duplicates": 4,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
+              "short_name": "Doctors (KD3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 14.526621,
+            "sd": 26.627295,
+            "min": 0,
+            "max": 260.618937
+          },
+          {
+            "name": "access_3sfca_commute",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
+              "short_name": "Doctors (CB3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                },
+                {
+                  "name": "Longitudinal Employer-Household Dynamics",
+                  "date_accessed": 2019,
+                  "url": "https://lehd.ces.census.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 15.504356,
+            "sd": 9.402525,
+            "min": 0.01627,
+            "max": 112.230407
+          }
+        ]
+      },
+      "_references": {
+        "lou09": {
+          "author": [
+            {
+              "given": "Wei",
+              "family": "Lou"
+            },
+            {
+              "given": "Yi",
+              "family": "Qi"
+            }
+          ],
+          "year": 2009,
+          "title": "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial accessibility to primary care physicians",
+          "journal": "Health & Place",
+          "volume": 15,
+          "page": "1100-1107",
+          "doi": "10.1016/j.healthplace.2009.06.002"
+        },
+        "wan12": {
+          "author": [
+            {
+              "given": "Neng",
+              "family": "Wan"
+            },
+            {
+              "given": "Bin",
+              "family": "Zou"
+            },
+            {
+              "given": "Troy",
+              "family": "Sternberg"
+            }
+          ],
+          "year": 2012,
+          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
+          "journal": "International Journal of Geographical Information Science",
+          "volume": 26,
+          "page": "1073-1089",
+          "doi": "10.1080/13658816.2011.624987"
+        }
+      }
+    },
+    {
+      "bytes": 420576,
+      "encoding": "ISO-8859-1",
+      "md5": "79392a416024d3fcc3f423be1c0e7fdf",
+      "sha512": "mxYvNJyBYY0MD1LePMjVWSzVY8Xxq0vo4c5uDgqkeNSIQ8i5couh4QmscupbenpgcJwrxZ8Ae4dnghPsGHeKkg==",
+      "format": "csv",
+      "name": "blockgroups",
+      "filename": "blockgroups.csv",
+      "source": [],
+      "ids": [
+        {
+          "variable": "GEOID"
+        }
+      ],
+      "time": {},
+      "profile": "data-resource",
+      "created": "2022-01-03 18:55:25",
+      "last_modified": "2022-01-03 14:39:35",
+      "rowcount": 2696,
+      "schema": {
+        "fields": [
+          {
+            "name": "population",
+            "duplicates": 1013,
+            "info": {
+              "long_name": "Total Population",
+              "description": "Total population as estimated by the U.S. Census Bureau.",
+              "statement": "There are {value} people in {features.name}.",
+              "type": "count",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "integer",
+            "missing": 0,
+            "mean": 1706.412092,
+            "sd": 855.836431,
+            "min": 4,
+            "max": 8987
+          },
+          {
+            "name": "percent_female",
+            "duplicates": 36,
+            "info": {
+              "long_name": "Female Percent of the Population",
+              "description": "Percent of the population identified as female.",
+              "statement": "{value} of the population in {features.name} identified as Female.",
+              "type": "percent",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 51.490603,
+            "sd": 6.092079,
+            "min": 0,
+            "max": 100
+          },
+          {
+            "name": "percent_white",
+            "duplicates": 60,
+            "type": "float",
+            "missing": 0,
+            "mean": 50.319511,
+            "sd": 28.569141,
+            "min": 0,
+            "max": 100
+          },
+          {
+            "name": "percent_over_49",
+            "duplicates": 37,
+            "info": {
+              "long_name": "Older Percent of the Population",
+              "description": "Percent of the population who are 50 years old or older.",
+              "statement": "{value} of the population in {features.name} reported being over 49 years old.",
+              "type": "percent",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 27.075362,
+            "sd": 11.064624,
+            "min": 0,
+            "max": 100
+          },
+          {
+            "name": "access_3sfca",
+            "duplicates": 38,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area)",
+              "short_name": "Doctors (3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 5.940653,
+            "sd": 4.338024,
+            "min": 0.015045,
+            "max": 80.333445
+          },
+          {
+            "name": "access_2sfca",
+            "duplicates": 38,
+            "info": {
+              "long_name": "Doctors (2-Step Floating Catchment Area)",
+              "short_name": "Doctors (2SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 5.940653,
+            "sd": 3.631081,
+            "min": 0.016717,
+            "max": 38.360814
+          },
+          {
+            "name": "access_3sfca_30",
+            "duplicates": 38,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
+              "short_name": "Doctors (3SFCA30)",
+              "description": "Number of doctors available in the region, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 5.652819,
+            "sd": 3.720091,
+            "min": 0.012752,
+            "max": 73.833876
+          },
+          {
+            "name": "access_3sfca_gauss",
+            "duplicates": 38,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
+              "short_name": "Doctors (KD3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 5.566024,
+            "sd": 12.97951,
+            "min": 0,
+            "max": 227
+          },
+          {
+            "name": "access_3sfca_commute",
+            "duplicates": 0,
+            "info": {
+              "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
+              "short_name": "Doctors (CB3SFCA)",
+              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
+              "statement": "There are {value} doctors available in {features.name}.",
+              "type": "sum",
+              "citations": "wan12",
+              "source": [
+                {
+                  "name": "American Community Survey",
+                  "date_accessed": 2021,
+                  "url": "https://www.census.gov/programs-surveys/acs.html"
+                },
+                {
+                  "name": "Centers for Medicare & Medicaid Services",
+                  "date_accessed": 2021,
+                  "url": "https://data.cms.gov"
+                },
+                {
+                  "name": "Longitudinal Employer-Household Dynamics",
+                  "date_accessed": 2019,
+                  "url": "https://lehd.ces.census.gov"
+                }
+              ]
+            },
+            "type": "float",
+            "missing": 0,
+            "mean": 5.940653,
+            "sd": 4.226877,
+            "min": 0.01627,
+            "max": 68.539261
+          }
+        ]
+      },
+      "_references": {
+        "lou09": {
+          "author": [
+            {
+              "given": "Wei",
+              "family": "Lou"
+            },
+            {
+              "given": "Yi",
+              "family": "Qi"
+            }
+          ],
+          "year": 2009,
+          "title": "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial accessibility to primary care physicians",
+          "journal": "Health & Place",
+          "volume": 15,
+          "page": "1100-1107",
+          "doi": "10.1016/j.healthplace.2009.06.002"
+        },
+        "wan12": {
+          "author": [
+            {
+              "given": "Neng",
+              "family": "Wan"
+            },
+            {
+              "given": "Bin",
+              "family": "Zou"
+            },
+            {
+              "given": "Troy",
+              "family": "Sternberg"
+            }
+          ],
+          "year": 2012,
+          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
+          "journal": "International Journal of Geographical Information Science",
+          "volume": 26,
+          "page": "1073-1089",
+          "doi": "10.1080/13658816.2011.624987"
+        }
+      }
+    }
+  ]
+}

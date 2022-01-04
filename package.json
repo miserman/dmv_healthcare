@@ -1,0 +1,22 @@
+{
+  "name": "dmv_healthcare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "latest"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "trailingComma": "es5"
+  },
+  "author": "",
+  "license": "ISC"
+}

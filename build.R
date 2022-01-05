@@ -92,11 +92,14 @@ write.csv(provider_locations, paste0(maindir, "providers.csv"), row.names = FALS
 # population information
 #
 
+library(community)
+library(catchment)
+
 # define counties that are part of the capital region
 dmv_counties <- list(
   dc = "District of Columbia",
-  md = c("Prince George's", "Montgomery"),
-  va = c("Arlington", "Loudoun", "Fairfax", "Alexandria")
+  md = c("Charles", "Frederick", "Montgomery", "Prince George's"),
+  va = c("Alexandria", "Arlington", "Fairfax", "Falls Church", "Loudoun", "Manassas", "Manassas Park", "Prince William")
 )
 data <- list()
 shapes <- list()
@@ -154,12 +157,11 @@ data_combined <- do.call(rbind, lapply(names(data), function(state){
 write.csv(data_combined, paste0(maindir, "data.csv"), row.names = FALSE)
 
 ### get travel times between each included block group and provider location
-### would need to be split if server is default
 library(osrm)
+options(osrm.server = Sys.getenv("OSRM_SERVER"), osrm.profile = "car")
 traveltimes <- osrmTable(
   src = data_combined[, c("GEOID", "X", "Y")],
-  dst = provider_locations[, c("id", "long", "lat")],
-  osrm.server = Sys.getenv("OSRM_SERVER")
+  dst = provider_locations[, c("id", "long", "lat")]
 )$duration
 write.csv(
   cbind(GEOID = rownames(traveltimes), as.data.frame(as.matrix(traveltimes))),

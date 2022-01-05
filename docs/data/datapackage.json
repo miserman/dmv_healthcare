@@ -9,10 +9,10 @@
   },
   "resources": [
     {
-      "bytes": 1371,
+      "bytes": 2278,
       "encoding": "ISO-8859-1",
-      "md5": "e8ca21c59f70d8921bbba9e93efcd9fb",
-      "sha512": "C5SJNvrWVVhs7/Om2MxQ6x2gr+JodZkMQsfFCwKKVoTd/mHCBYxuFsmkbSkpBvjxU43Qh8MWo00vEFNYYuTI+Q==",
+      "md5": "b50d9c4081bc506b031e800824a9f6a3",
+      "sha512": "9vc+lIglVh5sOatwyc00nzD48JHq3ThSSnSSKxl2EnPYW0or3OGyDUkE60HfvNY0lPVy0bYrAQ/5nySppYhvFQ==",
       "format": "csv",
       "name": "counties",
       "filename": "counties.csv",
@@ -24,9 +24,9 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-03 18:55:26",
+      "created": "2022-01-05 15:24:07",
       "last_modified": "2022-01-03 14:43:55",
-      "rowcount": 8,
+      "rowcount": 14,
       "schema": {
         "fields": [
           {
@@ -47,9 +47,9 @@
             },
             "type": "integer",
             "missing": 0,
-            "mean": 575060.875,
-            "sd": 430600.460266,
-            "min": 23531,
+            "mean": 396074.857143,
+            "sd": 397196.734524,
+            "min": 14128,
             "max": 1145862
           },
           {
@@ -70,9 +70,9 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 51.36728,
-            "sd": 1.028571,
-            "min": 49.840136,
+            "mean": 50.945756,
+            "sd": 1.017769,
+            "min": 49.347773,
             "max": 52.804224
           },
           {
@@ -80,10 +80,10 @@
             "duplicates": 0,
             "type": "float",
             "missing": 0,
-            "mean": 56.879356,
-            "sd": 18.727906,
+            "mean": 61.117939,
+            "sd": 16.61527,
             "min": 17.425195,
-            "max": 73.508737
+            "max": 83.09738
           },
           {
             "name": "percent_over_49",
@@ -103,10 +103,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 26.394981,
-            "sd": 2.800239,
-            "min": 22.230826,
-            "max": 30.508041
+            "mean": 26.196367,
+            "sd": 3.348103,
+            "min": 19.123398,
+            "max": 31.394622
           },
           {
             "name": "access_3sfca",
@@ -133,10 +133,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 2002,
-            "sd": 1423.451273,
-            "min": 60.729236,
-            "max": 3512.803669
+            "mean": 1172.071429,
+            "sd": 1230.279043,
+            "min": 21.332214,
+            "max": 3321.964064
           },
           {
             "name": "access_2sfca",
@@ -163,10 +163,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 2002,
-            "sd": 1386.86724,
-            "min": 71.551461,
-            "max": 3543.811674
+            "mean": 1172.071429,
+            "sd": 1261.474271,
+            "min": 19.517928,
+            "max": 3324.074775
           },
           {
             "name": "access_3sfca_30",
@@ -193,10 +193,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1905,
-            "sd": 1402.878523,
-            "min": 56.719884,
-            "max": 3426.238755
+            "mean": 1119.785714,
+            "sd": 1244.358662,
+            "min": 19.720148,
+            "max": 3316.945567
           },
           {
             "name": "access_3sfca_gauss",
@@ -223,10 +223,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1875.75,
-            "sd": 1455.850012,
-            "min": 50.86183,
-            "max": 4079.691041
+            "mean": 1089.785714,
+            "sd": 1349.728357,
+            "min": 0.657687,
+            "max": 3944.070491
           },
           {
             "name": "access_3sfca_commute",
@@ -258,10 +258,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 2002,
-            "sd": 1386.655652,
-            "min": 65.552504,
-            "max": 3461.766582
+            "mean": 1172.071429,
+            "sd": 1217.134059,
+            "min": 22.112699,
+            "max": 3336.957694
           }
         ]
       },
@@ -309,10 +309,10 @@
       }
     },
     {
-      "bytes": 160740,
+      "bytes": 189740,
       "encoding": "ISO-8859-1",
-      "md5": "3771af882344f494d0d765975f61fa44",
-      "sha512": "vmn57Q33LTAKlV1pVC3svq2Bwr40oYqI4hdy0CJnMy838Vct3AxE3NmXOAugDhRxSl8ZPuScnhXZ2UnUVgVHrw==",
+      "md5": "addd5b7fcf18e6d5ff341e9aa7e271fd",
+      "sha512": "IjObtXjm3TCU6MB5iLyi+RXOI76fwbWQAm1ycr6LpC3nZHHTThmVTq1MIrtGFCphikHZCoZNrc/NrWHxJR4i4w==",
       "format": "csv",
       "name": "tracts",
       "filename": "tracts.csv",
@@ -324,14 +324,14 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-03 18:55:25",
+      "created": "2022-01-05 15:24:07",
       "last_modified": "2022-01-03 14:35:22",
-      "rowcount": 1033,
+      "rowcount": 1218,
       "schema": {
         "fields": [
           {
             "name": "population",
-            "duplicates": 87,
+            "duplicates": 122,
             "info": {
               "long_name": "Total Population",
               "description": "Total population as estimated by the U.S. Census Bureau.",
@@ -347,8 +347,8 @@
             },
             "type": "integer",
             "missing": 0,
-            "mean": 4453.520813,
-            "sd": 1857.009245,
+            "mean": 4552.584565,
+            "sd": 1879.751689,
             "min": 4,
             "max": 19438
           },
@@ -370,8 +370,8 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 51.433157,
-            "sd": 4.889288,
+            "mean": 51.254191,
+            "sd": 4.717738,
             "min": 0,
             "max": 100
           },
@@ -380,8 +380,8 @@
             "duplicates": 4,
             "type": "float",
             "missing": 0,
-            "mean": 48.986245,
-            "sd": 27.396142,
+            "mean": 51.568119,
+            "sd": 27.11683,
             "min": 0,
             "max": 100
           },
@@ -403,14 +403,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 26.975944,
-            "sd": 9.133035,
+            "mean": 27.043573,
+            "sd": 9.089308,
             "min": 0,
             "max": 100
           },
           {
             "name": "access_3sfca",
-            "duplicates": 4,
+            "duplicates": 5,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
@@ -433,14 +433,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 15.504356,
-            "sd": 9.580816,
-            "min": 0.015045,
-            "max": 120.874632
+            "mean": 13.472085,
+            "sd": 10.599262,
+            "min": 0.011161,
+            "max": 245.81027
           },
           {
             "name": "access_2sfca",
-            "duplicates": 4,
+            "duplicates": 5,
             "info": {
               "long_name": "Doctors (2-Step Floating Catchment Area)",
               "short_name": "Doctors (2SFCA)",
@@ -463,14 +463,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 15.504356,
-            "sd": 8.098896,
-            "min": 0.016717,
-            "max": 66.328853
+            "mean": 13.472085,
+            "sd": 9.776694,
+            "min": 0.013229,
+            "max": 225.92731
           },
           {
             "name": "access_3sfca_30",
-            "duplicates": 4,
+            "duplicates": 5,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
@@ -493,14 +493,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 14.753146,
-            "sd": 7.899123,
-            "min": 0.012752,
-            "max": 99.023688
+            "mean": 12.8711,
+            "sd": 9.188437,
+            "min": 0.010758,
+            "max": 220.093865
           },
           {
             "name": "access_3sfca_gauss",
-            "duplicates": 4,
+            "duplicates": 5,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
               "short_name": "Doctors (KD3SFCA)",
@@ -523,10 +523,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 14.526621,
-            "sd": 26.627295,
+            "mean": 12.526273,
+            "sd": 25.213091,
             "min": 0,
-            "max": 260.618937
+            "max": 265.937722
           },
           {
             "name": "access_3sfca_commute",
@@ -558,10 +558,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 15.504356,
-            "sd": 9.402525,
-            "min": 0.01627,
-            "max": 112.230407
+            "mean": 13.472085,
+            "sd": 10.0455,
+            "min": 0.010658,
+            "max": 228.250276
           }
         ]
       },
@@ -609,10 +609,10 @@
       }
     },
     {
-      "bytes": 420576,
+      "bytes": 499382,
       "encoding": "ISO-8859-1",
-      "md5": "79392a416024d3fcc3f423be1c0e7fdf",
-      "sha512": "mxYvNJyBYY0MD1LePMjVWSzVY8Xxq0vo4c5uDgqkeNSIQ8i5couh4QmscupbenpgcJwrxZ8Ae4dnghPsGHeKkg==",
+      "md5": "ae90084e078740032e01d5196eeabc60",
+      "sha512": "zyV09ircp2sV+enIky4B0TJop7CvuaoAl/cRLom/FrjsXnpqlzFI6fVdnsNj9XRn/0OiL+0XrPCvgumt30decQ==",
       "format": "csv",
       "name": "blockgroups",
       "filename": "blockgroups.csv",
@@ -624,14 +624,14 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-03 18:55:25",
+      "created": "2022-01-05 15:24:06",
       "last_modified": "2022-01-03 14:39:35",
-      "rowcount": 2696,
+      "rowcount": 3235,
       "schema": {
         "fields": [
           {
             "name": "population",
-            "duplicates": 1013,
+            "duplicates": 1357,
             "info": {
               "long_name": "Total Population",
               "description": "Total population as estimated by the U.S. Census Bureau.",
@@ -647,14 +647,14 @@
             },
             "type": "integer",
             "missing": 0,
-            "mean": 1706.412092,
-            "sd": 855.836431,
+            "mean": 1714.079753,
+            "sd": 877.078436,
             "min": 4,
             "max": 8987
           },
           {
             "name": "percent_female",
-            "duplicates": 36,
+            "duplicates": 44,
             "info": {
               "long_name": "Female Percent of the Population",
               "description": "Percent of the population identified as female.",
@@ -670,24 +670,24 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 51.490603,
-            "sd": 6.092079,
+            "mean": 51.29108,
+            "sd": 6.111047,
             "min": 0,
             "max": 100
           },
           {
             "name": "percent_white",
-            "duplicates": 60,
+            "duplicates": 71,
             "type": "float",
             "missing": 0,
-            "mean": 50.319511,
-            "sd": 28.569141,
+            "mean": 53.10363,
+            "sd": 28.332358,
             "min": 0,
             "max": 100
           },
           {
             "name": "percent_over_49",
-            "duplicates": 37,
+            "duplicates": 45,
             "info": {
               "long_name": "Older Percent of the Population",
               "description": "Percent of the population who are 50 years old or older.",
@@ -703,14 +703,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 27.075362,
-            "sd": 11.064624,
+            "mean": 27.1344,
+            "sd": 11.236291,
             "min": 0,
             "max": 100
           },
           {
             "name": "access_3sfca",
-            "duplicates": 38,
+            "duplicates": 41,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
@@ -733,14 +733,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.940653,
-            "sd": 4.338024,
-            "min": 0.015045,
-            "max": 80.333445
+            "mean": 5.072334,
+            "sd": 5.29902,
+            "min": 0.011161,
+            "max": 217.779546
           },
           {
             "name": "access_2sfca",
-            "duplicates": 38,
+            "duplicates": 41,
             "info": {
               "long_name": "Doctors (2-Step Floating Catchment Area)",
               "short_name": "Doctors (2SFCA)",
@@ -763,14 +763,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.940653,
-            "sd": 3.631081,
-            "min": 0.016717,
-            "max": 38.360814
+            "mean": 5.072334,
+            "sd": 5.028651,
+            "min": 0.013229,
+            "max": 216.548979
           },
           {
             "name": "access_3sfca_30",
-            "duplicates": 38,
+            "duplicates": 41,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
@@ -793,14 +793,14 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.652819,
-            "sd": 3.720091,
-            "min": 0.012752,
-            "max": 73.833876
+            "mean": 4.846059,
+            "sd": 4.827947,
+            "min": 0.010758,
+            "max": 204.085528
           },
           {
             "name": "access_3sfca_gauss",
-            "duplicates": 38,
+            "duplicates": 41,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
               "short_name": "Doctors (KD3SFCA)",
@@ -823,10 +823,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.566024,
-            "sd": 12.97951,
+            "mean": 4.716229,
+            "sd": 12.199755,
             "min": 0,
-            "max": 227
+            "max": 260.998065
           },
           {
             "name": "access_3sfca_commute",
@@ -858,10 +858,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.940653,
-            "sd": 4.226877,
-            "min": 0.01627,
-            "max": 68.539261
+            "mean": 5.072334,
+            "sd": 5.072456,
+            "min": 0.010658,
+            "max": 209.935783
           }
         ]
       },

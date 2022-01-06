@@ -4,7 +4,7 @@ page_head(
   description = "Comparison of floating catchment area ratios of health care facilities in the DMV area."
 )
 page_navbar(
-  title = "Health Care Facility Access",
+  title = "Healthcare Facility Access",
   input_button("Reset", "reset_selection", "reset.selection", class = "btn-link"),
   list(
     name = "Settings",
@@ -49,12 +49,20 @@ page_navbar(
           " of the [Biocomplexity Institute](https://biocomplexity.virginia.edu)."
         ),
         "View its source on [GitHub](https://github.com/uva-bi-sdad/dmv_healthcare).",
+        paste(
+          "The [Catchment](https://uva-bi-sdad.github.io/catchment) package was used to calculate",
+          "floating catchment area ratios."
+        ),
+        paste(
+          "The [case study](https://uva-bi-sdad.github.io/catchment/articles/casestudy.html) article walkes",
+          "through the data collection and calculation of floating catchment area ratios."
+        ),
         "Credits",
         paste(
           "Built in [R](https://www.r-project.org) with the",
           "[community](https://uva-bi-sdad.github.io/community) package, using these resources:"
         )
-      ), class = c("", "", "h5")),
+      ), class = c(character(4), "h5")),
       output_credits()
     )
   )
@@ -239,4 +247,4 @@ page_section(
     ))
   )
 )
-site_build('../dmv_healthcare')
+site_build('../dmv_healthcare', bundle_data = TRUE)

@@ -9,10 +9,10 @@
   },
   "resources": [
     {
-      "bytes": 2278,
+      "bytes": 2283,
       "encoding": "ISO-8859-1",
-      "md5": "b50d9c4081bc506b031e800824a9f6a3",
-      "sha512": "9vc+lIglVh5sOatwyc00nzD48JHq3ThSSnSSKxl2EnPYW0or3OGyDUkE60HfvNY0lPVy0bYrAQ/5nySppYhvFQ==",
+      "md5": "486c5b671667ebd50f8af601d3ae1a2b",
+      "sha512": "b90a373c4c41a3acf8ff10a1276f554ee3b9c8bac9e661a389d4a437f5b70b8ae4b677f58e4c839949e68191858b802c2f403bff2d36981520d8132bb5c9b2eb",
       "format": "csv",
       "name": "counties",
       "filename": "counties.csv",
@@ -24,7 +24,7 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-05 15:24:07",
+      "created": "2022-01-05 21:29:16",
       "last_modified": "2022-01-03 14:43:55",
       "rowcount": 14,
       "schema": {
@@ -40,7 +40,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -63,7 +63,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -96,7 +96,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -114,14 +114,14 @@
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -133,10 +133,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1172.071429,
-            "sd": 1230.279043,
-            "min": 21.332214,
-            "max": 3321.964064
+            "mean": 2.804708,
+            "sd": 1.06851,
+            "min": 1.25587,
+            "max": 4.376743
           },
           {
             "name": "access_2sfca",
@@ -144,14 +144,14 @@
             "info": {
               "long_name": "Doctors (2-Step Floating Catchment Area)",
               "short_name": "Doctors (2SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -163,10 +163,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1172.071429,
-            "sd": 1261.474271,
-            "min": 19.517928,
-            "max": 3324.074775
+            "mean": 2.855304,
+            "sd": 1.255535,
+            "min": 1.14906,
+            "max": 4.830916
           },
           {
             "name": "access_3sfca_30",
@@ -174,14 +174,14 @@
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
-              "description": "Number of doctors available in the region, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -193,10 +193,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1119.785714,
-            "sd": 1244.358662,
-            "min": 19.720148,
-            "max": 3316.945567
+            "mean": 2.543267,
+            "sd": 1.027274,
+            "min": 1.160965,
+            "max": 4.094959
           },
           {
             "name": "access_3sfca_gauss",
@@ -204,14 +204,14 @@
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
               "short_name": "Doctors (KD3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -223,10 +223,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1089.785714,
-            "sd": 1349.728357,
-            "min": 0.657687,
-            "max": 3944.070491
+            "mean": 2.380344,
+            "sd": 1.782257,
+            "min": 0.038719,
+            "max": 6.823407
           },
           {
             "name": "access_3sfca_commute",
@@ -234,14 +234,14 @@
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
               "short_name": "Doctors (CB3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -258,10 +258,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 1172.071429,
-            "sd": 1217.134059,
-            "min": 22.112699,
-            "max": 3336.957694
+            "mean": 2.87101,
+            "sd": 1.086688,
+            "min": 1.301819,
+            "max": 4.450477
           }
         ]
       },
@@ -309,10 +309,10 @@
       }
     },
     {
-      "bytes": 189740,
+      "bytes": 190158,
       "encoding": "ISO-8859-1",
-      "md5": "addd5b7fcf18e6d5ff341e9aa7e271fd",
-      "sha512": "IjObtXjm3TCU6MB5iLyi+RXOI76fwbWQAm1ycr6LpC3nZHHTThmVTq1MIrtGFCphikHZCoZNrc/NrWHxJR4i4w==",
+      "md5": "7921466ec0f1b5b944e79525d5a00b9f",
+      "sha512": "4420b46a10c5552d79f389b16dcb6bea520cf56f20b657fe3d132555b7b54018150076dbdbf5a80eed7253772a4612fa996a3d055980688a7010930ffbc7fea7",
       "format": "csv",
       "name": "tracts",
       "filename": "tracts.csv",
@@ -324,7 +324,7 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-05 15:24:07",
+      "created": "2022-01-05 21:29:14",
       "last_modified": "2022-01-03 14:35:22",
       "rowcount": 1218,
       "schema": {
@@ -340,7 +340,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -363,7 +363,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -396,7 +396,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -410,18 +410,18 @@
           },
           {
             "name": "access_3sfca",
-            "duplicates": 5,
+            "duplicates": 378,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -433,25 +433,25 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 13.472085,
-            "sd": 10.599262,
-            "min": 0.011161,
-            "max": 245.81027
+            "mean": 3.048006,
+            "sd": 1.969652,
+            "min": 0.562315,
+            "max": 51.072153
           },
           {
             "name": "access_2sfca",
-            "duplicates": 5,
+            "duplicates": 377,
             "info": {
               "long_name": "Doctors (2-Step Floating Catchment Area)",
               "short_name": "Doctors (2SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -463,25 +463,25 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 13.472085,
-            "sd": 9.776694,
-            "min": 0.013229,
-            "max": 225.92731
+            "mean": 3.074172,
+            "sd": 1.863807,
+            "min": 0.520646,
+            "max": 46.941058
           },
           {
             "name": "access_3sfca_30",
-            "duplicates": 5,
+            "duplicates": 383,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
-              "description": "Number of doctors available in the region, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -493,25 +493,25 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 12.8711,
-            "sd": 9.188437,
-            "min": 0.010758,
-            "max": 220.093865
+            "mean": 2.92842,
+            "sd": 1.625337,
+            "min": 0.44456,
+            "max": 39.302476
           },
           {
             "name": "access_3sfca_gauss",
-            "duplicates": 5,
+            "duplicates": 369,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
               "short_name": "Doctors (KD3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -523,10 +523,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 12.526273,
-            "sd": 25.213091,
+            "mean": 2.93988,
+            "sd": 5.668513,
             "min": 0,
-            "max": 265.937722
+            "max": 66.163731
           },
           {
             "name": "access_3sfca_commute",
@@ -534,14 +534,14 @@
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
               "short_name": "Doctors (CB3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -558,10 +558,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 13.472085,
-            "sd": 10.0455,
-            "min": 0.010658,
-            "max": 228.250276
+            "mean": 3.068047,
+            "sd": 1.890591,
+            "min": 0.681982,
+            "max": 47.423702
           }
         ]
       },
@@ -609,10 +609,10 @@
       }
     },
     {
-      "bytes": 499382,
+      "bytes": 499385,
       "encoding": "ISO-8859-1",
-      "md5": "ae90084e078740032e01d5196eeabc60",
-      "sha512": "zyV09ircp2sV+enIky4B0TJop7CvuaoAl/cRLom/FrjsXnpqlzFI6fVdnsNj9XRn/0OiL+0XrPCvgumt30decQ==",
+      "md5": "4105c53f8565a1b5ce72b40366ad9a10",
+      "sha512": "73f02bd59e5641b40c53d84c43f66cf430db7ca8f3e8fca84dd04614a9e7219218aa2afa460be18d548b2f5e27ef768504774d6cdf71d2615860829111532c8b",
       "format": "csv",
       "name": "blockgroups",
       "filename": "blockgroups.csv",
@@ -624,7 +624,7 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-05 15:24:06",
+      "created": "2022-01-05 21:27:22",
       "last_modified": "2022-01-03 14:39:35",
       "rowcount": 3235,
       "schema": {
@@ -640,7 +640,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -663,7 +663,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -696,7 +696,7 @@
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 }
               ]
@@ -710,18 +710,18 @@
           },
           {
             "name": "access_3sfca",
-            "duplicates": 41,
+            "duplicates": 1713,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -733,25 +733,25 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.072334,
-            "sd": 5.29902,
-            "min": 0.011161,
-            "max": 217.779546
+            "mean": 3.105912,
+            "sd": 6.06875,
+            "min": 0.307735,
+            "max": 337.120041
           },
           {
             "name": "access_2sfca",
-            "duplicates": 41,
+            "duplicates": 1713,
             "info": {
               "long_name": "Doctors (2-Step Floating Catchment Area)",
               "short_name": "Doctors (2SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -763,25 +763,25 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.072334,
-            "sd": 5.028651,
-            "min": 0.013229,
-            "max": 216.548979
+            "mean": 3.13428,
+            "sd": 6.00948,
+            "min": 0.295432,
+            "max": 335.215138
           },
           {
             "name": "access_3sfca_30",
-            "duplicates": 41,
+            "duplicates": 1719,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
-              "description": "Number of doctors available in the region, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -793,25 +793,25 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 4.846059,
-            "sd": 4.827947,
-            "min": 0.010758,
-            "max": 204.085528
+            "mean": 2.91367,
+            "sd": 2.053077,
+            "min": 0.186466,
+            "max": 91.806355
           },
           {
             "name": "access_3sfca_gauss",
-            "duplicates": 41,
+            "duplicates": 1699,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
               "short_name": "Doctors (KD3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -823,10 +823,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 4.716229,
-            "sd": 12.199755,
+            "mean": 3.001084,
+            "sd": 7.736583,
             "min": 0,
-            "max": 260.998065
+            "max": 214.460201
           },
           {
             "name": "access_3sfca_commute",
@@ -834,14 +834,14 @@
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
               "short_name": "Doctors (CB3SFCA)",
-              "description": "Number of doctors available in the region, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
-              "statement": "There are {value} doctors available in {features.name}.",
+              "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
+              "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
               "source": [
                 {
                   "name": "American Community Survey",
-                  "date_accessed": 2021,
+                  "date_accessed": 2019,
                   "url": "https://www.census.gov/programs-surveys/acs.html"
                 },
                 {
@@ -858,10 +858,10 @@
             },
             "type": "float",
             "missing": 0,
-            "mean": 5.072334,
-            "sd": 5.072456,
-            "min": 0.010658,
-            "max": 209.935783
+            "mean": 3.126752,
+            "sd": 5.847289,
+            "min": 0.438188,
+            "max": 324.977993
           }
         ]
       },

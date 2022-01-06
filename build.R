@@ -206,52 +206,55 @@ weight <- list(c(60, .042), c(30, .377), c(20, .704), c(10, .962))
 
 data_combined$access_3sfca <- catchment_ratio(
   data_combined, provider_locations, traveltimes, weight, normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors",
-  return_type = "region", verbose = TRUE
+  consumers_value = "population", providers_id = "id", providers_value = "doctors"
 )
 
 # 2-step version
 data_combined$access_2sfca <- catchment_ratio(
   data_combined, provider_locations, traveltimes, weight,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors",
-  return_type = "region", verbose = TRUE
+  consumers_value = "population", providers_id = "id", providers_value = "doctors"
 )
 
 # shorter range version
 data_combined$access_3sfca_30 <- catchment_ratio(
   data_combined, provider_locations, traveltimes, weight[-1], normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors",
-  return_type = "region", verbose = TRUE
+  consumers_value = "population", providers_id = "id", providers_value = "doctors"
 )
 
 # bounded continuous version
 data_combined$access_3sfca_gauss <- catchment_ratio(
   data_combined, provider_locations, traveltimes, "gaussian", max_cost = 60, normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors",
-  return_type = "region", verbose = TRUE
+  consumers_value = "population", providers_id = "id", providers_value = "doctors"
 )
 
 # a commuter-adjusted version
 data_combined$access_3sfca_commute <- catchment_ratio(
   data_combined, provider_locations, traveltimes, weight, normalize_weight = TRUE,
   consumers_value = "population", providers_id = "id", providers_value = "doctors",
-  consumers_commutes = commutes, return_type = "region", verbose = TRUE
+  consumers_commutes = commutes
 )
+
+access_vars <- grep("access_", colnames(data_combined), fixed = TRUE, value = TRUE)
+data_combined[, access_vars] <- data_combined[, access_vars] * 1000
 
 # make final datasets at each geography level
 vars = colnames(data_combined)[-c(1, 6:7)]
 write.csv(data_combined[, -(6:7)], paste0(maindir, "blockgroups.csv"), row.names = FALSE)
 write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 11)), function(d){
   if(is.null(dim(d))) d <- as.data.frame(as.list(d))
+  d[, access_vars] <- d[, access_vars] * d$population
   data.frame(
     GEOID = substr(d[1, "GEOID"], 1, 11),
-    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(c(nrow(d), 1), c(3, 5)))
+    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(c(nrow(d), sum(d$population)), c(3, 5)))
     ))
 })), paste0(maindir, "tracts.csv"), row.names = FALSE)
-write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d) data.frame(
-  GEOID = substr(d[1, "GEOID"], 1, 5),
-  as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(c(nrow(d), 1), c(3, 5)))
-  )))), paste0(maindir, "counties.csv"), row.names = FALSE)
+write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d){
+  d[, access_vars] <- d[, access_vars] * d$population
+  data.frame(
+    GEOID = substr(d[1, "GEOID"], 1, 5),
+    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(c(nrow(d), sum(d$population)), c(3, 5)))
+  ))
+})), paste0(maindir, "counties.csv"), row.names = FALSE)
 
 #
 # add data to site, along with metadata
@@ -274,7 +277,7 @@ data_add(
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           )
         )
@@ -287,7 +290,7 @@ data_add(
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           )
         )
@@ -300,7 +303,7 @@ data_add(
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           )
         )
@@ -313,7 +316,7 @@ data_add(
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           )
         )
@@ -322,21 +325,21 @@ data_add(
         long_name = "Doctors (3-Step Floating Catchment Area)",
         short_name = "Doctors (3SFCA)",
         description = paste(
-          "Number of doctors available in the region, as calculated within",
+          "Number of doctors available per 1,000 people, as calculated within",
           "floating catchment areas (60-minute radius) with normalized weights."
         ),
-        statement = "There are {value} doctors available in {features.name}.",
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           ),
           list(
             name = "Centers for Medicare & Medicaid Services",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://data.cms.gov"
           )
         )
@@ -345,21 +348,21 @@ data_add(
         long_name = "Doctors (2-Step Floating Catchment Area)",
         short_name = "Doctors (2SFCA)",
         description = paste(
-          "Number of doctors available in the region, as calculated within",
+          "Number of doctors available per 1,000 people, as calculated within",
           "floating catchment areas (60-minute radius) without normalized weights."
         ),
-        statement = "There are {value} doctors available in {features.name}.",
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           ),
           list(
             name = "Centers for Medicare & Medicaid Services",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://data.cms.gov"
           )
         )
@@ -368,21 +371,21 @@ data_add(
         long_name = "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
         short_name = "Doctors (3SFCA30)",
         description = paste(
-          "Number of doctors available in the region, as calculated within",
+          "Number of doctors available per 1,000 people, as calculated within",
           "smaller floating catchment areas (30-minute radius) with normalized weights."
         ),
-        statement = "There are {value} doctors available in {features.name}.",
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           ),
           list(
             name = "Centers for Medicare & Medicaid Services",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://data.cms.gov"
           )
         )
@@ -391,21 +394,21 @@ data_add(
         long_name = "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
         short_name = "Doctors (KD3SFCA)",
         description = paste(
-          "Number of doctors available in the region, as calculated within",
+          "Number of doctors available per 1,000 people, as calculated within",
           "floating catchment areas (60-minute radius) with normalized, continuous weights."
         ),
-        statement = "There are {value} doctors available in {features.name}.",
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           ),
           list(
             name = "Centers for Medicare & Medicaid Services",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://data.cms.gov"
           )
         )
@@ -414,22 +417,22 @@ data_add(
         long_name = "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
         short_name = "Doctors (CB3SFCA)",
         description = paste(
-          "Number of doctors available in the region, as calculated within",
+          "Number of doctors available per 1,000 people, as calculated within",
           "floating catchment areas (60-minute radius) with normalized weights",
           "adjusted for multiple origins (home and work)."
         ),
-        statement = "There are {value} doctors available in {features.name}.",
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
         source = list(
           list(
             name = "American Community Survey",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://www.census.gov/programs-surveys/acs.html"
           ),
           list(
             name = "Centers for Medicare & Medicaid Services",
-            date_accessed = 2021,
+            date_accessed = 2019,
             url = "https://data.cms.gov"
           ),
           list(

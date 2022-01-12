@@ -1,12 +1,5 @@
 # National Capital Region Healthcare Facility Access
-A data site comparing floating catchment area methods in the National Capital Region.
+This site compares floating catchment area variants in the National Capital Region.
 
-## Run
-```R
-# remotes::install_github("uva-bi-sdad/community")
-library(community)
-
-# from the site directory:
-site_build(".")
-```
-
+This article walks through the data collection and preparation process, and compares variants:
+[Case Study - National Capital Region](https://uva-bi-sdad.github.io/catchment/articles/casestudy-dmv.html)

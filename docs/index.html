@@ -11,11 +11,9 @@
 <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-VzLXTJGPSyTLX6d96AxgkKvE/LRb7ECGyTxuwtpjHnVWVZs2gp5RDjeM/tgBnVdM" crossorigin="anonymous" rel="stylesheet" media="all" async>
 <script type="application/javascript" src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-RFZC58YeKApoNsIbBxf4z6JJXmh+geBSgkCQXFyh+4tiFSJmJBt+2FbjxW7Ar16M" crossorigin="anonymous" async></script>
 <script type="application/javascript" src="https://cdn.plot.ly/plotly-2.8.3.min.js" integrity="sha384-zr60hUCjkFUAnEpigusE7X26aChBWd9sBNDUEGzfUm4jCOSrlAsKh42wJp4KPFaQ" crossorigin="anonymous" async></script>
-<script type="application/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous" defer></script>
-<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" integrity="sha384-kKpyGTkmY+nYEkRda6qauvrYqFNO4csWTLspXM3FCJ89NsU9FhPY5kebmiPqu8B6" crossorigin="anonymous" rel="stylesheet" media="all" async>
-<script type="application/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/rg-1.1.4/datatables.min.js" integrity="sha384-uf/Bcd4lCplN1dOhtGBZdheEsWnZs1FocqbGCOoBFX5rVwUAXJ1K79UJLzOMoDZO" crossorigin="anonymous" defer></script>
 <link href="https://uva-bi-sdad.github.io/community/dist/css/community.min.css" rel="stylesheet" media="all" async>
 <script type="application/javascript" src="https://uva-bi-sdad.github.io/community/dist/js/community.min.js" async></script>
+<link href="style.css" rel="stylesheet" media="all" async>
 <meta name="generator" content="community v0.0.1" />
 <title>Capital Region Healthcare Facility Access</title>
 <meta name="title" content="Capital Region Healthcare Facility Access">
@@ -49,7 +47,7 @@
 <div class="wrapper select-wrapper">
 <label for="settings.palette">Color Palette</label>
 <div class="input-group">
-<select class="auto-input form-select" auto-type="select" id="settings.palette" auto-options="palettes" default="rdylbu7">
+<select class="auto-input form-select" auto-type="select" id="settings.palette" auto-options="palettes" default="-1">
 </select>
 </div>
 </div>
@@ -99,53 +97,58 @@
 <p class="">This site was made by the <a target="_blank" rel="noreferrer" href="https://biocomplexity.virginia.edu/institute/divisions/social-and-decision-analytics">Social and Decision Analytics Division</a> of the <a target="_blank" rel="noreferrer" href="https://biocomplexity.virginia.edu">Biocomplexity Institute</a>.</p>
 <p class="">View its source on <a target="_blank" rel="noreferrer" href="https://github.com/uva-bi-sdad/dmv_healthcare">GitHub</a>.</p>
 <p class="">The <a target="_blank" rel="noreferrer" href="https://uva-bi-sdad.github.io/catchment">Catchment</a> package was used to calculate floating catchment area ratios.</p>
-<p class="">The <a target="_blank" rel="noreferrer" href="https://uva-bi-sdad.github.io/catchment/articles/casestudy.html">case study</a> article walkes through the data collection and calculation of floating catchment area ratios.</p>
+<p class="">The <a target="_blank" rel="noreferrer" href="https://uva-bi-sdad.github.io/catchment/articles/casestudy-dmv.html">case study</a> article walkes through the data collection and calculation of floating catchment area ratios.</p>
 <p class="h5">Credits</p>
 <p class="">Built in <a target="_blank" rel="noreferrer" href="https://www.r-project.org">R</a> with the <a target="_blank" rel="noreferrer" href="https://uva-bi-sdad.github.io/community">community</a> package, using these resources:</p>
 <div id="credits0" class="auto-output credits" auto-type="credits"></div>
 </div>
 </div>
-<div state="open" class="menu-wrapper menu-top" style="top: 0; width: 100%">
-<div class="menu row menu-top">
-<div class="col">
-<div class="col">
+<div class="content container-fluid">
+<h1 auto-type="text" id="text2" class="auto-output output-text text-center"></h1>
+<div class="auto-output text-display floating" auto-type="info" id="info3"></div>
 <div class="row">
 <div class="col">
+<div class="row">
+<h2 auto-type="text" id="text4" class="auto-output output-text text-center"></h2>
+<div class="row">
+<div class="col">
+<div class="row">
+<div class="row form-row">
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="selected_county" auto-options="ids" default="-1" data-view="primary_view" dataset="counties">
+<select class="auto-input form-select" auto-type="select" id="county_a" auto-options="ids" default="-1" data-view="view_a" dataset="counties">
 </select>
-<label for="selected_county">County</label>
+<label for="county_a">County</label>
+<button type="button" class="btn select-reset">Reset</button>
+</div>
+</div>
+<div class="wrapper select-wrapper">
+<div class="input-group form-floating">
+<select class="auto-input form-select" auto-type="select" id="tract_a" auto-options="ids" default="-1" data-view="view_a" dataset="tracts">
+</select>
+<label for="tract_a">Census Tract</label>
 <button type="button" class="btn select-reset">Reset</button>
 </div>
 </div>
 </div>
-<div class="col" id="sec32">
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="selected_tract" auto-options="ids" default="-1" data-view="primary_view" dataset="tracts">
+<select class="auto-input form-select" auto-type="select" id="variable_a" auto-options="variables" default="doctors_3sfca" depends="shapes_a">
 </select>
-<label for="selected_tract">Census Tract</label>
-<button type="button" class="btn select-reset">Reset</button>
+<label for="variable_a">Variable A</label>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="col">
-<div class="col">
-<div class="row">
-<div class="col">
-<div class="wrapper select-wrapper">
-<div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="selected_y" auto-options="variables" default="access_3sfca" depends="shapes">
-</select>
-<label for="selected_y">Y Variable (mapped)</label>
-</div>
+<div class="auto-output text-display" auto-type="info" id="variable_info_pane"></div>
 </div>
 </div>
 <div class="col">
+<div class="auto-output leaflet" data-view="view_a" click="region_select_a" id="map_a" auto-type="map"></div>
+</div>
+</div>
+<div class="auto-output plotly" data-view="view_a" click="region_select_a" x="selected_x" y="variable_a" id="plot_a" auto-type="plot"></div>
+</div>
+</div>
+</div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
 <select class="auto-input form-select" auto-type="select" id="selected_x" auto-options="variables" default="population" depends="shapes">
@@ -153,62 +156,9 @@
 <label for="selected_x">X Variable</label>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<button type="button" class="menu-toggle" title="top menu"></button>
-</div>
-<div class="content container-fluid">
-<div class="col">
-<p auto-type="text" id="text7" class="auto-output output-text"></p>
-<h1 auto-type="text" id="text8" class="auto-output output-text text-center"></h1>
-<div class="row">
-<div class="col">
-<div class="auto-output leaflet" data-view="primary_view" click="region_select" id="main_map" auto-type="map"></div>
-</div>
-<div class="col-4">
-<div class="d-flex flex-column col align-items-end compact">
-<div class="row">
-<div class="auto-output text-display" auto-type="info" id="variable_info_pane"></div>
-</div>
-<div class="row mb-auto">
-<div class="row">
-<div class="row">
-<div class="auto-output text-display" auto-type="info" id="info11"></div>
-</div>
-<div class="row">
-<div class="auto-output text-display" auto-type="info" id="info12"></div>
-</div>
-</div>
-</div>
-<div class="row">
 <div palette="settings.palette" class="legend">
 <div class="legend-scale"></div>
 <div class="legend-text"><span>Below</span><span>Region Median</span><span>Above</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-7">
-<nav>
-<div class="nav nav-tabs">
-<button type="button" data-bs-toggle="tab" aria-controls="tg161" class="nav-link active" aria-current="page" data-bs-target="#tg161" id="tg161-tab">Plot</button>
-<button type="button" data-bs-toggle="tab" aria-controls="tg162" class="nav-link" data-bs-target="#tg162" id="tg162-tab">Data</button>
-</div>
-</nav>
-<div class="tab-content">
-<div role="tabpanel" aria-labelledby="tg161-tab" class="tab-pane fade show active" id="tg161"><div class="auto-output plotly" data-view="primary_view" click="region_select" x="selected_x" y="selected_y" id="main_plot" auto-type="plot"></div></div>
-<div role="tabpanel" aria-labelledby="tg162-tab" class="tab-pane fade" id="tg162"><table class="auto-output datatables compact" data-view="primary_view" id="table17" auto-type="table"></table></div>
-</div>
-</div>
-<div class="col-5">
-<table class="auto-output datatables compact" data-view="primary_view" id="table19" auto-type="table"></table>
-</div>
-</div>
 </div>
 </div>
 </body>

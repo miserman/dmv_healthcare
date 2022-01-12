@@ -16,10 +16,10 @@ const site = {
     "variables": {},
     "info": {
       "blockgroups": {
-        "bytes": 499385,
+        "bytes": 662681,
         "encoding": "ISO-8859-1",
-        "md5": "4105c53f8565a1b5ce72b40366ad9a10",
-        "sha512": "73f02bd59e5641b40c53d84c43f66cf430db7ca8f3e8fca84dd04614a9e7219218aa2afa460be18d548b2f5e27ef768504774d6cdf71d2615860829111532c8b",
+        "md5": "11c19804cacf1c8aee14532138b2976f",
+        "sha512": "8de9cdbe263f689799c13ecf503e8fc25c6249b2953ae75f8d62c9f6de06465b056df4108dec4885bf61ecaafed62bc1ada8ae261185c97870e0d8b56e7a11c6",
         "format": "csv",
         "name": "blockgroups",
         "filename": "blockgroups.csv",
@@ -31,7 +31,7 @@ const site = {
         ],
         "time": {},
         "profile": "data-resource",
-        "created": "2022-01-05 21:27:22",
+        "created": "2022-01-12 13:11:20",
         "last_modified": "2022-01-03 14:39:35",
         "rowcount": 3235,
         "schema": {
@@ -116,12 +116,12 @@ const site = {
               "max": 100
             },
             {
-              "name": "access_3sfca",
-              "duplicates": 1713,
+              "name": "doctors_3sfca",
+              "duplicates": 1699,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area)",
                 "short_name": "Doctors (3SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with normalized Gaussian weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -133,25 +133,25 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.1059,
-              "sd": 6.0687,
-              "min": 0.3077,
-              "max": 337.12
+              "mean": 1.5466,
+              "sd": 0.482,
+              "min": 0.0271,
+              "max": 4.2427
             },
             {
-              "name": "access_2sfca",
-              "duplicates": 1713,
+              "name": "doctors_kd2sfca",
+              "duplicates": 1699,
               "info": {
-                "long_name": "Doctors (2-Step Floating Catchment Area)",
-                "short_name": "Doctors (2SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+                "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area)",
+                "short_name": "Doctors (KD2SFCA)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -163,25 +163,85 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.1343,
-              "sd": 6.0095,
-              "min": 0.2954,
-              "max": 335.2151
+              "mean": 1.5643,
+              "sd": 0.6424,
+              "min": 0.0396,
+              "max": 2.6121
             },
             {
-              "name": "access_3sfca_30",
-              "duplicates": 1719,
+              "name": "doctors_3sfca_euclidean",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (3-Step Floating Catchment Area, Euclidean)",
+                "short_name": "Doctors (3SFCA, Euclidean)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with normalized Gaussian weights based on Euclidean distance.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5109,
+              "sd": 0.0002,
+              "min": 1.5095,
+              "max": 1.5111
+            },
+            {
+              "name": "doctors_kd2sfca_euclidean",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area, Euclidean)",
+                "short_name": "Doctors (KD2SFCA, Euclidean)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights based on Euclidean distance.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5109,
+              "sd": 0.0002,
+              "min": 1.5095,
+              "max": 1.5111
+            },
+            {
+              "name": "doctors_3sfca_30",
+              "duplicates": 1699,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
                 "short_name": "Doctors (3SFCA30)",
-                "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+                "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas with normalized Gaussian weights within 30 minute buffers.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -193,50 +253,80 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
-                    "url": "https://data.cms.gov"
-                  }
-                ]
-              },
-              "type": "float",
-              "missing": 0,
-              "mean": 2.9137,
-              "sd": 2.0531,
-              "min": 0.1865,
-              "max": 91.8064
-            },
-            {
-              "name": "access_3sfca_gauss",
-              "duplicates": 1699,
-              "info": {
-                "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
-                "short_name": "Doctors (KD3SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
-                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
-                "type": "sum",
-                "citations": "wan12",
-                "source": [
-                  {
-                    "name": "American Community Survey",
                     "date_accessed": 2019,
-                    "url": "https://www.census.gov/programs-surveys/acs.html"
-                  },
-                  {
-                    "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.0011,
-              "sd": 7.7366,
+              "mean": 1.5428,
+              "sd": 0.4781,
               "min": 0,
-              "max": 214.4602
+              "max": 3.9066
             },
             {
-              "name": "access_3sfca_commute",
+              "name": "doctors_3sfca_step",
+              "duplicates": 1715,
+              "info": {
+                "long_name": "Doctors (3-Step Floating Catchment Area Ratio)",
+                "short_name": "Doctors (3SFCA, Step)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized step weights.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5462,
+              "sd": 0.4915,
+              "min": 0.0544,
+              "max": 4.3848
+            },
+            {
+              "name": "doctors_e2sfca",
+              "duplicates": 1715,
+              "info": {
+                "long_name": "Doctors (Enhanced 2-Step Floating Catchment Area Ratio)",
+                "short_name": "Doctors (E2SFCA)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with step weights.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.566,
+              "sd": 0.6569,
+              "min": 0.0458,
+              "max": 2.7036
+            },
+            {
+              "name": "doctors_3sfca_commute",
               "duplicates": 0,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
@@ -253,7 +343,7 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   },
                   {
@@ -265,10 +355,10 @@ const site = {
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.1268,
-              "sd": 5.8473,
-              "min": 0.4382,
-              "max": 324.978
+              "mean": 1.5571,
+              "sd": 0.5325,
+              "min": 0.0209,
+              "max": 4.3821
             }
           ]
         },
@@ -317,10 +407,10 @@ const site = {
         "site_file": "blockgroups.json"
       },
       "tracts": {
-        "bytes": 190158,
+        "bytes": 251853,
         "encoding": "ISO-8859-1",
-        "md5": "7921466ec0f1b5b944e79525d5a00b9f",
-        "sha512": "4420b46a10c5552d79f389b16dcb6bea520cf56f20b657fe3d132555b7b54018150076dbdbf5a80eed7253772a4612fa996a3d055980688a7010930ffbc7fea7",
+        "md5": "aa0e11ada494d37108f241cc9b74b331",
+        "sha512": "da2d6bbdd8f70565e0e3a81eddec5c335aa86c7e3d0df014ef39768e1356ab94af964b9efc686db466ad2fdf649f95a6d7dd1b36c6239af6a2b7d2933b007c25",
         "format": "csv",
         "name": "tracts",
         "filename": "tracts.csv",
@@ -332,7 +422,7 @@ const site = {
         ],
         "time": {},
         "profile": "data-resource",
-        "created": "2022-01-05 21:29:14",
+        "created": "2022-01-12 13:18:24",
         "last_modified": "2022-01-03 14:35:22",
         "rowcount": 1218,
         "schema": {
@@ -417,12 +507,12 @@ const site = {
               "max": 100
             },
             {
-              "name": "access_3sfca",
-              "duplicates": 378,
+              "name": "doctors_3sfca",
+              "duplicates": 372,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area)",
                 "short_name": "Doctors (3SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with normalized Gaussian weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -434,25 +524,25 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.048,
-              "sd": 1.9697,
-              "min": 0.5623,
-              "max": 51.0722
+              "mean": 1.547,
+              "sd": 0.458,
+              "min": 0.167,
+              "max": 3.2027
             },
             {
-              "name": "access_2sfca",
-              "duplicates": 377,
+              "name": "doctors_kd2sfca",
+              "duplicates": 370,
               "info": {
-                "long_name": "Doctors (2-Step Floating Catchment Area)",
-                "short_name": "Doctors (2SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+                "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area)",
+                "short_name": "Doctors (KD2SFCA)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -464,25 +554,85 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.0742,
-              "sd": 1.8638,
-              "min": 0.5206,
-              "max": 46.9411
+              "mean": 1.5643,
+              "sd": 0.622,
+              "min": 0.1493,
+              "max": 2.5823
             },
             {
-              "name": "access_3sfca_30",
-              "duplicates": 383,
+              "name": "doctors_3sfca_euclidean",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (3-Step Floating Catchment Area, Euclidean)",
+                "short_name": "Doctors (3SFCA, Euclidean)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with normalized Gaussian weights based on Euclidean distance.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5109,
+              "sd": 0.0002,
+              "min": 1.5096,
+              "max": 1.5111
+            },
+            {
+              "name": "doctors_kd2sfca_euclidean",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area, Euclidean)",
+                "short_name": "Doctors (KD2SFCA, Euclidean)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights based on Euclidean distance.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5109,
+              "sd": 0.0002,
+              "min": 1.5096,
+              "max": 1.5111
+            },
+            {
+              "name": "doctors_3sfca_30",
+              "duplicates": 372,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
                 "short_name": "Doctors (3SFCA30)",
-                "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+                "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas with normalized Gaussian weights within 30 minute buffers.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -494,25 +644,25 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.9284,
-              "sd": 1.6253,
-              "min": 0.4446,
-              "max": 39.3025
+              "mean": 1.5451,
+              "sd": 0.4534,
+              "min": 0.1597,
+              "max": 3.1044
             },
             {
-              "name": "access_3sfca_gauss",
-              "duplicates": 369,
+              "name": "doctors_3sfca_step",
+              "duplicates": 376,
               "info": {
-                "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
-                "short_name": "Doctors (KD3SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+                "long_name": "Doctors (3-Step Floating Catchment Area Ratio)",
+                "short_name": "Doctors (3SFCA, Step)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized step weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -524,20 +674,50 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.9399,
-              "sd": 5.6685,
-              "min": 0,
-              "max": 66.1637
+              "mean": 1.5492,
+              "sd": 0.4627,
+              "min": 0.1618,
+              "max": 3.0627
             },
             {
-              "name": "access_3sfca_commute",
+              "name": "doctors_e2sfca",
+              "duplicates": 376,
+              "info": {
+                "long_name": "Doctors (Enhanced 2-Step Floating Catchment Area Ratio)",
+                "short_name": "Doctors (E2SFCA)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with step weights.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.567,
+              "sd": 0.6356,
+              "min": 0.1411,
+              "max": 2.6087
+            },
+            {
+              "name": "doctors_3sfca_commute",
               "duplicates": 0,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
@@ -554,7 +734,7 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   },
                   {
@@ -566,10 +746,10 @@ const site = {
               },
               "type": "float",
               "missing": 0,
-              "mean": 3.068,
-              "sd": 1.8906,
-              "min": 0.682,
-              "max": 47.4237
+              "mean": 1.5559,
+              "sd": 0.5079,
+              "min": 0.0274,
+              "max": 3.3202
             }
           ]
         },
@@ -618,10 +798,10 @@ const site = {
         "site_file": "tracts.json"
       },
       "counties": {
-        "bytes": 2283,
+        "bytes": 3091,
         "encoding": "ISO-8859-1",
-        "md5": "486c5b671667ebd50f8af601d3ae1a2b",
-        "sha512": "b90a373c4c41a3acf8ff10a1276f554ee3b9c8bac9e661a389d4a437f5b70b8ae4b677f58e4c839949e68191858b802c2f403bff2d36981520d8132bb5c9b2eb",
+        "md5": "9f2578c075d41199edf64b39eb80ad18",
+        "sha512": "b26e42f9bd71988374077aac9d77d67cc85a40a738c1839b1c9e81f02a0967c776f3a5068755f2c358789df08208700f7aa897f4a7d22a8b57181479b6a997da",
         "format": "csv",
         "name": "counties",
         "filename": "counties.csv",
@@ -633,7 +813,7 @@ const site = {
         ],
         "time": {},
         "profile": "data-resource",
-        "created": "2022-01-05 21:29:16",
+        "created": "2022-01-12 13:18:25",
         "last_modified": "2022-01-03 14:43:55",
         "rowcount": 14,
         "schema": {
@@ -718,12 +898,12 @@ const site = {
               "max": 31.3946
             },
             {
-              "name": "access_3sfca",
+              "name": "doctors_3sfca",
               "duplicates": 0,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area)",
                 "short_name": "Doctors (3SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights.",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with normalized Gaussian weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -735,25 +915,25 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.8047,
-              "sd": 1.0685,
-              "min": 1.2559,
-              "max": 4.3767
+              "mean": 1.4265,
+              "sd": 0.4192,
+              "min": 0.8476,
+              "max": 2.0582
             },
             {
-              "name": "access_2sfca",
+              "name": "doctors_kd2sfca",
               "duplicates": 0,
               "info": {
-                "long_name": "Doctors (2-Step Floating Catchment Area)",
-                "short_name": "Doctors (2SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) without normalized weights.",
+                "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area)",
+                "short_name": "Doctors (KD2SFCA)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -765,25 +945,85 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.8553,
-              "sd": 1.2555,
-              "min": 1.1491,
-              "max": 4.8309
+              "mean": 1.416,
+              "sd": 0.6516,
+              "min": 0.553,
+              "max": 2.3835
             },
             {
-              "name": "access_3sfca_30",
+              "name": "doctors_3sfca_euclidean",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (3-Step Floating Catchment Area, Euclidean)",
+                "short_name": "Doctors (3SFCA, Euclidean)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with normalized Gaussian weights based on Euclidean distance.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5108,
+              "sd": 0.0002,
+              "min": 1.5103,
+              "max": 1.5111
+            },
+            {
+              "name": "doctors_kd2sfca_euclidean",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area, Euclidean)",
+                "short_name": "Doctors (KD2SFCA, Euclidean)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights based on Euclidean distance.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.5109,
+              "sd": 0.0002,
+              "min": 1.5103,
+              "max": 1.5111
+            },
+            {
+              "name": "doctors_3sfca_30",
               "duplicates": 0,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
                 "short_name": "Doctors (3SFCA30)",
-                "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas (30-minute radius) with normalized weights.",
+                "description": "Number of doctors available per 1,000 people, as calculated within smaller floating catchment areas with normalized Gaussian weights within 30 minute buffers.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -795,25 +1035,25 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.5433,
-              "sd": 1.0273,
-              "min": 1.161,
-              "max": 4.095
+              "mean": 1.4166,
+              "sd": 0.4198,
+              "min": 0.8273,
+              "max": 2.0331
             },
             {
-              "name": "access_3sfca_gauss",
+              "name": "doctors_3sfca_step",
               "duplicates": 0,
               "info": {
-                "long_name": "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
-                "short_name": "Doctors (KD3SFCA)",
-                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized, continuous weights.",
+                "long_name": "Doctors (3-Step Floating Catchment Area Ratio)",
+                "short_name": "Doctors (3SFCA, Step)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized step weights.",
                 "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
                 "type": "sum",
                 "citations": "wan12",
@@ -825,20 +1065,50 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   }
                 ]
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.3803,
-              "sd": 1.7823,
-              "min": 0.0387,
-              "max": 6.8234
+              "mean": 1.413,
+              "sd": 0.4344,
+              "min": 0.8156,
+              "max": 2.0634
             },
             {
-              "name": "access_3sfca_commute",
+              "name": "doctors_e2sfca",
+              "duplicates": 0,
+              "info": {
+                "long_name": "Doctors (Enhanced 2-Step Floating Catchment Area Ratio)",
+                "short_name": "Doctors (E2SFCA)",
+                "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with step weights.",
+                "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
+                "type": "sum",
+                "citations": "wan12",
+                "source": [
+                  {
+                    "name": "American Community Survey",
+                    "date_accessed": 2019,
+                    "url": "https://www.census.gov/programs-surveys/acs.html"
+                  },
+                  {
+                    "name": "Centers for Medicare & Medicaid Services",
+                    "date_accessed": 2019,
+                    "url": "https://data.cms.gov"
+                  }
+                ]
+              },
+              "type": "float",
+              "missing": 0,
+              "mean": 1.4222,
+              "sd": 0.6598,
+              "min": 0.5534,
+              "max": 2.4104
+            },
+            {
+              "name": "doctors_3sfca_commute",
               "duplicates": 0,
               "info": {
                 "long_name": "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
@@ -855,7 +1125,7 @@ const site = {
                   },
                   {
                     "name": "Centers for Medicare & Medicaid Services",
-                    "date_accessed": 2021,
+                    "date_accessed": 2019,
                     "url": "https://data.cms.gov"
                   },
                   {
@@ -867,10 +1137,10 @@ const site = {
               },
               "type": "float",
               "missing": 0,
-              "mean": 2.871,
-              "sd": 1.0867,
-              "min": 1.3018,
-              "max": 4.4505
+              "mean": 1.4456,
+              "sd": 0.4632,
+              "min": 0.8122,
+              "max": 2.1624
             }
           ]
         },
@@ -921,33 +1191,19 @@ const site = {
     },
     "files": ["counties.csv", "tracts.csv", "blockgroups.csv"]
   },
-  "rules": [
-    {
-      "condition": [
-        {
-          "id": "selected_county",
-          "type": "",
-          "value": ""
-        }
-      ],
-      "effects": {
-        "display": "sec32"
-      }
-    }
-  ],
   "variables": [
     {
-      "id": "shapes",
+      "id": "shapes_a",
       "states": [
         {
           "condition": [
             {
-              "id": "selected_county",
+              "id": "county_a",
               "type": "",
               "value": ""
             },
             {
-              "id": "selected_tract",
+              "id": "tract_a",
               "type": "!",
               "value": ""
             }
@@ -957,7 +1213,7 @@ const site = {
         {
           "condition": [
             {
-              "id": "selected_tract",
+              "id": "tract_a",
               "type": "",
               "value": ""
             }
@@ -968,49 +1224,71 @@ const site = {
       "default": "counties"
     },
     {
-      "id": "region_select",
+      "id": "region_select_a",
       "states": [
         {
           "condition": [
             {
-              "id": "shapes",
+              "id": "shapes_a",
               "type": "=",
               "value": "tracts"
             }
           ],
-          "value": "selected_tract"
+          "value": "tract_a"
         }
       ],
-      "default": "selected_county"
+      "default": "county_a"
     },
     {
-      "id": "selected_region",
+      "id": "region_a",
       "states": [
         {
           "condition": [
             {
-              "id": "selected_tract",
+              "id": "tract_a",
               "type": "",
               "value": ""
             }
           ],
-          "value": "selected_tract"
+          "value": "tract_a"
         }
       ],
-      "default": "selected_county"
+      "default": "county_a"
     }
   ],
   "dataviews": {
-    "primary_view": {
+    "view_a": {
       "palette": "",
-      "y": "selected_y",
+      "y": "variable_a",
       "time_agg": "last",
       "time_filters": [],
-      "dataset": "shapes",
-      "ids": "selected_region"
+      "dataset": "shapes_a",
+      "ids": "region_a"
     }
   },
   "info": {
+    "info3": {
+      "title": "features.name",
+      "body": [
+        {
+          "name": "variables.long_name",
+          "value": "variable_a",
+          "style": "stack"
+        },
+        {
+          "name": "",
+          "value": "variables.statement",
+          "style": "table"
+        }
+      ],
+      "default": {
+        "title": ""
+      },
+      "floating": true,
+      "dataview": "view_a",
+      "subto": ["map_a", "plot_a"],
+      "variable_info": false
+    },
     "variable_info_pane": {
       "title": "variables.short_name",
       "body": [
@@ -1022,170 +1300,12 @@ const site = {
       ],
       "default": [],
       "floating": false,
-      "dataview": "primary_view",
+      "dataview": "view_a",
       "variable_info": false
-    },
-    "info11": {
-      "title": "features.name",
-      "body": [],
-      "default": {
-        "title": "National Capital Region",
-        "body": "Hover over or select a region for more information."
-      },
-      "floating": false,
-      "dataview": "primary_view",
-      "subto": ["main_map", "main_plot"],
-      "variable_info": false
-    },
-    "info12": {
-      "title": "",
-      "body": [
-        {
-          "name": "variables.long_name",
-          "value": "selected_y",
-          "style": "stack"
-        },
-        {
-          "name": "",
-          "value": "variables.statement",
-          "style": "table"
-        }
-      ],
-      "default": [],
-      "floating": false,
-      "dataview": "primary_view",
-      "subto": ["main_map", "main_plot"],
-      "variable_info": false
-    }
-  },
-  "text": {
-    "text7": {
-      "text": [
-        {
-          "button": {
-            "b1": {
-              "text": [
-                "National Capital Region"
-              ],
-              "type": "reset",
-              "target": "selected_county"
-            }
-          },
-          "text": "b1"
-        },
-        {
-          "condition": [
-            {
-              "id": "selected_county",
-              "type": "",
-              "value": ""
-            }
-          ],
-          "button": {
-            "b1": {
-              "text": [
-                "",
-                "selected_county"
-              ],
-              "type": "reset",
-              "target": "selected_tract"
-            }
-          },
-          "text": [" > ", "b1"]
-        },
-        {
-          "condition": [
-            {
-              "id": "selected_tract",
-              "type": "",
-              "value": ""
-            }
-          ],
-          "text": [" > ", "selected_tract"]
-        }
-      ]
-    },
-    "text8": {
-      "text": [
-        [
-          {
-            "text": "National Capital Region Counties",
-            "condition": [
-              {
-                "id": "default",
-                "type": "",
-                "value": ""
-              }
-            ]
-          },
-          {
-            "text": ["selected_county", " Census Tracts"],
-            "condition": [
-              {
-                "id": "selected_county",
-                "type": "",
-                "value": ""
-              }
-            ]
-          },
-          {
-            "text": ["selected_tract", " Census Block Groups"],
-            "condition": [
-              {
-                "id": "selected_tract",
-                "type": "",
-                "value": ""
-              }
-            ]
-          }
-        ]
-      ]
-    }
-  },
-  "tables": {
-    "table17": {
-      "scrollY": 400,
-      "rowGroup": {
-        "dataSrc": "features.name"
-      },
-      "columnDefs": [
-        {
-          "targets": "features.name",
-          "visible": false
-        }
-      ],
-      "buttons": ["copy", "csv", "excel", "print"],
-      "dom": "<'row't><'row'<'col-sm'B><'col'f>>",
-      "features": [
-        {
-          "name": "id",
-          "title": "ID"
-        },
-        {
-          "name": "name",
-          "title": "Name"
-        }
-      ],
-      "single_variable": false,
-      "wide": false,
-      "paging": false,
-      "scrollX": 500,
-      "scrollCollapse": true
-    },
-    "table19": {
-      "info": false,
-      "searching": false,
-      "variables": "selected_y",
-      "single_variable": true,
-      "wide": true,
-      "paging": false,
-      "scrollY": 500,
-      "scrollX": 500,
-      "scrollCollapse": true
     }
   },
   "plots": {
-    "main_plot": {
+    "plot_a": {
       "layout": {
         "showlegend": false,
         "xaxis": {
@@ -1219,12 +1339,12 @@ const site = {
         }
       ],
       "subto": [
-        "main_map"
+        "map_a"
       ]
     }
   },
   "maps": {
-    "main_map": {
+    "map_a": {
       "shapes": [
         {
           "name": "counties",
@@ -1247,9 +1367,9 @@ const site = {
         "scrollWheelZoom": false,
         "center": [38.938, -77.315],
         "zoom": 7,
-        "height": "430px",
+        "height": "400px",
         "subto": [
-          "main_plot"
+          "plot_a"
         ],
         "background_shapes": "tracts"
       },
@@ -1298,11 +1418,51 @@ const site = {
       "name": "Plotly",
       "url": "https://plotly.com",
       "version": "2.8.3"
+    }
+  },
+  "text": {
+    "text2": {
+      "text": [
+        {
+          "text": "National Capital Region"
+        }
+      ]
     },
-    "datatables": {
-      "name": "DataTables",
-      "url": "https://datatables.net",
-      "version": "1.11.3"
+    "text4": {
+      "text": [
+        [
+          {
+            "text": "Counties",
+            "condition": [
+              {
+                "id": "default",
+                "type": "",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "text": ["county_a", " Census Tracts"],
+            "condition": [
+              {
+                "id": "county_a",
+                "type": "",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "text": ["tract_a", " Block Groups"],
+            "condition": [
+              {
+                "id": "tract_a",
+                "type": "",
+                "value": ""
+              }
+            ]
+          }
+        ]
+      ]
     }
   }
 }

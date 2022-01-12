@@ -6,89 +6,6 @@ oridir <- paste0(maindir, "original/")
 dir.create(oridir, FALSE, TRUE)
 
 #
-# provider information
-#
-
-# download primary care provider information from the Centers for Medicare & Medicaid Services
-# https://data.cms.gov
-
-## set up the url to download from the API
-providers_url <- paste0(
-  "https://data.cms.gov/data-api/v1/dataset/", # base url
-  "a399e5c1-1cd1-4cbe-957f-d2cc8fe5d897/data/", # dataset id, which specifies year
-  "?filter[region][condition][path]=Rndrng_Prvdr_State_Abrvtn", # filter: state %in% c("DC", "MD", "VA")
-  "&filter[region][condition][operator]=IN",
-  "&filter[region][condition][value][1]=DC",
-  "&filter[region][condition][value][2]=MD",
-  "&filter[region][condition][value][3]=VA",
-  "&offset=" # pagination, as only 1000 rows are returned at a time
-)
-
-## retrieve the data in steps
-providers <- list()
-offset <- 0
-while(length(raw <- jsonlite::read_json(paste0(providers_url, offset)))){
-  cat("\rdownloading file", offset / 1000 + 1, "     ")
-  providers[[length(providers) + 1]] <- do.call(rbind, lapply(raw, unlist))
-  offset <- offset + 1000
-}
-providers <- as.data.frame(do.call(rbind, providers))
-
-## focus only on medical doctors who aren't also dentists
-providers <- providers[
-  grepl("\\bm\\.?d(?:\\W|$)", providers$Rndrng_Prvdr_Crdntls, TRUE) &
-    !grepl("d\\.?d\\.?s", providers$Rndrng_Prvdr_Crdntls, TRUE),
-]
-
-## format address strings, and get the coordinates of each unique entry
-address_parts <- c("Rndrng_Prvdr_St1", "Rndrng_Prvdr_City", "Rndrng_Prvdr_State_Abrvtn", "Rndrng_Prvdr_Zip5")
-
-providers$Rndrng_Prvdr_St1 <- sub("([nesw])\\.([nesw])\\.*", "\\1\\2", providers$Rndrng_Prvdr_St1, TRUE)
-providers$Rndrng_Prvdr_St1 <- sub("\\s*#\\s.*$", "", providers$Rndrng_Prvdr_St1)
-providers$Rndrng_Prvdr_St1 <- sub("\\s*([nesw]{2})\\s.*$", " \\1", providers$Rndrng_Prvdr_St1, TRUE)
-providers$address <- do.call(paste, c(unname(as.list(providers[, address_parts])), sep = ", "))
-
-## collapse to locations based on address
-vars <- c("address", "Rndrng_Prvdr_Gndr", grep("^(tot|drug|med|bene)_", colnames(providers), TRUE, value = TRUE))
-vars <- vars[!vars %in% c("Drug_Sprsn_Ind", "Med_Sprsn_Ind")]
-provider_locations <- do.call(rbind, lapply(unique(providers$addresses), function(a){
-  d <- providers[providers$addresses == a, vars]
-  d[d == ""] <- NA
-  as.data.frame(list(
-    address = a,
-    doctors = nrow(d),
-    prop_women = mean(d$Rndrng_Prvdr_Gndr == "F"),
-    as.list(colMeans(matrix(
-      as.numeric(as.matrix(d[, -(1:2)])), nrow(d),
-      dimnames = list(NULL, vars[-(1:2)])
-    ), na.rm = TRUE))
-  ))
-}))
-provider_locations[is.na(provider_locations)] <- NA
-
-## geocode addresses; takes a while
-library(parallel)
-cl <- makeCluster(detectCores() - 2)
-address_coords <- do.call(rbind, parLapply(cl, provider_locations$address, function(a){
-  coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE, method = "arcgis")
-  if(is.na(coords$long)) coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE)
-  coords
-}))
-stopCluster(cl)
-
-### add to provider locations
-provider_locations[, c("lat", "long")] <- address_coords[, -1]
-
-## remove provider locations that could not be geocoded
-provider_locations <- provider_locations[!is.na(provider_locations$long),]
-
-## make unique IDs for each provider location
-provider_locations$id <- paste0("l", seq_len(nrow(provider_locations)))
-
-## save provider locations dataset
-write.csv(provider_locations, paste0(maindir, "providers.csv"), row.names = FALSE)
-
-#
 # population information
 #
 
@@ -156,19 +73,6 @@ data_combined <- do.call(rbind, lapply(names(data), function(state){
 }))
 write.csv(data_combined, paste0(maindir, "data.csv"), row.names = FALSE)
 
-### get travel times between each included block group and provider location
-library(osrm)
-options(osrm.server = Sys.getenv("OSRM_SERVER"), osrm.profile = "car")
-traveltimes <- osrmTable(
-  src = data_combined[, c("GEOID", "X", "Y")],
-  dst = provider_locations[, c("id", "long", "lat")]
-)$duration
-write.csv(
-  cbind(GEOID = rownames(traveltimes), as.data.frame(as.matrix(traveltimes))),
-  paste0(maindir, "traveltimes.csv"), row.names = FALSE
-)
-system2("bzip2", shQuote(paste0(maindir, "traveltimes.csv")))
-
 library(Matrix)
 commutes <- sparseMatrix(
   {}, {}, x = 0,
@@ -182,11 +86,151 @@ write.csv(
 )
 system2("bzip2", shQuote(paste0(maindir, "commutes.csv")))
 
+
+#
+# provider information
+#
+
+# download primary care provider information from the Centers for Medicare & Medicaid Services
+# https://data.cms.gov
+
+## set up the url to download from the API
+providers_url <- paste0(
+  "https://data.cms.gov/data-api/v1/dataset/", # base url
+  "a399e5c1-1cd1-4cbe-957f-d2cc8fe5d897/data/", # dataset id, which specifies year
+  "?filter[region][condition][path]=Rndrng_Prvdr_State_Abrvtn", # filter: state %in% c("DC", "MD", "VA")
+  "&filter[region][condition][operator]=IN",
+  "&filter[region][condition][value][1]=DC",
+  "&filter[region][condition][value][2]=MD",
+  "&filter[region][condition][value][3]=VA",
+  "&offset=" # pagination, as only 1000 rows are returned at a time
+)
+
+## retrieve the data in steps
+providers <- list()
+offset <- 0
+while(length(raw <- jsonlite::read_json(paste0(providers_url, offset)))){
+  cat("\rdownloading file", offset / 1000 + 1, "     ")
+  providers[[length(providers) + 1]] <- do.call(rbind, lapply(raw, unlist))
+  offset <- offset + 1000
+}
+providers <- as.data.frame(do.call(rbind, providers))
+
+## get a set of ZIP codes within the focal counties
+county_shapes <- read_sf(paste0(maindir, "counties.geojson"), as_tibble = FALSE)
+geography_ref <- read.csv("https://www2.census.gov/geo/docs/maps-data/data/rel/zcta_county_rel_10.txt")
+zips <- unique(unlist(lapply(names(dmv_counties), function(state){
+  GEOIDs <- county_shapes[county_shapes$NAME %in% dmv_counties[[state]], "GEOID", drop = TRUE]
+  formatC(geography_ref[geography_ref$GEOID %in% GEOIDs, "ZCTA5"], width = 5, flag = 0)
+}), use.names = FALSE))
+
+## focus only on medical doctors who aren't also dentists, within the selected counties
+providers <- providers[
+  grepl("\\bm\\.?d(?:\\W|$)", providers$Rndrng_Prvdr_Crdntls, TRUE) &
+    !grepl("d\\.?d\\.?s", providers$Rndrng_Prvdr_Crdntls, TRUE) &
+    providers$Rndrng_Prvdr_Zip5 %in% zips,
+]
+
+## format address strings, and get the coordinates of each unique entry
+address_parts <- c(
+  "Rndrng_Prvdr_St1", "Rndrng_Prvdr_City", "Rndrng_Prvdr_State_Abrvtn", "Rndrng_Prvdr_Zip5"
+)
+
+providers$Rndrng_Prvdr_St1 <- sub("([nesw])\\.([nesw])\\.*", "\\1\\2", providers$Rndrng_Prvdr_St1, TRUE)
+providers$Rndrng_Prvdr_St1 <- sub("\\s*#\\s.*$", "", providers$Rndrng_Prvdr_St1)
+providers$Rndrng_Prvdr_St1 <- sub("\\s*([nesw]{2})\\s.*$", " \\1", providers$Rndrng_Prvdr_St1, TRUE)
+providers$address <- do.call(paste, c(unname(as.list(providers[, address_parts])), sep = ", "))
+
+## collapse to locations based on address
+vars <- c(
+  "address", "X", "Y", "Rndrng_Prvdr_Gndr",
+  grep("^(tot|drug|med|bene)_", colnames(providers), TRUE, value = TRUE)
+)
+vars <- vars[!vars %in% c("Drug_Sprsn_Ind", "Med_Sprsn_Ind")]
+addresses <- unique(providers$address)
+
+## geocode addresses; takes a while
+library(parallel)
+library(tidygeocoder)
+cl <- makeCluster(detectCores() - 2)
+address_coords <- as.data.frame(do.call(rbind, parLapply(cl, addresses, function(a){
+  coords <- geo(a, progress_bar = FALSE, quiet = TRUE, method = "arcgis")
+  if(is.na(coords$long)) coords <- geo(a, progress_bar = FALSE, quiet = TRUE)
+  coords
+})))
+rownames(address_coords) <- address_coords$address
+stopCluster(cl)
+
+## add coordinates to providers data
+providers[, c("Y", "X")] <- address_coords[providers$address, c("lat", "long")]
+providers <- providers[!is.na(providers$X),]
+providers$locid <- paste0(providers$X, ",", providers$Y)
+
+provider_locations <- do.call(rbind, lapply(unique(providers$locid), function(l){
+  d <- providers[providers$locid == l, vars]
+  d[d == ""] <- NA
+  as.data.frame(list(
+    address = d[1, "address"],
+    X = d[1, "X"],
+    Y = d[1, "Y"],
+    doctors = nrow(d),
+    prop_women = mean(d$Rndrng_Prvdr_Gndr == "F"),
+    as.list(colMeans(matrix(
+      as.numeric(as.matrix(d[, -(1:4)])), nrow(d),
+      dimnames = list(NULL, vars[-(1:4)])
+    ), na.rm = TRUE))
+  ))
+}))
+provider_locations[is.na(provider_locations)] <- NA
+
+## identify zip codes that cross counties
+zip_cross <- substr(unique(do.call(paste0,
+  geography_ref[geography_ref$ZCTA5 %in% zips, c("ZCTA5", "GEOID")]
+)), 1, 5)
+zip_cross <- zip_cross[duplicated(zip_cross)]
+
+### check that those are actually in the focal counties
+potential_ex <- provider_locations[
+  grepl(paste0("(?:", paste(zip_cross, collapse = "|"), ")$"), provider_locations$address) &
+    !grepl(paste0("(?:", paste(unlist(dmv_counties), collapse = "|"), "),"), provider_locations$address),
+]
+potential_ex$county <- reverse_geo(potential_ex$Y, potential_ex$X, full_results = TRUE)$county
+provider_locations <- provider_locations[
+  !provider_locations$address %in% potential_ex[
+    !is.na(potential_ex$county) &
+      !grepl(paste0("(?:", paste(unlist(dmv_counties), collapse = "|"), ")"), potential_ex$county),
+    "address"
+  ],
+]
+
+## make unique IDs for each provider location
+provider_locations$ID <- paste0("l", seq_len(nrow(provider_locations)))
+
+## save provider locations dataset
+write.csv(provider_locations, paste0(maindir, "providers.csv"), row.names = FALSE)
+
+## get travel times between each included block group and provider location
+library(osrm)
+options(osrm.server = Sys.getenv("OSRM_SERVER"))
+traveltimes <- osrmTable(
+  src = data_combined[, c("GEOID", "X", "Y")],
+  dst = provider_locations[, c("ID", "X", "Y")]
+)$duration
+write.csv(
+  cbind(GEOID = rownames(traveltimes), as.data.frame(as.matrix(traveltimes))),
+  paste0(maindir, "traveltimes.csv"), row.names = FALSE
+)
+system2("bzip2", shQuote(paste0(maindir, "traveltimes.csv")))
+
 #
 # Floating Catchment Area calculations
 #
 
+library(Matrix)
+library(catchment)
+
 # reload datasets if needed (can start from here)
+if(!exists("maindir")) maindir <- "../dmv_healthcare/docs/data/"
 if(!exists("provider_locations")) provider_locations <- read.csv(paste0(maindir, "providers.csv"))
 if(!exists("data_combined")) data_combined <- read.csv(paste0(maindir, "data.csv"))
 if(!exists("traveltimes")){
@@ -201,59 +245,85 @@ if(!exists("commutes")){
   commutes <- as(as.matrix(commutes), "dgCMatrix")
 }
 
-# baseline -- 3-step with step weights up to 60 minutes
-weight <- list(c(60, .042), c(30, .377), c(20, .704), c(10, .962))
-
-data_combined$access_3sfca <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight, normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors"
+# baseline -- 3-step with Gaussian weights
+data_combined$doctors_3sfca <- catchment_ratio(
+  data_combined, provider_locations, traveltimes, "gaussian", normalize_weight = TRUE,
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors",
+  scale = 18
 )
 
 # 2-step version
-data_combined$access_2sfca <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors"
+data_combined$doctors_kd2sfca <- catchment_ratio(
+  data_combined, provider_locations, traveltimes, "gaussian",
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors",
+  scale = 18
+)
+
+## versions with euclidean distances
+data_combined$doctors_3sfca_euclidean <- catchment_ratio(
+  data_combined, provider_locations, weight = "gaussian", normalize_weight = TRUE,
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors",
+  scale = 18
+)
+data_combined$doctors_kd2sfca_euclidean <- catchment_ratio(
+  data_combined, provider_locations, weight = "gaussian",
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors",
+  scale = 18
 )
 
 # shorter range version
-data_combined$access_3sfca_30 <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight[-1], normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors"
+data_combined$doctors_3sfca_30 <- catchment_ratio(
+  data_combined, provider_locations, traveltimes, "gaussian", max_cost = 30, normalize_weight = TRUE,
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors",
+  scale = 18
 )
 
-# bounded continuous version
-data_combined$access_3sfca_gauss <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, "gaussian", max_cost = 60, normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors"
+# step version
+weight <- list(c(60, .042), c(30, .377), c(20, .704), c(10, .962))
+data_combined$doctors_3sfca_step <- catchment_ratio(
+  data_combined, provider_locations, traveltimes, weight, normalize_weight = TRUE,
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors"
+)
+
+# step 2-step version
+data_combined$doctors_e2sfca <- catchment_ratio(
+  data_combined, provider_locations, traveltimes, weight,
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors"
 )
 
 # a commuter-adjusted version
-data_combined$access_3sfca_commute <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight, normalize_weight = TRUE,
-  consumers_value = "population", providers_id = "id", providers_value = "doctors",
-  consumers_commutes = commutes
+data_combined$doctors_3sfca_commute <- catchment_ratio(
+  data_combined, provider_locations, traveltimes, "gaussian", normalize_weight = TRUE,
+  consumers_value = "population", providers_id = "ID", providers_value = "doctors",
+  scale = 18, consumers_commutes = commutes
 )
 
-access_vars <- grep("access_", colnames(data_combined), fixed = TRUE, value = TRUE)
-data_combined[, access_vars] <- data_combined[, access_vars] * 1000
+doctors_vars <- grep("doctors_", colnames(data_combined), fixed = TRUE, value = TRUE)
+data_combined[, doctors_vars] <- data_combined[, doctors_vars] * 1000
 
 # make final datasets at each geography level
 vars = colnames(data_combined)[-c(1, 6:7)]
 write.csv(data_combined[, -(6:7)], paste0(maindir, "blockgroups.csv"), row.names = FALSE)
 write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 11)), function(d){
   if(is.null(dim(d))) d <- as.data.frame(as.list(d))
-  d[, access_vars] <- d[, access_vars] * d$population
+  d[, doctors_vars] <- d[, doctors_vars] * d$population
   data.frame(
     GEOID = substr(d[1, "GEOID"], 1, 11),
-    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(c(nrow(d), sum(d$population)), c(3, 5)))
-    ))
+    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(
+      c(nrow(d), sum(d$population)),
+      c(3, length(doctors_vars))
+    )))
+  )
 })), paste0(maindir, "tracts.csv"), row.names = FALSE)
 write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d){
-  d[, access_vars] <- d[, access_vars] * d$population
+  d[, doctors_vars] <- d[, doctors_vars] * d$population
   data.frame(
     GEOID = substr(d[1, "GEOID"], 1, 5),
-    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(c(nrow(d), sum(d$population)), c(3, 5)))
-  ))
+    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(
+      c(nrow(d), sum(d$population)),
+      c(3, length(doctors_vars))
+    )))
+  )
 })), paste0(maindir, "counties.csv"), row.names = FALSE)
 
 #
@@ -321,12 +391,12 @@ data_add(
           )
         )
       ),
-      access_3sfca = list(
+      doctors_3sfca = list(
         long_name = "Doctors (3-Step Floating Catchment Area)",
         short_name = "Doctors (3SFCA)",
         description = paste(
           "Number of doctors available per 1,000 people, as calculated within",
-          "floating catchment areas (60-minute radius) with normalized weights."
+          "floating catchment areas with normalized Gaussian weights."
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
@@ -344,12 +414,12 @@ data_add(
           )
         )
       ),
-      access_2sfca = list(
-        long_name = "Doctors (2-Step Floating Catchment Area)",
-        short_name = "Doctors (2SFCA)",
+      doctors_kd2sfca = list(
+        long_name = "Doctors (Kernel Density 2-Step Floating Catchment Area)",
+        short_name = "Doctors (KD2SFCA)",
         description = paste(
           "Number of doctors available per 1,000 people, as calculated within",
-          "floating catchment areas (60-minute radius) without normalized weights."
+          "floating catchment areas with Gaussian weights."
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
@@ -367,12 +437,58 @@ data_add(
           )
         )
       ),
-      access_3sfca_30 = list(
+      doctors_3sfca_euclidean = list(
+        long_name = "Doctors (3-Step Floating Catchment Area, Euclidean)",
+        short_name = "Doctors (3SFCA, Euclidean)",
+        description = paste(
+          "Number of doctors available per 1,000 people, as calculated within",
+          "floating catchment areas with normalized Gaussian weights based on Euclidean distance."
+        ),
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
+        type = "sum",
+        citations = "wan12",
+        source = list(
+          list(
+            name = "American Community Survey",
+            date_accessed = 2019,
+            url = "https://www.census.gov/programs-surveys/acs.html"
+          ),
+          list(
+            name = "Centers for Medicare & Medicaid Services",
+            date_accessed = 2019,
+            url = "https://data.cms.gov"
+          )
+        )
+      ),
+      doctors_kd2sfca_euclidean = list(
+        long_name = "Doctors (Kernel Density 2-Step Floating Catchment Area, Euclidean)",
+        short_name = "Doctors (KD2SFCA, Euclidean)",
+        description = paste(
+          "Number of doctors available per 1,000 people, as calculated within",
+          "floating catchment areas with Gaussian weights based on Euclidean distance."
+        ),
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
+        type = "sum",
+        citations = "wan12",
+        source = list(
+          list(
+            name = "American Community Survey",
+            date_accessed = 2019,
+            url = "https://www.census.gov/programs-surveys/acs.html"
+          ),
+          list(
+            name = "Centers for Medicare & Medicaid Services",
+            date_accessed = 2019,
+            url = "https://data.cms.gov"
+          )
+        )
+      ),
+      doctors_3sfca_30 = list(
         long_name = "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
         short_name = "Doctors (3SFCA30)",
         description = paste(
           "Number of doctors available per 1,000 people, as calculated within",
-          "smaller floating catchment areas (30-minute radius) with normalized weights."
+          "smaller floating catchment areas with normalized Gaussian weights within 30 minute buffers."
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
@@ -390,12 +506,12 @@ data_add(
           )
         )
       ),
-      access_3sfca_gauss = list(
-        long_name = "Doctors (3-Step Floating Catchment Area Ratio, Gaussian)",
-        short_name = "Doctors (KD3SFCA)",
+      doctors_3sfca_step = list(
+        long_name = "Doctors (3-Step Floating Catchment Area Ratio)",
+        short_name = "Doctors (3SFCA, Step)",
         description = paste(
           "Number of doctors available per 1,000 people, as calculated within",
-          "floating catchment areas (60-minute radius) with normalized, continuous weights."
+          "floating catchment areas (60-minute radius) with normalized step weights."
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
@@ -413,7 +529,30 @@ data_add(
           )
         )
       ),
-      access_3sfca_commute = list(
+      doctors_e2sfca = list(
+        long_name = "Doctors (Enhanced 2-Step Floating Catchment Area Ratio)",
+        short_name = "Doctors (E2SFCA)",
+        description = paste(
+          "Number of doctors available per 1,000 people, as calculated within",
+          "floating catchment areas (60-minute radius) with step weights."
+        ),
+        statement = "There are {value} doctors available per 1,000 people in {features.name}.",
+        type = "sum",
+        citations = "wan12",
+        source = list(
+          list(
+            name = "American Community Survey",
+            date_accessed = 2019,
+            url = "https://www.census.gov/programs-surveys/acs.html"
+          ),
+          list(
+            name = "Centers for Medicare & Medicaid Services",
+            date_accessed = 2019,
+            url = "https://data.cms.gov"
+          )
+        )
+      ),
+      doctors_3sfca_commute = list(
         long_name = "Doctors (3-Step Floating Catchment Area Ratio, commuter-based)",
         short_name = "Doctors (CB3SFCA)",
         description = paste(

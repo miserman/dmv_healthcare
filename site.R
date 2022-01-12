@@ -11,10 +11,7 @@ page_navbar(
     backdrop = "false",
     items = list(
       input_switch("Dark Theme", id = "settings.theme_dark"),
-      input_select(
-        "Color Palette", options = "palettes", default = "rdylbu7", id = "settings.palette",
-        floating_label = FALSE
-      ),
+      input_select("Color Palette", options = "palettes", id = "settings.palette", floating_label = FALSE),
       input_switch(
         "Color by Order", id = "settings.color_by_order",
         title = paste(
@@ -54,7 +51,7 @@ page_navbar(
           "floating catchment area ratios."
         ),
         paste(
-          "The [case study](https://uva-bi-sdad.github.io/catchment/articles/casestudy.html) article walkes",
+          "The [case study](https://uva-bi-sdad.github.io/catchment/articles/casestudy-dmv.html) article walkes",
           "through the data collection and calculation of floating catchment area ratios."
         ),
         "Credits",
@@ -67,184 +64,133 @@ page_navbar(
     )
   )
 )
-page_menu(
-  page_section(
-    type = "col",
-    page_section(
-      type = "row",
-      wraps = "col",
-      input_select(
-        "County", options = "ids", dataset = "counties", dataview = "primary_view",
-        id = "selected_county", reset_button = TRUE
-      ),
-      input_select(
-        "Census Tract", options = "ids", dataset = "tracts", dataview = "primary_view",
-        id = "selected_tract", reset_button = TRUE
-      ),
-      conditions = c("", "selected_county")
-    )
-  ),
-  page_section(
-    type = "col",
-    page_section(
-      type = "row",
-      wraps = "col",
-      input_select(
-        "Y Variable (mapped)", options = "variables",
-        default = "access_3sfca", depends = "shapes",  id = "selected_y"
-      ),
-      input_select(
-        "X Variable", options = "variables",
-        default = "population", depends = "shapes", id = "selected_x"
-      )
-    )
-  ),
-  position = "top",
-  default_open = TRUE
-)
-input_variable("shapes", list(
-  "selected_county && !selected_tract" = "tracts",
-  "selected_tract" = "blockgroups"
+
+output_text("National Capital Region", tag = "h1", class = "text-center")
+
+input_variable("shapes_a", list(
+  "county_a && !tract_a" = "tracts",
+  "tract_a" = "blockgroups"
 ), "counties")
-
-input_variable("region_select", list(
-  "shapes == tracts" = "selected_tract"
-), "selected_county")
-
-input_variable("selected_region", list(
-  "selected_tract" = "selected_tract"
-), "selected_county")
-
+input_variable("region_select_a", list(
+  "shapes_a == tracts" = "tract_a"
+), "county_a")
+input_variable("region_a", list(
+  "tract_a" = "tract_a"
+), "county_a")
 input_dataview(
-  "primary_view",
-  y = "selected_y",
-  dataset = "shapes",
-  ids = "selected_region"
+  "view_a",
+  y = "variable_a",
+  dataset = "shapes_a",
+  ids = "region_a"
 )
-page_section(
-  type = "col",
-  output_text(c(
-    "(National Capital Region)[r selected_county]",
-    "? > {selected_county}[r selected_tract]",
-    "? > {selected_tract}"
-  )),
-  output_text(list(
-    "default" = "National Capital Region Counties",
-    "selected_county" = "{selected_county} Census Tracts",
-    "selected_tract" = "{selected_tract} Census Block Groups"
-  ), tag = "h1", class = "text-center"),
-  page_section(
-    type = "row",
-    wraps = "col",
-    sizes = c(NA, 4),
-    output_map(
-      lapply(c("counties", "tracts", "blockgroups"), function(s) list(
-        name = s,
-        url = paste0("../dmv_healthcare/docs/data/", s, ".geojson")
-      )),
-      dataview = "primary_view",
-      click = "region_select",
-      id = "main_map",
-      subto = "main_plot",
-      options = list(
-        attributionControl = FALSE,
-        scrollWheelZoom = FALSE,
-        center = c(38.938, -77.315),
-        zoom = 7,
-        height = "430px"
-      ),
-      background_shapes = "tracts",
-      tiles = list(
-        light = list(url = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"),
-        dark = list(url = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png")
-      ),
-      attribution = list(
-        list(
-          name = "Stamen toner-light",
-          url = "https://stamen.com",
-          description = "Light-theme map tiles by Stamen Design"
-        ),
-        list(
-          name = "CARTO Dark Matter",
-          url = "https://carto.com/attributions",
-          description = "Dark-theme map tiles by CARTO"
-        ),
-        list(
-          name = "OpenStreetMap",
-          url = "https://www.openstreetmap.org/copyright"
-        )
-      )
-    ),
-    page_section(
-      type = "d-flex flex-column col align-items-end compact",
-      output_info(
-        title = "variables.short_name",
-        body = "variables.source",
-        dataview = "primary_view",
-        id = "variable_info_pane",
-      ),
-      page_section(
-        wraps = "row",
-        output_info(
-          title = "features.name",
-          default = c(title = "National Capital Region", body = "Hover over or select a region for more information."),
-          dataview = "primary_view",
-          subto = c("main_map", "main_plot")
-        ),
-        output_info(
-          body = c(
-            "variables.long_name" = "selected_y",
-            "variables.statement"
-          ),
-          row_style = c("stack", "table"),
-          dataview = "primary_view",
-          subto = c("main_map", "main_plot"),
-          variable_info = FALSE
-        )
-      ),
-      output_legend("settings.palette", "Below", "Region Median", "Above"),
-      wraps = c("row", "row mb-auto", "row")
-    )
+
+output_info(
+  title = "features.name",
+  body = c(
+    "variables.long_name" = "variable_a",
+    "variables.statement"
   ),
+  default = c(title = ""),
+  row_style = c("stack", "table"),
+  dataview = "view_a",
+  subto = c("map_a", "plot_a"),
+  variable_info = FALSE,
+  floating = TRUE
+)
+
+page_section(
+  type = "row",
+  wraps = "col",
   page_section(
-    type = "row",
-    wraps = "col",
-    sizes = c(7, 5),
-    page_tabgroup(
-      list(
-        name = "Plot",
-        output_plot(
-          x = "selected_x", y = "selected_y", dataview = "primary_view",
-          click = "region_select", subto = "main_map", id = "main_plot",
-          options = list(
-            layout = list(
-              showlegend = FALSE,
-              xaxis = list(fixedrange = TRUE),
-              yaxis = list(fixedrange = TRUE, zeroline = FALSE)
-            ),
-            config = list(modeBarButtonsToRemove = c("select2d", "lasso2d", "sendDataToCloud"))
+    output_text(list(
+      "default" = "Counties",
+      "county_a" = "{county_a} Census Tracts",
+      "tract_a" = "{tract_a} Block Groups"
+    ), tag = "h2", class = "text-center"),
+    page_section(
+      type = "row",
+      wraps = "col",
+      page_section(
+        page_section(
+          type = "row form-row",
+          input_select(
+            "County", options = "ids", dataset = "counties", dataview = "view_a",
+            id = "county_a", reset_button = TRUE
+          ),
+          input_select(
+            "Census Tract", options = "ids", dataset = "tracts", dataview = "view_a",
+            id = "tract_a", reset_button = TRUE
           )
+        ),
+        input_select(
+          "Variable A", options = "variables",
+          default = "doctors_3sfca", depends = "shapes_a",  id = "variable_a"
+        ),
+        output_info(
+          title = "variables.short_name",
+          body = "variables.source",
+          dataview = "view_a",
+          id = "variable_info_pane",
         )
       ),
-      list(
-        name = "Data",
-        output_table(
-          dataview = "primary_view", wide = FALSE,
-          features = c(ID = "id", Name = "name"),
-          options = list(
-            scrollY = 400,
-            rowGroup = list(dataSrc = "features.name"),
-            columnDefs = list(list(targets = "features.name", visible = FALSE)),
-            buttons = c('copy', 'csv', 'excel', 'print'),
-            dom = "<'row't><'row'<'col-sm'B><'col'f>>"
+      output_map(
+        lapply(c("counties", "tracts", "blockgroups"), function(s) list(
+          name = s,
+          url = paste0("../dmv_healthcare/docs/data/", s, ".geojson")
+        )),
+        dataview = "view_a",
+        click = "region_select_a",
+        id = "map_a",
+        subto = "plot_a",
+        options = list(
+          attributionControl = FALSE,
+          scrollWheelZoom = FALSE,
+          center = c(38.938, -77.315),
+          zoom = 7,
+          height = "400px"
+        ),
+        background_shapes = "tracts",
+        tiles = list(
+          light = list(url = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"),
+          dark = list(url = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png")
+        ),
+        attribution = list(
+          list(
+            name = "Stamen toner-light",
+            url = "https://stamen.com",
+            description = "Light-theme map tiles by Stamen Design"
+          ),
+          list(
+            name = "CARTO Dark Matter",
+            url = "https://carto.com/attributions",
+            description = "Dark-theme map tiles by CARTO"
+          ),
+          list(
+            name = "OpenStreetMap",
+            url = "https://www.openstreetmap.org/copyright"
           )
         )
       )
     ),
-    output_table("selected_y", dataview = "primary_view", options = list(
-      info = FALSE,
-      searching = FALSE
-    ))
+    output_plot(
+      x = "selected_x", y = "variable_a", dataview = "view_a",
+      click = "region_select_a", subto = "map_a", id = "plot_a",
+      options = list(
+        layout = list(
+          showlegend = FALSE,
+          xaxis = list(fixedrange = TRUE),
+          yaxis = list(fixedrange = TRUE, zeroline = FALSE)
+        ),
+        config = list(modeBarButtonsToRemove = c("select2d", "lasso2d", "sendDataToCloud"))
+      )
+    )
   )
 )
-site_build('../dmv_healthcare', bundle_data = TRUE)
+
+input_select(
+  "X Variable", options = "variables",
+  default = "population", depends = "shapes", id = "selected_x"
+)
+output_legend("settings.palette", "Below", "Region Median", "Above")
+
+site_build('../dmv_healthcare')

@@ -14,12 +14,13 @@
       "md5": "9f2578c075d41199edf64b39eb80ad18",
       "sha512": "b26e42f9bd71988374077aac9d77d67cc85a40a738c1839b1c9e81f02a0967c776f3a5068755f2c358789df08208700f7aa897f4a7d22a8b57181479b6a997da",
       "format": "csv",
-      "name": "counties",
+      "name": "county",
       "filename": "counties.csv",
       "source": [],
       "ids": [
         {
-          "variable": "GEOID"
+          "variable": "GEOID",
+          "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
         }
       ],
       "time": {},
@@ -404,12 +405,13 @@
       "md5": "aa0e11ada494d37108f241cc9b74b331",
       "sha512": "da2d6bbdd8f70565e0e3a81eddec5c335aa86c7e3d0df014ef39768e1356ab94af964b9efc686db466ad2fdf649f95a6d7dd1b36c6239af6a2b7d2933b007c25",
       "format": "csv",
-      "name": "tracts",
+      "name": "tract",
       "filename": "tracts.csv",
       "source": [],
       "ids": [
         {
-          "variable": "GEOID"
+          "variable": "GEOID",
+          "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
         }
       ],
       "time": {},
@@ -794,12 +796,13 @@
       "md5": "11c19804cacf1c8aee14532138b2976f",
       "sha512": "8de9cdbe263f689799c13ecf503e8fc25c6249b2953ae75f8d62c9f6de06465b056df4108dec4885bf61ecaafed62bc1ada8ae261185c97870e0d8b56e7a11c6",
       "format": "csv",
-      "name": "blockgroups",
+      "name": "block_group",
       "filename": "blockgroups.csv",
       "source": [],
       "ids": [
         {
-          "variable": "GEOID"
+          "variable": "GEOID",
+          "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
         }
       ],
       "time": {},

@@ -1,10 +1,12 @@
 library(community)
 page_head(
   title = "Capital Region Healthcare Facility Access",
+  icon = "https://raw.githubusercontent.com/uva-bi-sdad/catchment/main/logo.svg",
   description = "Comparison of floating catchment area ratios of health care facilities in the DMV area."
 )
 page_navbar(
   title = "Healthcare Facility Access",
+  logo = "https://raw.githubusercontent.com/uva-bi-sdad/catchment/main/logo.svg",
   input_button("Reset", "reset_selection", "reset.selection", class = "btn-link"),
   list(
     name = "Settings",
@@ -68,11 +70,11 @@ page_navbar(
 output_text("National Capital Region", tag = "h1", class = "text-center")
 
 input_variable("shapes_a", list(
-  "county_a && !tract_a" = "tracts",
-  "tract_a" = "blockgroups"
-), "counties")
+  "county_a && !tract_a" = "tract",
+  "tract_a" = "block_group"
+), "county")
 input_variable("region_select_a", list(
-  "shapes_a == tracts" = "tract_a"
+  "shapes_a == tract" = "tract_a"
 ), "county_a")
 input_variable("region_a", list(
   "tract_a" = "tract_a"
@@ -83,6 +85,24 @@ input_dataview(
   dataset = "shapes_a",
   ids = "region_a"
 )
+
+input_variable("shapes_b", list(
+  "county_b && !tract_b" = "tract",
+  "tract_b" = "block_group"
+), "county")
+input_variable("region_select_b", list(
+  "shapes_b == tract" = "tract_b"
+), "county_b")
+input_variable("region_b", list(
+  "tract_b" = "tract_b"
+), "county_b")
+input_dataview(
+  "view_b",
+  y = "variable_b",
+  dataset = "shapes_b",
+  ids = "region_b"
+)
+
 
 output_info(
   title = "features.name",
@@ -98,13 +118,26 @@ output_info(
   floating = TRUE
 )
 
+output_info(
+  title = "features.name",
+  body = c(
+    "variables.long_name" = "variable_b",
+    "variables.statement"
+  ),
+  default = c(title = ""),
+  row_style = c("stack", "table"),
+  dataview = "view_b",
+  subto = c("map_b", "plot_b"),
+  variable_info = FALSE,
+  floating = TRUE
+)
+
 page_section(
-  type = "row",
   wraps = "col",
   page_section(
     output_text(list(
-      "default" = "Counties",
-      "county_a" = "{county_a} Census Tracts",
+      "default" = "All Counties",
+      "county_a" = "{county_a} Census tract",
       "tract_a" = "{tract_a} Block Groups"
     ), tag = "h2", class = "text-center"),
     page_section(
@@ -114,11 +147,11 @@ page_section(
         page_section(
           type = "row form-row",
           input_select(
-            "County", options = "ids", dataset = "counties", dataview = "view_a",
+            "County", options = "ids", dataset = "county", dataview = "view_a",
             id = "county_a", reset_button = TRUE
           ),
           input_select(
-            "Census Tract", options = "ids", dataset = "tracts", dataview = "view_a",
+            "Census Tract", options = "ids", dataset = "tract", dataview = "view_a",
             id = "tract_a", reset_button = TRUE
           )
         ),
@@ -129,15 +162,17 @@ page_section(
         output_info(
           title = "variables.short_name",
           body = "variables.source",
-          dataview = "view_a",
-          id = "variable_info_pane",
+          dataview = "view_a"
         )
       ),
       output_map(
-        lapply(c("counties", "tracts", "blockgroups"), function(s) list(
-          name = s,
-          url = paste0("../dmv_healthcare/docs/data/", s, ".geojson")
-        )),
+        lapply(
+          list(c("counties", "county"), c("tracts", "tract"), c("blockgroups", "block_group")),
+          function(s) list(
+            name = s[2],
+            url = paste0("../dmv_healthcare/docs/data/", s[1], ".geojson")
+          )
+        ),
         dataview = "view_a",
         click = "region_select_a",
         id = "map_a",
@@ -149,7 +184,7 @@ page_section(
           zoom = 7,
           height = "400px"
         ),
-        background_shapes = "tracts",
+        background_shapes = "tract",
         tiles = list(
           light = list(url = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"),
           dark = list(url = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png")
@@ -175,6 +210,75 @@ page_section(
     output_plot(
       x = "selected_x", y = "variable_a", dataview = "view_a",
       click = "region_select_a", subto = "map_a", id = "plot_a",
+      options = list(
+        layout = list(
+          showlegend = FALSE,
+          xaxis = list(fixedrange = TRUE),
+          yaxis = list(fixedrange = TRUE, zeroline = FALSE)
+        ),
+        config = list(modeBarButtonsToRemove = c("select2d", "lasso2d", "sendDataToCloud"))
+      )
+    )
+  ),
+  page_section(
+    output_text(list(
+      "default" = "All Counties",
+      "county_b" = "{county_b} Census tract",
+      "tract_b" = "{tract_b} Block Groups"
+    ), tag = "h2", class = "text-center"),
+    page_section(
+      wraps = "col",
+      page_section(
+        page_section(
+          type = "row form-row",
+          input_select(
+            "County", options = "ids", dataset = "county", dataview = "view_b",
+            id = "county_b", reset_button = TRUE
+          ),
+          input_select(
+            "Census Tract", options = "ids", dataset = "tract", dataview = "view_b",
+            id = "tract_b", reset_button = TRUE
+          )
+        ),
+        input_select(
+          "Variable B", options = "variables",
+          default = "doctors_3sfca_step", depends = "shapes_b",  id = "variable_b"
+        ),
+        output_info(
+          title = "variables.short_name",
+          body = "variables.source",
+          dataview = "view_b"
+        )
+      ),
+      output_map(
+        lapply(
+          list(c("counties", "county"), c("tracts", "tract"), c("blockgroups", "block_group")),
+          function(s) list(
+            name = s[2],
+            url = paste0("../dmv_healthcare/docs/data/", s[1], ".geojson")
+          )
+        ),
+        dataview = "view_b",
+        click = "region_select_b",
+        id = "map_b",
+        subto = "plot_b",
+        options = list(
+          attributionControl = FALSE,
+          scrollWheelZoom = FALSE,
+          center = c(38.938, -77.315),
+          zoom = 7,
+          height = "400px"
+        ),
+        background_shapes = "tract",
+        tiles = list(
+          light = list(url = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"),
+          dark = list(url = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png")
+        )
+      )
+    ),
+    output_plot(
+      x = "selected_x", y = "variable_b", dataview = "view_b",
+      click = "region_select_b", subto = "map_b", id = "plot_b",
       options = list(
         layout = list(
           showlegend = FALSE,

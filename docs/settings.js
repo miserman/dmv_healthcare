@@ -12,21 +12,22 @@ const site = {
   },
   "metadata": {
     "package": "data/datapackage.json",
-    "datasets": ["counties", "tracts", "blockgroups"],
+    "datasets": ["county", "tract", "block_group"],
     "variables": {},
     "info": {
-      "blockgroups": {
+      "block_group": {
         "bytes": 662681,
         "encoding": "ISO-8859-1",
         "md5": "11c19804cacf1c8aee14532138b2976f",
         "sha512": "8de9cdbe263f689799c13ecf503e8fc25c6249b2953ae75f8d62c9f6de06465b056df4108dec4885bf61ecaafed62bc1ada8ae261185c97870e0d8b56e7a11c6",
         "format": "csv",
-        "name": "blockgroups",
+        "name": "block_group",
         "filename": "blockgroups.csv",
         "source": [],
         "ids": [
           {
-            "variable": "GEOID"
+            "variable": "GEOID",
+            "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
           }
         ],
         "time": {},
@@ -404,20 +405,21 @@ const site = {
             "doi": "10.1080/13658816.2011.624987"
           }
         },
-        "site_file": "blockgroups.json"
+        "site_file": "block_group.json"
       },
-      "tracts": {
+      "tract": {
         "bytes": 251853,
         "encoding": "ISO-8859-1",
         "md5": "aa0e11ada494d37108f241cc9b74b331",
         "sha512": "da2d6bbdd8f70565e0e3a81eddec5c335aa86c7e3d0df014ef39768e1356ab94af964b9efc686db466ad2fdf649f95a6d7dd1b36c6239af6a2b7d2933b007c25",
         "format": "csv",
-        "name": "tracts",
+        "name": "tract",
         "filename": "tracts.csv",
         "source": [],
         "ids": [
           {
-            "variable": "GEOID"
+            "variable": "GEOID",
+            "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
           }
         ],
         "time": {},
@@ -795,20 +797,21 @@ const site = {
             "doi": "10.1080/13658816.2011.624987"
           }
         },
-        "site_file": "tracts.json"
+        "site_file": "tract.json"
       },
-      "counties": {
+      "county": {
         "bytes": 3091,
         "encoding": "ISO-8859-1",
         "md5": "9f2578c075d41199edf64b39eb80ad18",
         "sha512": "b26e42f9bd71988374077aac9d77d67cc85a40a738c1839b1c9e81f02a0967c776f3a5068755f2c358789df08208700f7aa897f4a7d22a8b57181479b6a997da",
         "format": "csv",
-        "name": "counties",
+        "name": "county",
         "filename": "counties.csv",
         "source": [],
         "ids": [
           {
-            "variable": "GEOID"
+            "variable": "GEOID",
+            "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
           }
         ],
         "time": {},
@@ -1186,7 +1189,7 @@ const site = {
             "doi": "10.1080/13658816.2011.624987"
           }
         },
-        "site_file": "counties.json"
+        "site_file": "county.json"
       }
     },
     "files": ["counties.csv", "tracts.csv", "blockgroups.csv"]
@@ -1208,7 +1211,7 @@ const site = {
               "value": ""
             }
           ],
-          "value": "tracts"
+          "value": "tract"
         },
         {
           "condition": [
@@ -1218,10 +1221,10 @@ const site = {
               "value": ""
             }
           ],
-          "value": "blockgroups"
+          "value": "block_group"
         }
       ],
-      "default": "counties"
+      "default": "county"
     },
     {
       "id": "region_select_a",
@@ -1231,7 +1234,7 @@ const site = {
             {
               "id": "shapes_a",
               "type": "=",
-              "value": "tracts"
+              "value": "tract"
             }
           ],
           "value": "tract_a"
@@ -1254,6 +1257,69 @@ const site = {
         }
       ],
       "default": "county_a"
+    },
+    {
+      "id": "shapes_b",
+      "states": [
+        {
+          "condition": [
+            {
+              "id": "county_b",
+              "type": "",
+              "value": ""
+            },
+            {
+              "id": "tract_b",
+              "type": "!",
+              "value": ""
+            }
+          ],
+          "value": "tract"
+        },
+        {
+          "condition": [
+            {
+              "id": "tract_b",
+              "type": "",
+              "value": ""
+            }
+          ],
+          "value": "block_group"
+        }
+      ],
+      "default": "county"
+    },
+    {
+      "id": "region_select_b",
+      "states": [
+        {
+          "condition": [
+            {
+              "id": "shapes_b",
+              "type": "=",
+              "value": "tract"
+            }
+          ],
+          "value": "tract_b"
+        }
+      ],
+      "default": "county_b"
+    },
+    {
+      "id": "region_b",
+      "states": [
+        {
+          "condition": [
+            {
+              "id": "tract_b",
+              "type": "",
+              "value": ""
+            }
+          ],
+          "value": "tract_b"
+        }
+      ],
+      "default": "county_b"
     }
   ],
   "dataviews": {
@@ -1264,6 +1330,14 @@ const site = {
       "time_filters": [],
       "dataset": "shapes_a",
       "ids": "region_a"
+    },
+    "view_b": {
+      "palette": "",
+      "y": "variable_b",
+      "time_agg": "last",
+      "time_filters": [],
+      "dataset": "shapes_b",
+      "ids": "region_b"
     }
   },
   "info": {
@@ -1289,7 +1363,29 @@ const site = {
       "subto": ["map_a", "plot_a"],
       "variable_info": false
     },
-    "variable_info_pane": {
+    "info4": {
+      "title": "features.name",
+      "body": [
+        {
+          "name": "variables.long_name",
+          "value": "variable_b",
+          "style": "stack"
+        },
+        {
+          "name": "",
+          "value": "variables.statement",
+          "style": "table"
+        }
+      ],
+      "default": {
+        "title": ""
+      },
+      "floating": true,
+      "dataview": "view_b",
+      "subto": ["map_b", "plot_b"],
+      "variable_info": false
+    },
+    "info7": {
       "title": "variables.short_name",
       "body": [
         {
@@ -1301,6 +1397,20 @@ const site = {
       "default": [],
       "floating": false,
       "dataview": "view_a",
+      "variable_info": false
+    },
+    "info15": {
+      "title": "variables.short_name",
+      "body": [
+        {
+          "name": "",
+          "value": "variables.source",
+          "style": "table"
+        }
+      ],
+      "default": [],
+      "floating": false,
+      "dataview": "view_b",
       "variable_info": false
     }
   },
@@ -1341,23 +1451,60 @@ const site = {
       "subto": [
         "map_a"
       ]
+    },
+    "plot_b": {
+      "layout": {
+        "showlegend": false,
+        "xaxis": {
+          "fixedrange": true
+        },
+        "yaxis": {
+          "fixedrange": true,
+          "zeroline": false
+        },
+        "hovermode": "closest",
+        "margin": {
+          "t": 25,
+          "r": 10,
+          "b": 40,
+          "l": 60
+        }
+      },
+      "config": {
+        "modeBarButtonsToRemove": ["select2d", "lasso2d", "sendDataToCloud"],
+        "showSendToCloud": false,
+        "responsive": true,
+        "showTips": false,
+        "displaylogo": false,
+        "modeBarButtonsToAdd": ["hoverclosest", "hovercompare"]
+      },
+      "data": [
+        {
+          "hoverinfo": "text",
+          "mode": "lines+markers",
+          "type": "scatter"
+        }
+      ],
+      "subto": [
+        "map_b"
+      ]
     }
   },
   "maps": {
     "map_a": {
       "shapes": [
         {
-          "name": "counties",
+          "name": "county",
           "url": "../dmv_healthcare/docs/data/counties.geojson",
           "id_property": "GEOID"
         },
         {
-          "name": "tracts",
+          "name": "tract",
           "url": "../dmv_healthcare/docs/data/tracts.geojson",
           "id_property": "GEOID"
         },
         {
-          "name": "blockgroups",
+          "name": "block_group",
           "url": "../dmv_healthcare/docs/data/blockgroups.geojson",
           "id_property": "GEOID"
         }
@@ -1371,7 +1518,45 @@ const site = {
         "subto": [
           "plot_a"
         ],
-        "background_shapes": "tracts"
+        "background_shapes": "tract"
+      },
+      "tiles": {
+        "light": {
+          "url": "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
+        },
+        "dark": {
+          "url": "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        }
+      }
+    },
+    "map_b": {
+      "shapes": [
+        {
+          "name": "county",
+          "url": "../dmv_healthcare/docs/data/counties.geojson",
+          "id_property": "GEOID"
+        },
+        {
+          "name": "tract",
+          "url": "../dmv_healthcare/docs/data/tracts.geojson",
+          "id_property": "GEOID"
+        },
+        {
+          "name": "block_group",
+          "url": "../dmv_healthcare/docs/data/blockgroups.geojson",
+          "id_property": "GEOID"
+        }
+      ],
+      "options": {
+        "attributionControl": false,
+        "scrollWheelZoom": false,
+        "center": [38.938, -77.315],
+        "zoom": 7,
+        "height": "400px",
+        "subto": [
+          "plot_b"
+        ],
+        "background_shapes": "tract"
       },
       "tiles": {
         "light": {
@@ -1416,7 +1601,7 @@ const site = {
     },
     "plotly": {
       "name": "Plotly",
-      "url": "https://plotly.com",
+      "url": "https://plotly.com/javascript/getting-started",
       "version": "2.8.3"
     }
   },
@@ -1428,11 +1613,11 @@ const site = {
         }
       ]
     },
-    "text4": {
+    "text5": {
       "text": [
         [
           {
-            "text": "Counties",
+            "text": "All Counties",
             "condition": [
               {
                 "id": "default",
@@ -1442,7 +1627,7 @@ const site = {
             ]
           },
           {
-            "text": ["county_a", " Census Tracts"],
+            "text": ["county_a", " Census tract"],
             "condition": [
               {
                 "id": "county_a",
@@ -1456,6 +1641,42 @@ const site = {
             "condition": [
               {
                 "id": "tract_a",
+                "type": "",
+                "value": ""
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    "text13": {
+      "text": [
+        [
+          {
+            "text": "All Counties",
+            "condition": [
+              {
+                "id": "default",
+                "type": "",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "text": ["county_b", " Census tract"],
+            "condition": [
+              {
+                "id": "county_b",
+                "type": "",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "text": ["tract_b", " Block Groups"],
+            "condition": [
+              {
+                "id": "tract_b",
                 "type": "",
                 "value": ""
               }

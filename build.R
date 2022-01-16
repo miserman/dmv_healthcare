@@ -332,12 +332,15 @@ write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID,
 
 data_add(
   c(
-    counties = "counties.csv",
-    tracts = "tracts.csv",
-    blockgroups = "blockgroups.csv"
+    county = "counties.csv",
+    tract = "tracts.csv",
+    block_group = "blockgroups.csv"
   ),
   rep(list(list(
-    ids = list(variable = "GEOID"),
+    ids = list(
+      variable = "GEOID",
+      map = "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
+    ),
     variables = list(
       population = list(
         long_name = "Total Population",

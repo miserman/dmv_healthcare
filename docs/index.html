@@ -11,6 +11,9 @@
 <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-VzLXTJGPSyTLX6d96AxgkKvE/LRb7ECGyTxuwtpjHnVWVZs2gp5RDjeM/tgBnVdM" crossorigin="anonymous" rel="stylesheet" media="all" async>
 <script type="application/javascript" src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-RFZC58YeKApoNsIbBxf4z6JJXmh+geBSgkCQXFyh+4tiFSJmJBt+2FbjxW7Ar16M" crossorigin="anonymous" async></script>
 <script type="application/javascript" src="https://cdn.plot.ly/plotly-2.8.3.min.js" integrity="sha384-zr60hUCjkFUAnEpigusE7X26aChBWd9sBNDUEGzfUm4jCOSrlAsKh42wJp4KPFaQ" crossorigin="anonymous" async></script>
+<link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-VzLXTJGPSyTLX6d96AxgkKvE/LRb7ECGyTxuwtpjHnVWVZs2gp5RDjeM/tgBnVdM" crossorigin="anonymous" rel="stylesheet" media="all" async>
+<script type="application/javascript" src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-RFZC58YeKApoNsIbBxf4z6JJXmh+geBSgkCQXFyh+4tiFSJmJBt+2FbjxW7Ar16M" crossorigin="anonymous" async></script>
+<script type="application/javascript" src="https://cdn.plot.ly/plotly-2.8.3.min.js" integrity="sha384-zr60hUCjkFUAnEpigusE7X26aChBWd9sBNDUEGzfUm4jCOSrlAsKh42wJp4KPFaQ" crossorigin="anonymous" async></script>
 <link href="https://uva-bi-sdad.github.io/community/dist/css/community.min.css" rel="stylesheet" media="all" async>
 <script type="application/javascript" src="https://uva-bi-sdad.github.io/community/dist/js/community.min.js" async></script>
 <link href="style.css" rel="stylesheet" media="all" async>
@@ -18,11 +21,14 @@
 <title>Capital Region Healthcare Facility Access</title>
 <meta name="title" content="Capital Region Healthcare Facility Access">
 <meta name="description" content="Comparison of floating catchment area ratios of health care facilities in the DMV area.">
+<link rel="icon" href="https://raw.githubusercontent.com/uva-bi-sdad/catchment/main/logo.svg">
 </head>
 <body>
 <nav class="navbar navbar-dark navbar-expand-md">
 <div class="container-fluid">
+<span class="navbar-brand"><img alt="site logo" src="https://raw.githubusercontent.com/uva-bi-sdad/catchment/main/logo.svg">
 <span>Healthcare Facility Access</span>
+</span>
 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar_menu" aria-controls="narbar_menu" aria-expanded="false" aria-lable="toggle navbar menu">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -106,17 +112,18 @@
 <div class="content container-fluid">
 <h1 auto-type="text" id="text2" class="auto-output output-text text-center"></h1>
 <div class="auto-output text-display floating" auto-type="info" id="info3"></div>
+<div class="auto-output text-display floating" auto-type="info" id="info4"></div>
 <div class="row">
 <div class="col">
 <div class="row">
-<h2 auto-type="text" id="text4" class="auto-output output-text text-center"></h2>
+<h2 auto-type="text" id="text5" class="auto-output output-text text-center"></h2>
 <div class="row">
 <div class="col">
 <div class="row">
 <div class="row form-row">
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="county_a" auto-options="ids" default="-1" data-view="view_a" dataset="counties">
+<select class="auto-input form-select" auto-type="select" id="county_a" auto-options="ids" default="-1" data-view="view_a" dataset="county">
 </select>
 <label for="county_a">County</label>
 <button type="button" class="btn select-reset">Reset</button>
@@ -124,7 +131,7 @@
 </div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="tract_a" auto-options="ids" default="-1" data-view="view_a" dataset="tracts">
+<select class="auto-input form-select" auto-type="select" id="tract_a" auto-options="ids" default="-1" data-view="view_a" dataset="tract">
 </select>
 <label for="tract_a">Census Tract</label>
 <button type="button" class="btn select-reset">Reset</button>
@@ -138,7 +145,7 @@
 <label for="variable_a">Variable A</label>
 </div>
 </div>
-<div class="auto-output text-display" auto-type="info" id="variable_info_pane"></div>
+<div class="auto-output text-display" auto-type="info" id="info7"></div>
 </div>
 </div>
 <div class="col">
@@ -146,6 +153,47 @@
 </div>
 </div>
 <div class="auto-output plotly" data-view="view_a" click="region_select_a" x="selected_x" y="variable_a" id="plot_a" auto-type="plot"></div>
+</div>
+</div>
+<div class="col">
+<div class="row">
+<h2 auto-type="text" id="text13" class="auto-output output-text text-center"></h2>
+<div class="row">
+<div class="col">
+<div class="row">
+<div class="row form-row">
+<div class="wrapper select-wrapper">
+<div class="input-group form-floating">
+<select class="auto-input form-select" auto-type="select" id="county_b" auto-options="ids" default="-1" data-view="view_b" dataset="county">
+</select>
+<label for="county_b">County</label>
+<button type="button" class="btn select-reset">Reset</button>
+</div>
+</div>
+<div class="wrapper select-wrapper">
+<div class="input-group form-floating">
+<select class="auto-input form-select" auto-type="select" id="tract_b" auto-options="ids" default="-1" data-view="view_b" dataset="tract">
+</select>
+<label for="tract_b">Census Tract</label>
+<button type="button" class="btn select-reset">Reset</button>
+</div>
+</div>
+</div>
+<div class="wrapper select-wrapper">
+<div class="input-group form-floating">
+<select class="auto-input form-select" auto-type="select" id="variable_b" auto-options="variables" default="doctors_3sfca_step" depends="shapes_b">
+</select>
+<label for="variable_b">Variable B</label>
+</div>
+</div>
+<div class="auto-output text-display" auto-type="info" id="info15"></div>
+</div>
+</div>
+<div class="col">
+<div class="auto-output leaflet" data-view="view_b" click="region_select_b" id="map_b" auto-type="map"></div>
+</div>
+</div>
+<div class="auto-output plotly" data-view="view_b" click="region_select_b" x="selected_x" y="variable_b" id="plot_b" auto-type="plot"></div>
 </div>
 </div>
 </div>

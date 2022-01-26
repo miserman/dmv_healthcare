@@ -68,7 +68,7 @@ data_combined <- do.call(rbind, lapply(names(data), function(state){
     percent_female = d$SEX.BY.AGE_Female_Female / total * 100,
     percent_white = d$RACE_Total_White.alone / total * 100,
     percent_over_49 = rowSums(d[, grep("[5-8][05]", colnames(d))]) / total * 100,
-    st_coordinates(st_centroid(st_geometry(s[d$GEOID,])))
+    st_coordinates(st_centroid(st_geometry(s[as.character(d$GEOID),])))
   )
 }))
 write.csv(data_combined, paste0(maindir, "data.csv"), row.names = FALSE)
@@ -151,11 +151,11 @@ addresses <- unique(providers$address)
 
 ## geocode addresses; takes a while
 library(parallel)
-library(tidygeocoder)
+
 cl <- makeCluster(detectCores() - 2)
 address_coords <- as.data.frame(do.call(rbind, parLapply(cl, addresses, function(a){
-  coords <- geo(a, progress_bar = FALSE, quiet = TRUE, method = "arcgis")
-  if(is.na(coords$long)) coords <- geo(a, progress_bar = FALSE, quiet = TRUE)
+  coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE, method = "arcgis")
+  if(is.na(coords$long)) coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE)
   coords
 })))
 rownames(address_coords) <- address_coords$address
@@ -194,7 +194,7 @@ potential_ex <- provider_locations[
   grepl(paste0("(?:", paste(zip_cross, collapse = "|"), ")$"), provider_locations$address) &
     !grepl(paste0("(?:", paste(unlist(dmv_counties), collapse = "|"), "),"), provider_locations$address),
 ]
-potential_ex$county <- reverse_geo(potential_ex$Y, potential_ex$X, full_results = TRUE)$county
+potential_ex$county <- tidygeocoder::reverse_geo(potential_ex$Y, potential_ex$X, full_results = TRUE)$county
 provider_locations <- provider_locations[
   !provider_locations$address %in% potential_ex[
     !is.na(potential_ex$county) &

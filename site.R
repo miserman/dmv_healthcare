@@ -167,7 +167,7 @@ page_section(
       ),
       output_map(
         lapply(
-          list(c("counties", "county"), c("tracts", "tract"), c("blockgroups", "block_group")),
+          list(c("blockgroups", "block_group"), c("tracts", "tract"), c("counties", "county")),
           function(s) list(
             name = s[2],
             url = paste0("../dmv_healthcare/docs/data/", s[1], ".geojson")
@@ -252,7 +252,7 @@ page_section(
       ),
       output_map(
         lapply(
-          list(c("counties", "county"), c("tracts", "tract"), c("blockgroups", "block_group")),
+          list(c("blockgroups", "block_group"), c("tracts", "tract"), c("counties", "county")),
           function(s) list(
             name = s[2],
             url = paste0("../dmv_healthcare/docs/data/", s[1], ".geojson")

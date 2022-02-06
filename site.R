@@ -11,9 +11,10 @@ page_navbar(
   list(
     name = "Settings",
     backdrop = "false",
+    class = "menu-compact",
     items = list(
-      input_switch("Dark Theme", id = "settings.theme_dark"),
-      input_select("Color Palette", options = "palettes", id = "settings.palette", floating_label = FALSE),
+      input_switch("Dark Theme", default_on = TRUE, id = "settings.theme_dark"),
+      input_select("Color Palette", "palettes", "orrd7", id = "settings.palette", floating_label = FALSE),
       input_switch(
         "Color by Order", id = "settings.color_by_order",
         title = paste(
@@ -22,19 +23,33 @@ page_navbar(
         )
       ),
       input_switch("Hide URL Settings", id = "settings.hide_url_parameters"),
-      input_number("Digits", "settings.digits", min = 0, max = 6, floating_label = FALSE),
+      input_number("Digits", "settings.digits", default = 3, min = 0, max = 6, floating_label = FALSE),
       input_select(
-        "Summary Level", options = c("dataset", "all"), default = "dataset",
+        "Color Scale Center", options = c("", "median", "mean"), default = 0,
+        display = c("None", "Median", "Mean"), id = "settings.color_scale_center",
+        floating_label = FALSE,
+        title = "Determines whether and on what the color scale should be centered."
+      ),
+      input_select(
+        "Summary Level", options = c("dataset", "all"), default = "all",
         display = c("All Regions", "Selected Region"), id = "settings.summary_selection",
         floating_label = FALSE,
         title = paste(
-          "Determins which regions are included in summaries for box-plots and color scaling;",
-          "All-Regions are county-wide, Selected Region Types are filtered by the Region Types input, and",
-          "Selected Region are filtered by region selection."
+          "Determins which regions are included in summaries for color scaling;",
+          "All-Regions are region-wide, and Selected Region are filtered by region selection."
         )
       ),
       '<p class="section-heading">Map Options</p>',
-      input_switch("Show Background Shapes", id = "settings.background_shapes"),
+      input_switch("Show Background Shapes", default_on = TRUE, id = "settings.background_shapes"),
+      input_number(
+        "Outline Weight", "settings.polygon_outline", default = 1.5, step = .5, floating_label = FALSE,
+        title = "Thickness of the outline around region shapes."
+      ),
+      '<p class="section-heading">Plot Options</p>',
+      input_number(
+        "Trace Limit", "settings.trace_limit", default = 20, floating_label = FALSE,
+        title = "Limit the number of plot traces that can be drawn, split between extremes of the variable."
+      ),
       input_button("Clear Settings", "reset_storage", "clear_storage", class = "btn-danger footer")
     )
   ),
@@ -133,7 +148,7 @@ output_info(
 )
 
 page_section(
-  wraps = "col",
+  wraps = "col-sm",
   page_section(
     output_text(list(
       "default" = "All Counties",
@@ -161,7 +176,7 @@ page_section(
         ),
         output_info(
           title = "variables.short_name",
-          body = "variables.source",
+          body = "variables.sources",
           dataview = "view_a"
         )
       ),
@@ -170,7 +185,7 @@ page_section(
           list(c("blockgroups", "block_group"), c("tracts", "tract"), c("counties", "county")),
           function(s) list(
             name = s[2],
-            url = paste0("../dmv_healthcare/docs/data/", s[1], ".geojson")
+            url = paste0("https://uva-bi-sdad.github.io/community/dist/shapes/capital_region/", s[1], ".geojson")
           )
         ),
         dataview = "view_a",
@@ -207,6 +222,7 @@ page_section(
         )
       )
     ),
+    output_legend("settings.palette", dataview = "view_a", subto = c("map_a", "plot_a")),
     output_plot(
       x = "selected_x", y = "variable_a", dataview = "view_a",
       click = "region_select_a", subto = "map_a", id = "plot_a",
@@ -246,7 +262,7 @@ page_section(
         ),
         output_info(
           title = "variables.short_name",
-          body = "variables.source",
+          body = "variables.sources",
           dataview = "view_b"
         )
       ),
@@ -255,7 +271,7 @@ page_section(
           list(c("blockgroups", "block_group"), c("tracts", "tract"), c("counties", "county")),
           function(s) list(
             name = s[2],
-            url = paste0("../dmv_healthcare/docs/data/", s[1], ".geojson")
+            url = paste0("https://uva-bi-sdad.github.io/community/dist/shapes/capital_region/", s[1], ".geojson")
           )
         ),
         dataview = "view_b",
@@ -276,6 +292,7 @@ page_section(
         )
       )
     ),
+    output_legend("settings.palette", dataview = "view_b", subto = c("map_b", "plot_b")),
     output_plot(
       x = "selected_x", y = "variable_b", dataview = "view_b",
       click = "region_select_b", subto = "map_b", id = "plot_b",
@@ -295,6 +312,8 @@ input_select(
   "X Variable", options = "variables",
   default = "population", depends = "shapes", id = "selected_x"
 )
-output_legend("settings.palette", "Below", "Region Median", "Above")
 
-site_build('../dmv_healthcare')
+site_build('../dmv_healthcare', options = list(
+  theme_dark = TRUE, color_scale_center = ""
+))
+

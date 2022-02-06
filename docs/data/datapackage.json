@@ -61,7 +61,7 @@
               "description": "Percent of the population identified as female.",
               "statement": "{value} of the population in {features.name} identified as Female.",
               "type": "percent",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -94,7 +94,7 @@
               "description": "Percent of the population who are 50 years old or older.",
               "statement": "{value} of the population in {features.name} reported being over 49 years old.",
               "type": "percent",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -119,7 +119,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -149,7 +149,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -179,7 +179,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -209,7 +209,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -239,7 +239,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -269,7 +269,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -299,7 +299,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -329,7 +329,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -452,7 +452,7 @@
               "description": "Percent of the population identified as female.",
               "statement": "{value} of the population in {features.name} identified as Female.",
               "type": "percent",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -485,7 +485,7 @@
               "description": "Percent of the population who are 50 years old or older.",
               "statement": "{value} of the population in {features.name} reported being over 49 years old.",
               "type": "percent",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -510,7 +510,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -540,7 +540,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -570,7 +570,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -600,7 +600,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -630,7 +630,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -660,7 +660,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -690,7 +690,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -720,7 +720,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -843,7 +843,7 @@
               "description": "Percent of the population identified as female.",
               "statement": "{value} of the population in {features.name} identified as Female.",
               "type": "percent",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -876,7 +876,7 @@
               "description": "Percent of the population who are 50 years old or older.",
               "statement": "{value} of the population in {features.name} reported being over 49 years old.",
               "type": "percent",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -901,7 +901,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -931,7 +931,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -961,7 +961,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -991,7 +991,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -1021,7 +1021,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -1051,7 +1051,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -1081,7 +1081,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,
@@ -1111,7 +1111,7 @@
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
               "citations": "wan12",
-              "source": [
+              "sources": [
                 {
                   "name": "American Community Survey",
                   "date_accessed": 2019,

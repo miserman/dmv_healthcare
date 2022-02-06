@@ -22,24 +22,25 @@ data <- list()
 shapes <- list()
 
 # download / load
-for(state in c("dc", "md", "va")){
+for (state in c("dc", "md", "va")) {
   # shapes
   counties <- download_census_shapes(oridir, state, "county", paste0(state, "_counties"))
   tracts <- download_census_shapes(oridir, state, "tract", paste0(state, "_tracts"))
   blockgroups <- download_census_shapes(oridir, state, "bg", paste0(state, "_blockgroups"))
-  
+
   ## store subsets to combine later
-  counties <- counties[counties$NAME %in% dmv_counties[[state]],]
+  counties <- counties[counties$NAME %in% dmv_counties[[state]], ]
   counties[counties$NAME == "Fairfax", "NAME"] <- c("Fairfax City", "Fairfax")
   shapes[[state]] <- list(
     counties = counties,
-    tracts = tracts[substr(tracts$GEOID, 1, 5) %in% counties$GEOID,],
-    blockgroups = blockgroups[substr(blockgroups$GEOID, 1, 5) %in% counties$GEOID,]
+    tracts = tracts[substr(tracts$GEOID, 1, 5) %in% counties$GEOID, ],
+    blockgroups = blockgroups[substr(blockgroups$GEOID, 1, 5) %in% counties$GEOID, ]
   )
-  
+
   # population data
   data[[state]] <- download_census_population(
-    oridir, state, 2019, include_margins = TRUE, include_commutes = TRUE,
+    oridir, state, 2019,
+    include_margins = TRUE, include_commutes = TRUE,
     counties = counties$GEOID, verbose = TRUE
   )
 }
@@ -48,7 +49,7 @@ for(state in c("dc", "md", "va")){
 library(sf)
 library(rmapshaper)
 
-for(level in names(shapes$dc)){
+for (level in names(shapes$dc)) {
   st_write(
     ms_simplify(do.call(rbind, lapply(shapes, "[[", level)), keep_shapes = TRUE),
     paste0(maindir, paste0(level, ".geojson"))
@@ -56,7 +57,7 @@ for(level in names(shapes$dc)){
 }
 
 ## create and save final files
-data_combined <- do.call(rbind, lapply(names(data), function(state){
+data_combined <- do.call(rbind, lapply(names(data), function(state) {
   d <- data[[state]]$estimates
   s <- shapes[[state]]$blockgroups
   rownames(s) <- s$GEOID
@@ -68,21 +69,24 @@ data_combined <- do.call(rbind, lapply(names(data), function(state){
     percent_female = d$SEX.BY.AGE_Female_Female / total * 100,
     percent_white = d$RACE_Total_White.alone / total * 100,
     percent_over_49 = rowSums(d[, grep("[5-8][05]", colnames(d))]) / total * 100,
-    st_coordinates(st_centroid(st_geometry(s[as.character(d$GEOID),])))
+    st_coordinates(st_centroid(st_geometry(s[as.character(d$GEOID), ])))
   )
 }))
 write.csv(data_combined, paste0(maindir, "data.csv"), row.names = FALSE)
 
 library(Matrix)
 commutes <- sparseMatrix(
-  {}, {}, x = 0,
+  {},
+  {},
+  x = 0,
   dims = rowSums(vapply(data, function(d) dim(d$commutes), numeric(2))),
   dimnames = rep(list(do.call(c, unname(lapply(data, function(d) colnames(d$commutes))))), 2)
 )
-for(d in data) commutes[rownames(d$commutes), colnames(d$commutes)] <- d$commutes
+for (d in data) commutes[rownames(d$commutes), colnames(d$commutes)] <- d$commutes
 write.csv(
   cbind(GEOID = rownames(commutes), as.data.frame(as.matrix(unname(commutes)))),
-  paste0(maindir, "commutes.csv"), row.names = FALSE
+  paste0(maindir, "commutes.csv"),
+  row.names = FALSE
 )
 system2("bzip2", shQuote(paste0(maindir, "commutes.csv")))
 
@@ -109,7 +113,7 @@ providers_url <- paste0(
 ## retrieve the data in steps
 providers <- list()
 offset <- 0
-while(length(raw <- jsonlite::read_json(paste0(providers_url, offset)))){
+while (length(raw <- jsonlite::read_json(paste0(providers_url, offset)))) {
   cat("\rdownloading file", offset / 1000 + 1, "     ")
   providers[[length(providers) + 1]] <- do.call(rbind, lapply(raw, unlist))
   offset <- offset + 1000
@@ -119,7 +123,7 @@ providers <- as.data.frame(do.call(rbind, providers))
 ## get a set of ZIP codes within the focal counties
 county_shapes <- read_sf(paste0(maindir, "counties.geojson"), as_tibble = FALSE)
 geography_ref <- read.csv("https://www2.census.gov/geo/docs/maps-data/data/rel/zcta_county_rel_10.txt")
-zips <- unique(unlist(lapply(names(dmv_counties), function(state){
+zips <- unique(unlist(lapply(names(dmv_counties), function(state) {
   GEOIDs <- county_shapes[county_shapes$NAME %in% dmv_counties[[state]], "GEOID", drop = TRUE]
   formatC(geography_ref[geography_ref$GEOID %in% GEOIDs, "ZCTA5"], width = 5, flag = 0)
 }), use.names = FALSE))
@@ -153,9 +157,9 @@ addresses <- unique(providers$address)
 library(parallel)
 
 cl <- makeCluster(detectCores() - 2)
-address_coords <- as.data.frame(do.call(rbind, parLapply(cl, addresses, function(a){
+address_coords <- as.data.frame(do.call(rbind, parLapply(cl, addresses, function(a) {
   coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE, method = "arcgis")
-  if(is.na(coords$long)) coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE)
+  if (is.na(coords$long)) coords <- tidygeocoder::geo(a, progress_bar = FALSE, quiet = TRUE)
   coords
 })))
 rownames(address_coords) <- address_coords$address
@@ -163,10 +167,10 @@ stopCluster(cl)
 
 ## add coordinates to providers data
 providers[, c("Y", "X")] <- address_coords[providers$address, c("lat", "long")]
-providers <- providers[!is.na(providers$X),]
+providers <- providers[!is.na(providers$X), ]
 providers$locid <- paste0(providers$X, ",", providers$Y)
 
-provider_locations <- do.call(rbind, lapply(unique(providers$locid), function(l){
+provider_locations <- do.call(rbind, lapply(unique(providers$locid), function(l) {
   d <- providers[providers$locid == l, vars]
   d[d == ""] <- NA
   as.data.frame(list(
@@ -184,7 +188,8 @@ provider_locations <- do.call(rbind, lapply(unique(providers$locid), function(l)
 provider_locations[is.na(provider_locations)] <- NA
 
 ## identify zip codes that cross counties
-zip_cross <- substr(unique(do.call(paste0,
+zip_cross <- substr(unique(do.call(
+  paste0,
   geography_ref[geography_ref$ZCTA5 %in% zips, c("ZCTA5", "GEOID")]
 )), 1, 5)
 zip_cross <- zip_cross[duplicated(zip_cross)]
@@ -218,7 +223,8 @@ traveltimes <- osrmTable(
 )$duration
 write.csv(
   cbind(GEOID = rownames(traveltimes), as.data.frame(as.matrix(traveltimes))),
-  paste0(maindir, "traveltimes.csv"), row.names = FALSE
+  paste0(maindir, "traveltimes.csv"),
+  row.names = FALSE
 )
 system2("bzip2", shQuote(paste0(maindir, "traveltimes.csv")))
 
@@ -230,15 +236,15 @@ library(Matrix)
 library(catchment)
 
 # reload datasets if needed (can start from here)
-if(!exists("maindir")) maindir <- "../dmv_healthcare/docs/data/"
-if(!exists("provider_locations")) provider_locations <- read.csv(paste0(maindir, "providers.csv"))
-if(!exists("data_combined")) data_combined <- read.csv(paste0(maindir, "data.csv"))
-if(!exists("traveltimes")){
+if (!exists("maindir")) maindir <- "../dmv_healthcare/docs/data/"
+if (!exists("provider_locations")) provider_locations <- read.csv(paste0(maindir, "providers.csv"))
+if (!exists("data_combined")) data_combined <- read.csv(paste0(maindir, "data.csv"))
+if (!exists("traveltimes")) {
   con <- bzfile(paste0(maindir, "traveltimes.csv.bz2"))
   traveltimes <- read.csv(con, row.names = 1)
   traveltimes <- as(as.matrix(traveltimes), "dgCMatrix")
 }
-if(!exists("commutes")){
+if (!exists("commutes")) {
   con <- bzfile(paste0(maindir, "commutes.csv.bz2"))
   commutes <- read.csv(con, row.names = 1)
   colnames(commutes) <- rownames(commutes)
@@ -247,7 +253,8 @@ if(!exists("commutes")){
 
 # baseline -- 3-step with Gaussian weights
 data_combined$doctors_3sfca <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, "gaussian", normalize_weight = TRUE,
+  data_combined, provider_locations, traveltimes, "gaussian",
+  normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
   scale = 18
 )
@@ -261,19 +268,22 @@ data_combined$doctors_kd2sfca <- catchment_ratio(
 
 ## versions with euclidean distances
 data_combined$doctors_3sfca_euclidean <- catchment_ratio(
-  data_combined, provider_locations, weight = "gaussian", normalize_weight = TRUE,
+  data_combined, provider_locations,
+  weight = "gaussian", normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
   scale = 18
 )
 data_combined$doctors_kd2sfca_euclidean <- catchment_ratio(
-  data_combined, provider_locations, weight = "gaussian",
+  data_combined, provider_locations,
+  weight = "gaussian",
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
   scale = 18
 )
 
 # shorter range version
 data_combined$doctors_3sfca_30 <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, "gaussian", max_cost = 30, normalize_weight = TRUE,
+  data_combined, provider_locations, traveltimes, "gaussian",
+  max_cost = 30, normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
   scale = 18
 )
@@ -281,7 +291,8 @@ data_combined$doctors_3sfca_30 <- catchment_ratio(
 # step version
 weight <- list(c(60, .042), c(30, .377), c(20, .704), c(10, .962))
 data_combined$doctors_3sfca_step <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight, normalize_weight = TRUE,
+  data_combined, provider_locations, traveltimes, weight,
+  normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors"
 )
 
@@ -293,7 +304,8 @@ data_combined$doctors_e2sfca <- catchment_ratio(
 
 # a commuter-adjusted version
 data_combined$doctors_3sfca_commute <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, "gaussian", normalize_weight = TRUE,
+  data_combined, provider_locations, traveltimes, "gaussian",
+  normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
   scale = 18, consumers_commutes = commutes
 )
@@ -302,10 +314,10 @@ doctors_vars <- grep("doctors_", colnames(data_combined), fixed = TRUE, value = 
 data_combined[, doctors_vars] <- data_combined[, doctors_vars] * 1000
 
 # make final datasets at each geography level
-vars = colnames(data_combined)[-c(1, 6:7)]
+vars <- colnames(data_combined)[-c(1, 6:7)]
 write.csv(data_combined[, -(6:7)], paste0(maindir, "blockgroups.csv"), row.names = FALSE)
-write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 11)), function(d){
-  if(is.null(dim(d))) d <- as.data.frame(as.list(d))
+write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 11)), function(d) {
+  if (is.null(dim(d))) d <- as.data.frame(as.list(d))
   d[, doctors_vars] <- d[, doctors_vars] * d$population
   data.frame(
     GEOID = substr(d[1, "GEOID"], 1, 11),
@@ -315,7 +327,7 @@ write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID,
     )))
   )
 })), paste0(maindir, "tracts.csv"), row.names = FALSE)
-write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d){
+write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d) {
   d[, doctors_vars] <- d[, doctors_vars] * d$population
   data.frame(
     GEOID = substr(d[1, "GEOID"], 1, 5),
@@ -360,7 +372,7 @@ data_add(
         description = "Percent of the population identified as female.",
         statement = "{value} of the population in {features.name} identified as Female.",
         type = "percent",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -373,7 +385,7 @@ data_add(
         description = "Percent of the population identified as White.",
         statement = "{value} of the population in {features.name} identified as White",
         type = "percent",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -386,7 +398,7 @@ data_add(
         description = "Percent of the population who are 50 years old or older.",
         statement = "{value} of the population in {features.name} reported being over 49 years old.",
         type = "percent",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -404,7 +416,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -427,7 +439,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -450,7 +462,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -473,7 +485,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -496,7 +508,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -519,7 +531,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -542,7 +554,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,
@@ -566,7 +578,7 @@ data_add(
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
         citations = "wan12",
-        source = list(
+        sources = list(
           list(
             name = "American Community Survey",
             date_accessed = 2019,

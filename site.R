@@ -16,25 +16,26 @@ page_navbar(
       input_switch("Dark Theme", default_on = TRUE, id = "settings.theme_dark"),
       input_select("Color Palette", "palettes", "orrd7", id = "settings.palette", floating_label = FALSE),
       input_switch(
-        "Color by Order", id = "settings.color_by_order",
-        title = paste(
+        "Color by Rank", id = "settings.color_by_order",
+        note = paste(
           "Switch from coloring by value to coloring by sorted index.",
           "This may help differentiate regions with similar values."
         )
       ),
       input_switch("Hide URL Settings", id = "settings.hide_url_parameters"),
+      input_switch("Hide Tooltips", id = "settings.hide_tooltips"),
       input_number("Digits", "settings.digits", default = 3, min = 0, max = 6, floating_label = FALSE),
       input_select(
         "Color Scale Center", options = c("", "median", "mean"), default = 0,
         display = c("None", "Median", "Mean"), id = "settings.color_scale_center",
         floating_label = FALSE,
-        title = "Determines whether and on what the color scale should be centered."
+        note = "Determines whether and on what the color scale should be centered."
       ),
       input_select(
         "Summary Level", options = c("dataset", "all"), default = "all",
         display = c("All Regions", "Selected Region"), id = "settings.summary_selection",
         floating_label = FALSE,
-        title = paste(
+        note = paste(
           "Determins which regions are included in summaries for color scaling;",
           "All-Regions are region-wide, and Selected Region are filtered by region selection."
         )
@@ -43,12 +44,12 @@ page_navbar(
       input_switch("Show Background Shapes", default_on = TRUE, id = "settings.background_shapes"),
       input_number(
         "Outline Weight", "settings.polygon_outline", default = 1.5, step = .5, floating_label = FALSE,
-        title = "Thickness of the outline around region shapes."
+        note = "Thickness of the outline around region shapes."
       ),
       '<p class="section-heading">Plot Options</p>',
       input_number(
         "Trace Limit", "settings.trace_limit", default = 20, floating_label = FALSE,
-        title = "Limit the number of plot traces that can be drawn, split between extremes of the variable."
+        note = "Limit the number of plot traces that can be drawn, split between extremes of the variable."
       ),
       input_button("Clear Settings", "reset_storage", "clear_storage", class = "btn-danger footer")
     )

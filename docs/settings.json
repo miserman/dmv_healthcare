@@ -1695,11 +1695,17 @@
   "legends": {
     "legend11": {
       "palette": "settings.palette",
-      "subto": ["map_a", "plot_a"]
+      "subto": [
+        "map_a",
+        "plot_a"
+      ]
     },
     "legend20": {
       "palette": "settings.palette",
-      "subto": ["map_b", "plot_b"]
+      "subto": [
+        "map_b",
+        "plot_b"
+      ]
     }
   },
   "credits": {
@@ -1888,5 +1894,15 @@
       }
     },
     "_raw": []
+  },
+  "legend": {
+    "legend11": {
+      "palette": "settings.palette",
+      "subto": ["map_a", "plot_a"]
+    },
+    "legend20": {
+      "palette": "settings.palette",
+      "subto": ["map_b", "plot_b"]
+    }
   }
 }

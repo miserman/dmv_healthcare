@@ -26,7 +26,7 @@ page_navbar(
       input_switch("Hide Tooltips", id = "settings.hide_tooltips"),
       input_number("Digits", "settings.digits", default = 3, min = 0, max = 6, floating_label = FALSE),
       input_select(
-        "Color Scale Center", options = c("", "median", "mean"), default = 0,
+        "Color Scale Center", options = c("none", "median", "mean"), default = 0,
         display = c("None", "Median", "Mean"), id = "settings.color_scale_center",
         floating_label = FALSE,
         note = "Determines whether and on what the color scale should be centered."

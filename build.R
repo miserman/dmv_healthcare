@@ -256,14 +256,14 @@ data_combined$doctors_3sfca <- catchment_ratio(
   data_combined, provider_locations, traveltimes, "gaussian",
   normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
-  scale = 18
+  scale = 18, return_type = 1000
 )
 
 # 2-step version
 data_combined$doctors_kd2sfca <- catchment_ratio(
   data_combined, provider_locations, traveltimes, "gaussian",
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
-  scale = 18
+  scale = 18, return_type = 1000
 )
 
 ## versions with euclidean distances
@@ -271,13 +271,13 @@ data_combined$doctors_3sfca_euclidean <- catchment_ratio(
   data_combined, provider_locations,
   weight = "gaussian", normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
-  scale = 18
+  scale = 18, return_type = 1000
 )
 data_combined$doctors_kd2sfca_euclidean <- catchment_ratio(
   data_combined, provider_locations,
   weight = "gaussian",
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
-  scale = 18
+  scale = 18, return_type = 1000
 )
 
 # shorter range version
@@ -285,58 +285,68 @@ data_combined$doctors_3sfca_30 <- catchment_ratio(
   data_combined, provider_locations, traveltimes, "gaussian",
   max_cost = 30, normalize_weight = TRUE,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
-  scale = 18
+  scale = 18, return_type = 1000
 )
 
 # step version
 weight <- list(c(60, .042), c(30, .377), c(20, .704), c(10, .962))
 data_combined$doctors_3sfca_step <- catchment_ratio(
   data_combined, provider_locations, traveltimes, weight,
-  normalize_weight = TRUE,
+  normalize_weight = TRUE, return_type = 1000,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors"
 )
 
 # step 2-step version
 data_combined$doctors_e2sfca <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight,
+  data_combined, provider_locations, traveltimes, weight, return_type = 1000,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors"
 )
 
 # a commuter-adjusted version
 data_combined$doctors_3sfca_commute <- catchment_ratio(
   data_combined, provider_locations, traveltimes, "gaussian",
-  normalize_weight = TRUE,
+  normalize_weight = TRUE, return_type = 1000,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors",
   scale = 18, consumers_commutes = commutes
 )
 
 doctors_vars <- grep("doctors_", colnames(data_combined), fixed = TRUE, value = TRUE)
-data_combined[, doctors_vars] <- data_combined[, doctors_vars] * 1000
 
-# make final datasets at each geography level
-vars <- colnames(data_combined)[-c(1, 6:7)]
+# save complete dataset
 write.csv(data_combined[, -(6:7)], paste0(maindir, "blockgroups.csv"), row.names = FALSE)
-write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 11)), function(d) {
-  if (is.null(dim(d))) d <- as.data.frame(as.list(d))
-  d[, doctors_vars] <- d[, doctors_vars] * d$population
-  data.frame(
-    GEOID = substr(d[1, "GEOID"], 1, 11),
-    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(
-      c(nrow(d), sum(d$population)),
-      c(3, length(doctors_vars))
-    )))
-  )
-})), paste0(maindir, "tracts.csv"), row.names = FALSE)
-write.csv(do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d) {
-  d[, doctors_vars] <- d[, doctors_vars] * d$population
+
+# make county-level aggregates
+
+## make a new set with just population variables initially
+counties <- do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 5)), function(d) {
   data.frame(
     GEOID = substr(d[1, "GEOID"], 1, 5),
-    as.list(colSums(d[, vars], na.rm = TRUE) / c(1, rep(
-      c(nrow(d), sum(d$population)),
-      c(3, length(doctors_vars))
-    )))
+    population = sum(d$population, na.rm = TRUE),
+    as.list(colMeans(d[, grepl("percent_", colnames(d), fixed = TRUE)], na.rm = TRUE))
   )
-})), paste0(maindir, "counties.csv"), row.names = FALSE)
+}))
+
+## add aggregated catchment ratios, matched by GEOID substring
+for (variable in doctors_vars) {
+  counties[, variable] <- catchment_aggregate(data_combined, 5, value = variable)
+}
+
+## save aggregated dataset
+write.csv(counties, paste0(maindir, "counties.csv"), row.names = FALSE)
+
+# make tract-level aggregates
+tracts <- do.call(rbind, lapply(split(data_combined, substr(data_combined$GEOID, 1, 11)), function(d) {
+  if (is.null(dim(d))) d <- as.data.frame(as.list(d))
+  data.frame(
+    GEOID = substr(d[1, "GEOID"], 1, 11),
+    population = sum(d$population, na.rm = TRUE),
+    as.list(colMeans(d[, grepl("percent_", colnames(d), fixed = TRUE)], na.rm = TRUE))
+  )
+}))
+for (variable in doctors_vars) {
+  tracts[, variable] <- catchment_aggregate(data_combined, 11, value = variable)
+}
+write.csv(tracts, paste0(maindir, "tracts.csv"), row.names = FALSE)
 
 #
 # add data to site, along with metadata

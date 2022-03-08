@@ -6,20 +6,21 @@
     "boxplots": true,
     "theme_dark": true,
     "partial_init": true,
-    "palette": "rdylbu7",
+    "palette": "purple",
     "hide_url_parameters": false,
     "background_shapes": true,
     "iqr_box": true,
     "polygon_outline": 1.5,
-    "color_scale_center": "",
+    "color_scale_center": "none",
     "table_autoscroll": true,
     "table_scroll_behavior": "smooth",
-    "hide_tooltips": false
+    "hide_tooltips": false,
+    "map_animations": "all"
   },
   "metadata": {
     "package": "data/datapackage.json",
     "datasets": ["block_group", "tract", "county"],
-    "variables": [],
+    "variables": {},
     "info": {
       "block_group": {
         "bytes": 662681,
@@ -38,9 +39,10 @@
         ],
         "time": {},
         "profile": "data-resource",
-        "created": "2022-01-12 13:11:20",
+        "created": "2022-02-23 14:14:56",
         "last_modified": "2022-01-03 14:39:35",
-        "rowcount": 3235,
+        "row_count": 3235,
+        "entity_count": 3235,
         "schema": {
           "fields": [
             {
@@ -59,6 +61,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "integer",
               "missing": 0,
               "mean": 1714.0798,
@@ -82,6 +88,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 51.2911,
@@ -92,6 +102,10 @@
             {
               "name": "percent_white",
               "duplicates": 71,
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 53.1036,
@@ -115,6 +129,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 27.1344,
@@ -145,6 +163,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5466,
@@ -175,6 +197,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5643,
@@ -205,6 +231,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5109,
@@ -235,6 +265,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5109,
@@ -265,6 +299,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5428,
@@ -295,6 +333,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5462,
@@ -325,6 +367,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.566,
@@ -360,6 +406,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5571,
@@ -416,8 +466,8 @@
       "tract": {
         "bytes": 251853,
         "encoding": "ISO-8859-1",
-        "md5": "aa0e11ada494d37108f241cc9b74b331",
-        "sha512": "da2d6bbdd8f70565e0e3a81eddec5c335aa86c7e3d0df014ef39768e1356ab94af964b9efc686db466ad2fdf649f95a6d7dd1b36c6239af6a2b7d2933b007c25",
+        "md5": "b6748b3dc8a36cac3139333d765aa819",
+        "sha512": "eb9da26ed96eb1c5d99ca8c223b6e39a5b6bcca28378aa30970487d84bb3cbf7857609273ceb1edfa6beb22e2fc48bbee0d3fb9fee752dd6f5e8fd246e7d8dfc",
         "format": "csv",
         "name": "tract",
         "filename": "tracts.csv",
@@ -430,9 +480,10 @@
         ],
         "time": {},
         "profile": "data-resource",
-        "created": "2022-01-12 13:18:24",
+        "created": "2022-02-23 14:14:57",
         "last_modified": "2022-01-03 14:35:22",
-        "rowcount": 1218,
+        "row_count": 1218,
+        "entity_count": 1218,
         "schema": {
           "fields": [
             {
@@ -451,6 +502,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "integer",
               "missing": 0,
               "mean": 4552.5846,
@@ -474,6 +529,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 51.2542,
@@ -484,6 +543,10 @@
             {
               "name": "percent_white",
               "duplicates": 4,
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 51.5681,
@@ -507,6 +570,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 27.0436,
@@ -537,6 +604,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.547,
@@ -567,6 +638,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5643,
@@ -597,6 +672,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5109,
@@ -627,6 +706,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5109,
@@ -657,6 +740,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5451,
@@ -687,6 +774,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5492,
@@ -717,6 +808,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.567,
@@ -752,6 +847,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5559,
@@ -808,8 +907,8 @@
       "county": {
         "bytes": 3091,
         "encoding": "ISO-8859-1",
-        "md5": "9f2578c075d41199edf64b39eb80ad18",
-        "sha512": "b26e42f9bd71988374077aac9d77d67cc85a40a738c1839b1c9e81f02a0967c776f3a5068755f2c358789df08208700f7aa897f4a7d22a8b57181479b6a997da",
+        "md5": "a027768eb9b2006fae0a2b5dcc92a7fd",
+        "sha512": "c7f6a3f58884f501b4795dcaf34f44bb898d7b2d20d10e51ccd64168500ed81b8bf319e5bee69452efce48fd535f25c8a2b07ecff14f4ba6bdec3a58f7abc6be",
         "format": "csv",
         "name": "county",
         "filename": "counties.csv",
@@ -822,9 +921,10 @@
         ],
         "time": {},
         "profile": "data-resource",
-        "created": "2022-01-12 13:18:25",
+        "created": "2022-02-23 14:14:57",
         "last_modified": "2022-01-03 14:43:55",
-        "rowcount": 14,
+        "row_count": 14,
+        "entity_count": 14,
         "schema": {
           "fields": [
             {
@@ -843,6 +943,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "integer",
               "missing": 0,
               "mean": 396074.8571,
@@ -866,6 +970,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 50.9458,
@@ -876,6 +984,10 @@
             {
               "name": "percent_white",
               "duplicates": 0,
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 61.1179,
@@ -899,6 +1011,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 26.1964,
@@ -929,6 +1045,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.4265,
@@ -959,6 +1079,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.416,
@@ -989,6 +1113,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5108,
@@ -1019,6 +1147,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.5109,
@@ -1049,6 +1181,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.4166,
@@ -1079,6 +1215,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.413,
@@ -1109,6 +1249,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.4222,
@@ -1144,6 +1288,10 @@
                   }
                 ]
               },
+              "time_range": [
+                0,
+                0
+              ],
               "type": "float",
               "missing": 0,
               "mean": 1.4456,
@@ -1737,7 +1885,7 @@
     "plotly": {
       "name": "Plotly",
       "url": "https://plotly.com/javascript/getting-started",
-      "version": "2.8.3"
+      "version": "2.9.0"
     }
   },
   "plotly": {
@@ -1774,9 +1922,7 @@
           "type": "scatter"
         }
       ],
-      "subto": [
-        "map_a"
-      ]
+      "subto": ["map_a", "legend_a"]
     },
     "plot_b": {
       "layout": {
@@ -1811,9 +1957,7 @@
           "type": "scatter"
         }
       ],
-      "subto": [
-        "map_b"
-      ]
+      "subto": ["map_b", "legend_b"]
     }
   },
   "map": {
@@ -1841,9 +1985,7 @@
         "center": [38.938, -77.315],
         "zoom": 7,
         "height": "400px",
-        "subto": [
-          "plot_a"
-        ],
+        "subto": ["plot_a", "legend_a"],
         "background_shapes": "tract"
       },
       "tiles": {
@@ -1879,9 +2021,7 @@
         "center": [38.938, -77.315],
         "zoom": 7,
         "height": "400px",
-        "subto": [
-          "plot_b"
-        ],
+        "subto": ["plot_b", "legend_b"],
         "background_shapes": "tract"
       },
       "tiles": {
@@ -1896,11 +2036,11 @@
     "_raw": []
   },
   "legend": {
-    "legend11": {
+    "legend_a": {
       "palette": "settings.palette",
       "subto": ["map_a", "plot_a"]
     },
-    "legend20": {
+    "legend_b": {
       "palette": "settings.palette",
       "subto": ["map_b", "plot_b"]
     }

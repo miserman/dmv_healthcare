@@ -14,7 +14,7 @@ page_navbar(
     class = "menu-compact",
     items = list(
       input_switch("Dark Theme", default_on = TRUE, id = "settings.theme_dark"),
-      input_select("Color Palette", "palettes", "orrd7", id = "settings.palette", floating_label = FALSE),
+      input_select("Color Palette", "palettes", "purple", id = "settings.palette", floating_label = FALSE),
       input_switch(
         "Color by Rank", id = "settings.color_by_order",
         note = paste(
@@ -192,7 +192,7 @@ page_section(
         dataview = "view_a",
         click = "region_select_a",
         id = "map_a",
-        subto = "plot_a",
+        subto = c("plot_a", "legend_a"),
         options = list(
           attributionControl = FALSE,
           scrollWheelZoom = FALSE,
@@ -223,10 +223,13 @@ page_section(
         )
       )
     ),
-    output_legend("settings.palette", dataview = "view_a", subto = c("map_a", "plot_a")),
+    output_legend(
+      "settings.palette", dataview = "view_a", subto = c("map_a", "plot_a"),
+      id = "legend_a", click = "region_select_a", show_na = FALSE
+    ),
     output_plot(
       x = "selected_x", y = "variable_a", dataview = "view_a",
-      click = "region_select_a", subto = "map_a", id = "plot_a",
+      click = "region_select_a", subto = c("map_a", "legend_a"), id = "plot_a",
       options = list(
         layout = list(
           showlegend = FALSE,
@@ -278,7 +281,7 @@ page_section(
         dataview = "view_b",
         click = "region_select_b",
         id = "map_b",
-        subto = "plot_b",
+        subto = c("plot_b", "legend_b"),
         options = list(
           attributionControl = FALSE,
           scrollWheelZoom = FALSE,
@@ -293,10 +296,13 @@ page_section(
         )
       )
     ),
-    output_legend("settings.palette", dataview = "view_b", subto = c("map_b", "plot_b")),
+    output_legend(
+      "settings.palette", dataview = "view_b", subto = c("map_b", "plot_b"),
+      id = "legend_b", click = "region_select_b", show_na = FALSE
+    ),
     output_plot(
       x = "selected_x", y = "variable_b", dataview = "view_b",
-      click = "region_select_b", subto = "map_b", id = "plot_b",
+      click = "region_select_b", subto = c("map_b", "legend_b"), id = "plot_b",
       options = list(
         layout = list(
           showlegend = FALSE,
@@ -315,6 +321,6 @@ input_select(
 )
 
 site_build('../dmv_healthcare', options = list(
-  theme_dark = TRUE, color_scale_center = ""
+  theme_dark = TRUE, color_scale_center = "none", palette = 'purple'
 ))
 

@@ -11,8 +11,8 @@
     {
       "bytes": 3091,
       "encoding": "ISO-8859-1",
-      "md5": "9f2578c075d41199edf64b39eb80ad18",
-      "sha512": "b26e42f9bd71988374077aac9d77d67cc85a40a738c1839b1c9e81f02a0967c776f3a5068755f2c358789df08208700f7aa897f4a7d22a8b57181479b6a997da",
+      "md5": "a027768eb9b2006fae0a2b5dcc92a7fd",
+      "sha512": "c7f6a3f58884f501b4795dcaf34f44bb898d7b2d20d10e51ccd64168500ed81b8bf319e5bee69452efce48fd535f25c8a2b07ecff14f4ba6bdec3a58f7abc6be",
       "format": "csv",
       "name": "county",
       "filename": "counties.csv",
@@ -25,9 +25,10 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-12 13:18:25",
+      "created": "2022-02-23 14:14:57",
       "last_modified": "2022-01-03 14:43:55",
-      "rowcount": 14,
+      "row_count": 14,
+      "entity_count": 14,
       "schema": {
         "fields": [
           {
@@ -46,6 +47,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "integer",
             "missing": 0,
             "mean": 396074.857143,
@@ -69,6 +71,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 50.945756,
@@ -79,6 +82,7 @@
           {
             "name": "percent_white",
             "duplicates": 0,
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 61.117939,
@@ -102,6 +106,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 26.196367,
@@ -132,6 +137,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.426527,
@@ -162,6 +168,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.416037,
@@ -192,6 +199,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.51085,
@@ -222,6 +230,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.510855,
@@ -252,6 +261,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.416598,
@@ -282,6 +292,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.413047,
@@ -312,6 +323,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.422189,
@@ -347,6 +359,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.445626,
@@ -402,8 +415,8 @@
     {
       "bytes": 251853,
       "encoding": "ISO-8859-1",
-      "md5": "aa0e11ada494d37108f241cc9b74b331",
-      "sha512": "da2d6bbdd8f70565e0e3a81eddec5c335aa86c7e3d0df014ef39768e1356ab94af964b9efc686db466ad2fdf649f95a6d7dd1b36c6239af6a2b7d2933b007c25",
+      "md5": "b6748b3dc8a36cac3139333d765aa819",
+      "sha512": "eb9da26ed96eb1c5d99ca8c223b6e39a5b6bcca28378aa30970487d84bb3cbf7857609273ceb1edfa6beb22e2fc48bbee0d3fb9fee752dd6f5e8fd246e7d8dfc",
       "format": "csv",
       "name": "tract",
       "filename": "tracts.csv",
@@ -416,9 +429,10 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-12 13:18:24",
+      "created": "2022-02-23 14:14:57",
       "last_modified": "2022-01-03 14:35:22",
-      "rowcount": 1218,
+      "row_count": 1218,
+      "entity_count": 1218,
       "schema": {
         "fields": [
           {
@@ -437,6 +451,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "integer",
             "missing": 0,
             "mean": 4552.584565,
@@ -460,6 +475,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 51.254191,
@@ -470,6 +486,7 @@
           {
             "name": "percent_white",
             "duplicates": 4,
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 51.568119,
@@ -493,6 +510,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 27.043573,
@@ -523,6 +541,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.547007,
@@ -553,6 +572,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.564293,
@@ -583,6 +603,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.510909,
@@ -613,6 +634,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.510908,
@@ -643,6 +665,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.545139,
@@ -673,6 +696,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.549173,
@@ -703,6 +727,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.56696,
@@ -738,6 +763,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.555873,
@@ -807,9 +833,10 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-01-12 13:11:20",
+      "created": "2022-02-23 14:14:56",
       "last_modified": "2022-01-03 14:39:35",
-      "rowcount": 3235,
+      "row_count": 3235,
+      "entity_count": 3235,
       "schema": {
         "fields": [
           {
@@ -828,6 +855,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "integer",
             "missing": 0,
             "mean": 1714.079753,
@@ -851,6 +879,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 51.29108,
@@ -861,6 +890,7 @@
           {
             "name": "percent_white",
             "duplicates": 71,
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 53.10363,
@@ -884,6 +914,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 27.1344,
@@ -914,6 +945,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.546601,
@@ -944,6 +976,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.564302,
@@ -974,6 +1007,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.510904,
@@ -1004,6 +1038,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.510903,
@@ -1034,6 +1069,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.542796,
@@ -1064,6 +1100,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.546227,
@@ -1094,6 +1131,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.566011,
@@ -1129,6 +1167,7 @@
                 }
               ]
             },
+            "time_range": [0, 0],
             "type": "float",
             "missing": 0,
             "mean": 1.557109,

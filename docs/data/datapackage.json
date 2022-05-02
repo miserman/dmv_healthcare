@@ -12,7 +12,6 @@
       "bytes": 3091,
       "encoding": "ISO-8859-1",
       "md5": "a027768eb9b2006fae0a2b5dcc92a7fd",
-      "sha512": "c7f6a3f58884f501b4795dcaf34f44bb898d7b2d20d10e51ccd64168500ed81b8bf319e5bee69452efce48fd535f25c8a2b07ecff14f4ba6bdec3a58f7abc6be",
       "format": "csv",
       "name": "county",
       "filename": "counties.csv",
@@ -410,13 +409,13 @@
           "page": "1073-1089",
           "doi": "10.1080/13658816.2011.624987"
         }
-      }
+      },
+      "sha512": "c7f6a3f58884f501b4795dcaf34f44bb898d7b2d20d10e51ccd64168500ed81b8bf319e5bee69452efce48fd535f25c8a2b07ecff14f4ba6bdec3a58f7abc6be"
     },
     {
       "bytes": 251853,
       "encoding": "ISO-8859-1",
       "md5": "b6748b3dc8a36cac3139333d765aa819",
-      "sha512": "eb9da26ed96eb1c5d99ca8c223b6e39a5b6bcca28378aa30970487d84bb3cbf7857609273ceb1edfa6beb22e2fc48bbee0d3fb9fee752dd6f5e8fd246e7d8dfc",
       "format": "csv",
       "name": "tract",
       "filename": "tracts.csv",
@@ -814,13 +813,13 @@
           "page": "1073-1089",
           "doi": "10.1080/13658816.2011.624987"
         }
-      }
+      },
+      "sha512": "eb9da26ed96eb1c5d99ca8c223b6e39a5b6bcca28378aa30970487d84bb3cbf7857609273ceb1edfa6beb22e2fc48bbee0d3fb9fee752dd6f5e8fd246e7d8dfc"
     },
     {
       "bytes": 662681,
       "encoding": "ISO-8859-1",
       "md5": "11c19804cacf1c8aee14532138b2976f",
-      "sha512": "8de9cdbe263f689799c13ecf503e8fc25c6249b2953ae75f8d62c9f6de06465b056df4108dec4885bf61ecaafed62bc1ada8ae261185c97870e0d8b56e7a11c6",
       "format": "csv",
       "name": "block_group",
       "filename": "blockgroups.csv",
@@ -1218,7 +1217,8 @@
           "page": "1073-1089",
           "doi": "10.1080/13658816.2011.624987"
         }
-      }
+      },
+      "sha512": "8de9cdbe263f689799c13ecf503e8fc25c6249b2953ae75f8d62c9f6de06465b056df4108dec4885bf61ecaafed62bc1ada8ae261185c97870e0d8b56e7a11c6"
     }
   ]
 }

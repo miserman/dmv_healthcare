@@ -320,7 +320,6 @@ input_select(
   default = "population", depends = "shapes", id = "selected_x"
 )
 
-site_build('../dmv_healthcare', options = list(
+site_build('../dmv_healthcare', serve = TRUE, options = list(
   theme_dark = TRUE, color_scale_center = "none", palette = 'purple'
 ))
-

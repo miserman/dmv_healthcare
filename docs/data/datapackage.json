@@ -9,9 +9,9 @@
   },
   "resources": [
     {
-      "bytes": 3091,
+      "bytes": 3088,
       "encoding": "ISO-8859-1",
-      "md5": "a027768eb9b2006fae0a2b5dcc92a7fd",
+      "md5": "940944d9118e35fb6007d235de48482e",
       "format": "csv",
       "name": "county",
       "filename": "counties.csv",
@@ -24,7 +24,7 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-02-23 14:14:57",
+      "created": "2022-06-24 03:55:14",
       "last_modified": "2022-01-03 14:43:55",
       "row_count": 14,
       "entity_count": 14,
@@ -139,10 +139,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.426527,
-            "sd": 0.419178,
-            "min": 0.847601,
-            "max": 2.058152
+            "mean": 1.4704,
+            "sd": 0.422046,
+            "min": 0.863958,
+            "max": 2.11393
           },
           {
             "name": "doctors_kd2sfca",
@@ -153,7 +153,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "dai10",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -170,10 +170,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.416037,
-            "sd": 0.651566,
-            "min": 0.553026,
-            "max": 2.383549
+            "mean": 1.434651,
+            "sd": 0.701771,
+            "min": 0.457118,
+            "max": 2.426862
           },
           {
             "name": "doctors_3sfca_euclidean",
@@ -201,10 +201,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.51085,
-            "sd": 0.00023,
-            "min": 1.510275,
-            "max": 1.511073
+            "mean": 1.508506,
+            "sd": 0.000229,
+            "min": 1.507935,
+            "max": 1.508728
           },
           {
             "name": "doctors_kd2sfca_euclidean",
@@ -215,7 +215,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights based on Euclidean distance.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "dai10",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -232,10 +232,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.510855,
-            "sd": 0.000219,
-            "min": 1.510311,
-            "max": 1.51107
+            "mean": 1.508511,
+            "sd": 0.000217,
+            "min": 1.50797,
+            "max": 1.508725
           },
           {
             "name": "doctors_3sfca_30",
@@ -263,10 +263,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.416598,
-            "sd": 0.419753,
-            "min": 0.827263,
-            "max": 2.033065
+            "mean": 1.46592,
+            "sd": 0.437851,
+            "min": 0.821112,
+            "max": 2.06907
           },
           {
             "name": "doctors_3sfca_step",
@@ -294,10 +294,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.413047,
-            "sd": 0.434381,
-            "min": 0.815575,
-            "max": 2.063374
+            "mean": 1.470104,
+            "sd": 0.457868,
+            "min": 0.823871,
+            "max": 2.154818
           },
           {
             "name": "doctors_e2sfca",
@@ -308,7 +308,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with step weights.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "luo09",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -325,10 +325,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.422189,
-            "sd": 0.659844,
-            "min": 0.553364,
-            "max": 2.410411
+            "mean": 1.438159,
+            "sd": 0.7066,
+            "min": 0.502298,
+            "max": 2.469716
           },
           {
             "name": "doctors_3sfca_commute",
@@ -339,7 +339,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": ["wan12", "fransen15"],
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -361,15 +361,31 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.445626,
-            "sd": 0.463242,
-            "min": 0.812234,
-            "max": 2.162414
+            "mean": 1.468529,
+            "sd": 0.443717,
+            "min": 0.842123,
+            "max": 2.279435
           }
         ]
       },
       "_references": {
-        "lou09": {
+        "dai10": {
+          "title": "Black residential segregation, disparities in spatial access to health care facilities, and late-stage breast cancer diagnosis in metropolitan Detroit",
+          "author": [
+            {
+              "given": "Dajun",
+              "family": "Dai"
+            }
+          ],
+          "journal": "Health & place",
+          "volume": "16",
+          "pages": "1038--1052",
+          "year": "2010",
+          "publisher": "Elsevier",
+          "doi": "10.1016/j.healthplace.2010.06.012"
+        },
+        "luo09": {
+          "title": "An enhanced two-step floating catchment area (E2SFCA) method for measuring spatial accessibility to primary care physicians",
           "author": [
             {
               "given": "Wei",
@@ -380,14 +396,15 @@
               "family": "Qi"
             }
           ],
-          "year": 2009,
-          "title": "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial accessibility to primary care physicians",
-          "journal": "Health & Place",
-          "volume": 15,
-          "page": "1100-1107",
+          "journal": "Health & place",
+          "volume": "15",
+          "pages": "1100--1107",
+          "year": "2009",
+          "publisher": "Elsevier",
           "doi": "10.1016/j.healthplace.2009.06.002"
         },
         "wan12": {
+          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
           "author": [
             {
               "given": "Neng",
@@ -402,20 +419,47 @@
               "family": "Sternberg"
             }
           ],
-          "year": 2012,
-          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
           "journal": "International Journal of Geographical Information Science",
-          "volume": 26,
-          "page": "1073-1089",
+          "volume": "26",
+          "pages": "1073--1089",
+          "year": "2012",
+          "publisher": "Taylor & Francis",
           "doi": "10.1080/13658816.2011.624987"
+        },
+        "fransen15": {
+          "title": "A commuter-based two-step floating catchment area method for measuring spatial accessibility of daycare centers",
+          "author": [
+            {
+              "given": "Koos",
+              "family": "Fransen"
+            },
+            {
+              "given": "Tijs",
+              "family": "Neutens"
+            },
+            {
+              "given": "Philippe",
+              "family": "De Maeyer"
+            },
+            {
+              "given": "Greet",
+              "family": "Deruyter"
+            }
+          ],
+          "journal": "Health & place",
+          "volume": "32",
+          "pages": "65--73",
+          "year": "2015",
+          "publisher": "Elsevier",
+          "doi": "10.1016/j.healthplace.2015.01.002"
         }
       },
-      "sha512": "c7f6a3f58884f501b4795dcaf34f44bb898d7b2d20d10e51ccd64168500ed81b8bf319e5bee69452efce48fd535f25c8a2b07ecff14f4ba6bdec3a58f7abc6be"
+      "sha512": "507574638227933168ef7770f510360036c0526b5d2f66338e57fec54660fc4fabf6f0da0e82a6ebe58d1d96feba25f3860d39c143fcb1ccbebf63a3195ef16b"
     },
     {
-      "bytes": 251853,
+      "bytes": 252058,
       "encoding": "ISO-8859-1",
-      "md5": "b6748b3dc8a36cac3139333d765aa819",
+      "md5": "2eb6755ef8ce13e514c6689f0af4f126",
       "format": "csv",
       "name": "tract",
       "filename": "tracts.csv",
@@ -428,7 +472,7 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-02-23 14:14:57",
+      "created": "2022-06-24 03:55:15",
       "last_modified": "2022-01-03 14:35:22",
       "row_count": 1218,
       "entity_count": 1218,
@@ -519,7 +563,7 @@
           },
           {
             "name": "doctors_3sfca",
-            "duplicates": 372,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
@@ -543,21 +587,21 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.547007,
-            "sd": 0.458028,
-            "min": 0.167008,
-            "max": 3.202653
+            "mean": 1.543508,
+            "sd": 0.447251,
+            "min": 0.146656,
+            "max": 2.329592
           },
           {
             "name": "doctors_kd2sfca",
-            "duplicates": 370,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area)",
               "short_name": "Doctors (KD2SFCA)",
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "dai10",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -574,10 +618,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.564293,
-            "sd": 0.622023,
-            "min": 0.149306,
-            "max": 2.582258
+            "mean": 1.569435,
+            "sd": 0.678239,
+            "min": 0.049418,
+            "max": 2.849863
           },
           {
             "name": "doctors_3sfca_euclidean",
@@ -605,10 +649,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.510909,
-            "sd": 0.00022,
-            "min": 1.509592,
-            "max": 1.511084
+            "mean": 1.508565,
+            "sd": 0.000218,
+            "min": 1.507254,
+            "max": 1.508738
           },
           {
             "name": "doctors_kd2sfca_euclidean",
@@ -619,7 +663,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights based on Euclidean distance.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "dai10",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -636,14 +680,14 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.510908,
-            "sd": 0.000209,
-            "min": 1.509639,
-            "max": 1.51108
+            "mean": 1.508563,
+            "sd": 0.000208,
+            "min": 1.507299,
+            "max": 1.508736
           },
           {
             "name": "doctors_3sfca_30",
-            "duplicates": 372,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
@@ -667,14 +711,14 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.545139,
-            "sd": 0.453371,
-            "min": 0.159695,
-            "max": 3.104381
+            "mean": 1.543022,
+            "sd": 0.436478,
+            "min": 0,
+            "max": 2.280974
           },
           {
             "name": "doctors_3sfca_step",
-            "duplicates": 376,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio)",
               "short_name": "Doctors (3SFCA, Step)",
@@ -698,21 +742,21 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.549173,
-            "sd": 0.462707,
-            "min": 0.161819,
-            "max": 3.062699
+            "mean": 1.547949,
+            "sd": 0.463699,
+            "min": 0.092595,
+            "max": 2.408533
           },
           {
             "name": "doctors_e2sfca",
-            "duplicates": 376,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (Enhanced 2-Step Floating Catchment Area Ratio)",
               "short_name": "Doctors (E2SFCA)",
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with step weights.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "luo09",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -729,10 +773,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.56696,
-            "sd": 0.635626,
-            "min": 0.141099,
-            "max": 2.608724
+            "mean": 1.572286,
+            "sd": 0.709978,
+            "min": 0.03222,
+            "max": 2.866995
           },
           {
             "name": "doctors_3sfca_commute",
@@ -743,7 +787,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": ["wan12", "fransen15"],
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -765,15 +809,31 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.555873,
-            "sd": 0.507869,
-            "min": 0.02743,
-            "max": 3.320151
+            "mean": 1.55184,
+            "sd": 0.507381,
+            "min": 0.100154,
+            "max": 2.598781
           }
         ]
       },
       "_references": {
-        "lou09": {
+        "dai10": {
+          "title": "Black residential segregation, disparities in spatial access to health care facilities, and late-stage breast cancer diagnosis in metropolitan Detroit",
+          "author": [
+            {
+              "given": "Dajun",
+              "family": "Dai"
+            }
+          ],
+          "journal": "Health & place",
+          "volume": "16",
+          "pages": "1038--1052",
+          "year": "2010",
+          "publisher": "Elsevier",
+          "doi": "10.1016/j.healthplace.2010.06.012"
+        },
+        "luo09": {
+          "title": "An enhanced two-step floating catchment area (E2SFCA) method for measuring spatial accessibility to primary care physicians",
           "author": [
             {
               "given": "Wei",
@@ -784,14 +844,15 @@
               "family": "Qi"
             }
           ],
-          "year": 2009,
-          "title": "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial accessibility to primary care physicians",
-          "journal": "Health & Place",
-          "volume": 15,
-          "page": "1100-1107",
+          "journal": "Health & place",
+          "volume": "15",
+          "pages": "1100--1107",
+          "year": "2009",
+          "publisher": "Elsevier",
           "doi": "10.1016/j.healthplace.2009.06.002"
         },
         "wan12": {
+          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
           "author": [
             {
               "given": "Neng",
@@ -806,20 +867,47 @@
               "family": "Sternberg"
             }
           ],
-          "year": 2012,
-          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
           "journal": "International Journal of Geographical Information Science",
-          "volume": 26,
-          "page": "1073-1089",
+          "volume": "26",
+          "pages": "1073--1089",
+          "year": "2012",
+          "publisher": "Taylor & Francis",
           "doi": "10.1080/13658816.2011.624987"
+        },
+        "fransen15": {
+          "title": "A commuter-based two-step floating catchment area method for measuring spatial accessibility of daycare centers",
+          "author": [
+            {
+              "given": "Koos",
+              "family": "Fransen"
+            },
+            {
+              "given": "Tijs",
+              "family": "Neutens"
+            },
+            {
+              "given": "Philippe",
+              "family": "De Maeyer"
+            },
+            {
+              "given": "Greet",
+              "family": "Deruyter"
+            }
+          ],
+          "journal": "Health & place",
+          "volume": "32",
+          "pages": "65--73",
+          "year": "2015",
+          "publisher": "Elsevier",
+          "doi": "10.1016/j.healthplace.2015.01.002"
         }
       },
-      "sha512": "eb9da26ed96eb1c5d99ca8c223b6e39a5b6bcca28378aa30970487d84bb3cbf7857609273ceb1edfa6beb22e2fc48bbee0d3fb9fee752dd6f5e8fd246e7d8dfc"
+      "sha512": "0a390e54c67e0650acd5183dcdfe2563cf1b642771df6ecf2b99300673755027652128c01952d97720e4d16392f057603dd7e1225cdd0b6823f5333b55b8ce12"
     },
     {
-      "bytes": 662681,
+      "bytes": 662834,
       "encoding": "ISO-8859-1",
-      "md5": "11c19804cacf1c8aee14532138b2976f",
+      "md5": "5a424bf5c97a133957f1dd71b49de005",
       "format": "csv",
       "name": "block_group",
       "filename": "blockgroups.csv",
@@ -832,7 +920,7 @@
       ],
       "time": {},
       "profile": "data-resource",
-      "created": "2022-02-23 14:14:56",
+      "created": "2022-06-24 03:55:14",
       "last_modified": "2022-01-03 14:39:35",
       "row_count": 3235,
       "entity_count": 3235,
@@ -923,7 +1011,7 @@
           },
           {
             "name": "doctors_3sfca",
-            "duplicates": 1699,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area)",
               "short_name": "Doctors (3SFCA)",
@@ -947,21 +1035,21 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.546601,
-            "sd": 0.482037,
-            "min": 0.027123,
-            "max": 4.2427
+            "mean": 1.551146,
+            "sd": 0.453356,
+            "min": 0.146656,
+            "max": 2.346228
           },
           {
             "name": "doctors_kd2sfca",
-            "duplicates": 1699,
+            "duplicates": 0,
             "info": {
               "long_name": "Doctors (Kernel Density 2-Step Floating Catchment Area)",
               "short_name": "Doctors (KD2SFCA)",
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "dai10",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -978,10 +1066,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.564302,
-            "sd": 0.642385,
-            "min": 0.039644,
-            "max": 2.612077
+            "mean": 1.578073,
+            "sd": 0.689376,
+            "min": 0.033116,
+            "max": 2.86992
           },
           {
             "name": "doctors_3sfca_euclidean",
@@ -1009,10 +1097,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.510904,
-            "sd": 0.000232,
-            "min": 1.50949,
-            "max": 1.511084
+            "mean": 1.508559,
+            "sd": 0.00023,
+            "min": 1.507152,
+            "max": 1.508739
           },
           {
             "name": "doctors_kd2sfca_euclidean",
@@ -1023,7 +1111,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas with Gaussian weights based on Euclidean distance.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "dai10",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -1040,14 +1128,14 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.510903,
-            "sd": 0.000221,
-            "min": 1.509536,
-            "max": 1.511081
+            "mean": 1.508558,
+            "sd": 0.000219,
+            "min": 1.507196,
+            "max": 1.508736
           },
           {
             "name": "doctors_3sfca_30",
-            "duplicates": 1699,
+            "duplicates": 3,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio, 30 minutes)",
               "short_name": "Doctors (3SFCA30)",
@@ -1071,14 +1159,14 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.542796,
-            "sd": 0.478097,
+            "mean": 1.548648,
+            "sd": 0.444204,
             "min": 0,
-            "max": 3.906592
+            "max": 2.293783
           },
           {
             "name": "doctors_3sfca_step",
-            "duplicates": 1715,
+            "duplicates": 1,
             "info": {
               "long_name": "Doctors (3-Step Floating Catchment Area Ratio)",
               "short_name": "Doctors (3SFCA, Step)",
@@ -1102,21 +1190,21 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.546227,
-            "sd": 0.491459,
-            "min": 0.054439,
-            "max": 4.384769
+            "mean": 1.553005,
+            "sd": 0.470666,
+            "min": 0.092595,
+            "max": 2.475321
           },
           {
             "name": "doctors_e2sfca",
-            "duplicates": 1715,
+            "duplicates": 1,
             "info": {
               "long_name": "Doctors (Enhanced 2-Step Floating Catchment Area Ratio)",
               "short_name": "Doctors (E2SFCA)",
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with step weights.",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": "luo09",
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -1133,10 +1221,10 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.566011,
-            "sd": 0.65692,
-            "min": 0.0458,
-            "max": 2.703586
+            "mean": 1.582292,
+            "sd": 0.720957,
+            "min": 0.021145,
+            "max": 2.922881
           },
           {
             "name": "doctors_3sfca_commute",
@@ -1147,7 +1235,7 @@
               "description": "Number of doctors available per 1,000 people, as calculated within floating catchment areas (60-minute radius) with normalized weights adjusted for multiple origins (home and work).",
               "statement": "There are {value} doctors available per 1,000 people in {features.name}.",
               "type": "sum",
-              "citations": "wan12",
+              "citations": ["wan12", "fransen15"],
               "sources": [
                 {
                   "name": "American Community Survey",
@@ -1169,15 +1257,31 @@
             "time_range": [0, 0],
             "type": "float",
             "missing": 0,
-            "mean": 1.557109,
-            "sd": 0.532479,
-            "min": 0.020925,
-            "max": 4.382075
+            "mean": 1.55999,
+            "sd": 0.51183,
+            "min": 0.100154,
+            "max": 2.612382
           }
         ]
       },
       "_references": {
-        "lou09": {
+        "dai10": {
+          "title": "Black residential segregation, disparities in spatial access to health care facilities, and late-stage breast cancer diagnosis in metropolitan Detroit",
+          "author": [
+            {
+              "given": "Dajun",
+              "family": "Dai"
+            }
+          ],
+          "journal": "Health & place",
+          "volume": "16",
+          "pages": "1038--1052",
+          "year": "2010",
+          "publisher": "Elsevier",
+          "doi": "10.1016/j.healthplace.2010.06.012"
+        },
+        "luo09": {
+          "title": "An enhanced two-step floating catchment area (E2SFCA) method for measuring spatial accessibility to primary care physicians",
           "author": [
             {
               "given": "Wei",
@@ -1188,14 +1292,15 @@
               "family": "Qi"
             }
           ],
-          "year": 2009,
-          "title": "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial accessibility to primary care physicians",
-          "journal": "Health & Place",
-          "volume": 15,
-          "page": "1100-1107",
+          "journal": "Health & place",
+          "volume": "15",
+          "pages": "1100--1107",
+          "year": "2009",
+          "publisher": "Elsevier",
           "doi": "10.1016/j.healthplace.2009.06.002"
         },
         "wan12": {
+          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
           "author": [
             {
               "given": "Neng",
@@ -1210,15 +1315,42 @@
               "family": "Sternberg"
             }
           ],
-          "year": 2012,
-          "title": "A three-step floating catchment area method for analyzing spatial access to health services",
           "journal": "International Journal of Geographical Information Science",
-          "volume": 26,
-          "page": "1073-1089",
+          "volume": "26",
+          "pages": "1073--1089",
+          "year": "2012",
+          "publisher": "Taylor & Francis",
           "doi": "10.1080/13658816.2011.624987"
+        },
+        "fransen15": {
+          "title": "A commuter-based two-step floating catchment area method for measuring spatial accessibility of daycare centers",
+          "author": [
+            {
+              "given": "Koos",
+              "family": "Fransen"
+            },
+            {
+              "given": "Tijs",
+              "family": "Neutens"
+            },
+            {
+              "given": "Philippe",
+              "family": "De Maeyer"
+            },
+            {
+              "given": "Greet",
+              "family": "Deruyter"
+            }
+          ],
+          "journal": "Health & place",
+          "volume": "32",
+          "pages": "65--73",
+          "year": "2015",
+          "publisher": "Elsevier",
+          "doi": "10.1016/j.healthplace.2015.01.002"
         }
       },
-      "sha512": "8de9cdbe263f689799c13ecf503e8fc25c6249b2953ae75f8d62c9f6de06465b056df4108dec4885bf61ecaafed62bc1ada8ae261185c97870e0d8b56e7a11c6"
+      "sha512": "84a18d893cef0dfe26afd77455d50d61891cf5cb50b727864fbb998320d437e5a0976359fb48bce1efc362914d972bd7d5722f0c93050ff3a4205c56a1f5ebb4"
     }
   ]
 }

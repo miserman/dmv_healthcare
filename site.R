@@ -119,7 +119,6 @@ input_dataview(
   ids = "region_b"
 )
 
-
 output_info(
   title = "features.name",
   body = c(
@@ -183,10 +182,13 @@ page_section(
       ),
       output_map(
         lapply(
-          list(c("blockgroups", "block_group"), c("tracts", "tract"), c("counties", "county")),
+          list(c("block_group", "census_block_groups"), c("tract", "census_tracts"), c("county", "counties")),
           function(s) list(
-            name = s[2],
-            url = paste0("https://uva-bi-sdad.github.io/community/dist/shapes/capital_region/", s[1], ".geojson")
+            name = s[1],
+            url = paste0(
+              "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/",
+              "ncr_geo_census_cb_2010_", s[2], "/distribution/ncr_geo_census_cb_2010_", s[2], ".geojson"
+            )
           )
         ),
         dataview = "view_a",
@@ -272,10 +274,13 @@ page_section(
       ),
       output_map(
         lapply(
-          list(c("blockgroups", "block_group"), c("tracts", "tract"), c("counties", "county")),
+          list(c("block_group", "census_block_groups"), c("tract", "census_tracts"), c("county", "counties")),
           function(s) list(
-            name = s[2],
-            url = paste0("https://uva-bi-sdad.github.io/community/dist/shapes/capital_region/", s[1], ".geojson")
+            name = s[1],
+            url = paste0(
+              "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/",
+              "ncr_geo_census_cb_2010_", s[2], "/distribution/ncr_geo_census_cb_2010_", s[2], ".geojson"
+            )
           )
         ),
         dataview = "view_b",
@@ -320,6 +325,6 @@ input_select(
   default = "population", depends = "shapes", id = "selected_x"
 )
 
-site_build('../dmv_healthcare', serve = TRUE, options = list(
+site_build('../dmv_healthcare', version = "local", serve = TRUE, options = list(
   theme_dark = TRUE, color_scale_center = "none", palette = 'purple'
 ))

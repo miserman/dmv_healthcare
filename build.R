@@ -298,7 +298,8 @@ data_combined$doctors_3sfca_step <- catchment_ratio(
 
 # step 2-step version
 data_combined$doctors_e2sfca <- catchment_ratio(
-  data_combined, provider_locations, traveltimes, weight, return_type = 1000,
+  data_combined, provider_locations, traveltimes, weight,
+  return_type = 1000,
   consumers_value = "population", providers_id = "ID", providers_value = "doctors"
 )
 
@@ -448,7 +449,7 @@ data_add(
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
-        citations = "wan12",
+        citations = "dai10",
         sources = list(
           list(
             name = "American Community Survey",
@@ -494,7 +495,7 @@ data_add(
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
-        citations = "wan12",
+        citations = "dai10",
         sources = list(
           list(
             name = "American Community Survey",
@@ -563,7 +564,7 @@ data_add(
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
-        citations = "wan12",
+        citations = "luo09",
         sources = list(
           list(
             name = "American Community Survey",
@@ -587,7 +588,7 @@ data_add(
         ),
         statement = "There are {value} doctors available per 1,000 people in {features.name}.",
         type = "sum",
-        citations = "wan12",
+        citations = c("wan12", "fransen15"),
         sources = list(
           list(
             name = "American Community Survey",
@@ -607,33 +608,48 @@ data_add(
         )
       ),
       "_references" = list(
-        lou09 = list(
-          author = list(
-            list(given = "Wei", family = "Lou"),
-            list(given = "Yi", family = "Qi")
-          ),
-          year = 2009,
-          title = paste(
-            "An enhanced two-step floating catchment area (e2sfca) method for measuring spatial",
-            "accessibility to primary care physicians"
-          ),
-          journal = "Health & Place",
-          volume = 15,
-          page = "1100-1107",
+        dai10 = list(
+          title = "Black residential segregation, disparities in spatial access to health care facilities, and late-stage breast cancer diagnosis in metropolitan Detroit",
+          author = list(list(given = "Dajun", family = "Dai")),
+          journal = "Health & place",
+          volume = "16",
+          pages = "1038--1052",
+          year = "2010",
+          publisher = "Elsevier",
+          doi = "10.1016/j.healthplace.2010.06.012"
+        ),
+        luo09 = list(
+          title = "An enhanced two-step floating catchment area (E2SFCA) method for measuring spatial accessibility to primary care physicians",
+          author = list(list(given = "Wei", family = "Lou"), list(given = "Yi", family = "Qi")),
+          journal = "Health & place",
+          volume = "15",
+          pages = "1100--1107",
+          year = "2009",
+          publisher = "Elsevier",
           doi = "10.1016/j.healthplace.2009.06.002"
         ),
         wan12 = list(
-          author = list(
-            list(given = "Neng", family = "Wan"),
-            list(given = "Bin", family = "Zou"),
-            list(given = "Troy", family = "Sternberg")
-          ),
-          year = 2012,
           title = "A three-step floating catchment area method for analyzing spatial access to health services",
+          author = list(list(given = "Neng", family = "Wan"), list(given = "Bin", family = "Zou"), list(given = "Troy", family = "Sternberg")),
           journal = "International Journal of Geographical Information Science",
-          volume = 26,
-          page = "1073-1089",
+          volume = "26",
+          pages = "1073--1089",
+          year = "2012",
+          publisher = "Taylor & Francis",
           doi = "10.1080/13658816.2011.624987"
+        ),
+        fransen15 = list(
+          title = "A commuter-based two-step floating catchment area method for measuring spatial accessibility of daycare centers",
+          author = list(
+            list(given = "Koos", family = "Fransen"), list(given = "Tijs", family = "Neutens"),
+            list(given = "Philippe", family = "De Maeyer"), list(given = "Greet", family = "Deruyter")
+          ),
+          journal = "Health & place",
+          volume = "32",
+          pages = "65--73",
+          year = "2015",
+          publisher = "Elsevier",
+          doi = "10.1016/j.healthplace.2015.01.002"
         )
       )
     )

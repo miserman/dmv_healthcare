@@ -20,7 +20,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <script type="application/javascript" src="data_handler.v1.min.js" async></script>
 <link href="https://uva-bi-sdad.github.io/community/dist/css/community.v1.min.css" rel="preload" as="style" media="all" onload="this.onload=null;this.rel='stylesheet'">
 <link href="style.css" rel="preload" as="style" media="all" onload="this.onload=null;this.rel='stylesheet'">
-<meta name="generator" content="community v0.0.1.102" />
+<meta name="generator" content="community v0.0.1.103" />
 <title>Capital Region Healthcare Facility Access</title>
 <meta name="title" content="Capital Region Healthcare Facility Access">
 <meta name="description" content="Comparison of floating catchment area ratios of health care facilities in the DMV area.">
@@ -30,7 +30,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <div id="site_wrap" style="visibility: hidden; position: fixed; height: 100%; width: 100%">
 <nav class="navbar navbar-dark navbar-expand-md">
 <div class="container-fluid">
-<span class="navbar-brand"><img alt="site logo" height="24px" src="https://raw.githubusercontent.com/uva-bi-sdad/catchment/main/logo.svg">
+<span class="navbar-brand"><img alt="site logo" height=24px width=24px src="https://raw.githubusercontent.com/uva-bi-sdad/catchment/main/logo.svg">
 <span>Healthcare Facility Access</span>
 </span>
 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar_menu" aria-controls="narbar_menu" aria-expanded="false" aria-label="toggle navbar menu">
@@ -57,7 +57,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <div class="wrapper select-wrapper">
 <label for="settings.palette">Color Palette</label>
 <div class="input-group">
-<select class="auto-input form-select" auto-type="select" id="settings.palette" auto-options="palettes" default="purple">
+<select class="auto-input form-select" auto-type="select" id="settings.palette" auto-options="palettes" default="purple" subset="all">
 </select>
 </div>
 </div>
@@ -86,7 +86,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <div class="wrapper select-wrapper">
 <label for="settings.color_scale_center">Color Scale Center</label>
 <div class="input-group">
-<select class="auto-input form-select" auto-type="select" id="settings.color_scale_center"  default="0" aria-description="Determines whether and on what the color scale should be centered.">
+<select class="auto-input form-select" auto-type="select" id="settings.color_scale_center"  default="0" aria-description="Determines whether and on what the color scale should be centered." subset="all">
 <option value="none">None</option>
 <option value="median">Median</option>
 <option value="mean">Mean</option>
@@ -96,7 +96,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <div class="wrapper select-wrapper">
 <label for="settings.summary_selection">Summary Level</label>
 <div class="input-group">
-<select class="auto-input form-select" auto-type="select" id="settings.summary_selection"  default="all" aria-description="Determins which regions are included in summaries for color scaling; All-Regions are region-wide, and Selected Region are filtered by region selection.">
+<select class="auto-input form-select" auto-type="select" id="settings.summary_selection"  default="all" aria-description="Determins which regions are included in summaries for color scaling; All-Regions are region-wide, and Selected Region are filtered by region selection." subset="all">
 <option value="dataset">All Regions</option>
 <option value="all">Selected Region</option>
 </select>
@@ -152,7 +152,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <div class="row form-row">
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="county_a" auto-options="ids" default="-1" data-view="view_a" dataset="county">
+<select class="auto-input form-select" auto-type="select" id="county_a" auto-options="ids" default="-1" data-view="view_a" subset="all" dataset="county">
 </select>
 <label for="county_a">County</label>
 <button type="button" class="btn select-reset">Reset</button>
@@ -160,7 +160,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 </div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="tract_a" auto-options="ids" default="-1" data-view="view_a" dataset="tract">
+<select class="auto-input form-select" auto-type="select" id="tract_a" auto-options="ids" default="-1" data-view="view_a" subset="all" dataset="tract">
 </select>
 <label for="tract_a">Census Tract</label>
 <button type="button" class="btn select-reset">Reset</button>
@@ -169,7 +169,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 </div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="variable_a" auto-options="variables" default="doctors_3sfca" depends="shapes_a">
+<select class="auto-input form-select" auto-type="select" id="variable_a" auto-options="variables" default="doctors_3sfca" subset="all" depends="shapes_a">
 </select>
 <label for="variable_a">Variable A</label>
 </div>
@@ -198,7 +198,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 <div class="row form-row">
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="county_b" auto-options="ids" default="-1" data-view="view_b" dataset="county">
+<select class="auto-input form-select" auto-type="select" id="county_b" auto-options="ids" default="-1" data-view="view_b" subset="all" dataset="county">
 </select>
 <label for="county_b">County</label>
 <button type="button" class="btn select-reset">Reset</button>
@@ -206,7 +206,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 </div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="tract_b" auto-options="ids" default="-1" data-view="view_b" dataset="tract">
+<select class="auto-input form-select" auto-type="select" id="tract_b" auto-options="ids" default="-1" data-view="view_b" subset="all" dataset="tract">
 </select>
 <label for="tract_b">Census Tract</label>
 <button type="button" class="btn select-reset">Reset</button>
@@ -215,7 +215,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 </div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="variable_b" auto-options="variables" default="doctors_3sfca_step" depends="shapes_b">
+<select class="auto-input form-select" auto-type="select" id="variable_b" auto-options="variables" default="doctors_3sfca_step" subset="all" depends="shapes_b">
 </select>
 <label for="variable_b">Variable B</label>
 </div>
@@ -238,7 +238,7 @@ const site = {"settings":{"theme_dark":true,"color_scale_center":"none","palette
 </div>
 <div class="wrapper select-wrapper">
 <div class="input-group form-floating">
-<select class="auto-input form-select" auto-type="select" id="selected_x" auto-options="variables" default="population" depends="shapes">
+<select class="auto-input form-select" auto-type="select" id="selected_x" auto-options="variables" default="population" subset="all" depends="shapes">
 </select>
 <label for="selected_x">X Variable</label>
 </div>

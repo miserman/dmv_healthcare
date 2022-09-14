@@ -1923,17 +1923,17 @@
       "shapes": [
         {
           "name": "block_group",
-          "url": "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/ncr_geo_census_cb_2010_census_block_groups/distribution/ncr_geo_census_cb_2010_census_block_groups.geojson",
+          "url": "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/Block%20Group/2010/data/distribution/ncr_geo_census_cb_2010_census_block_groups.geojson",
           "id_property": "geoid"
         },
         {
           "name": "tract",
-          "url": "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/ncr_geo_census_cb_2010_census_tracts/distribution/ncr_geo_census_cb_2010_census_tracts.geojson",
+          "url": "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/Tract/2010/data/distribution/ncr_geo_census_cb_2010_census_tracts.geojson",
           "id_property": "geoid"
         },
         {
           "name": "county",
-          "url": "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/ncr_geo_census_cb_2010_counties/distribution/ncr_geo_census_cb_2010_counties.geojson",
+          "url": "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/County/2010/data/distribution/ncr_geo_census_cb_2010_counties.geojson",
           "id_property": "geoid"
         }
       ],

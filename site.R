@@ -182,12 +182,16 @@ page_section(
       ),
       output_map(
         lapply(
-          list(c("block_group", "census_block_groups"), c("tract", "census_tracts"), c("county", "counties")),
+          list(
+            c("block_group", "census_block_groups", "Block%20Group"),
+            c("tract", "census_tracts", "Tract"),
+            c("county", "counties", "County")
+          ),
           function(s) list(
             name = s[1],
             url = paste0(
-              "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/",
-              "ncr_geo_census_cb_2010_", s[2], "/distribution/ncr_geo_census_cb_2010_", s[2], ".geojson"
+              "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/",
+              s[3], "/2010/data/distribution/ncr_geo_census_cb_2010_", s[2], ".geojson"
             )
           )
         ),

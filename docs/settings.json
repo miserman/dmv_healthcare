@@ -1886,17 +1886,17 @@
       "shapes": [
         {
           "name": "block_group",
-          "url": "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/ncr_geo_census_cb_2010_census_block_groups/distribution/ncr_geo_census_cb_2010_census_block_groups.geojson",
+          "url": "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/Block%20Group/2010/data/distribution/ncr_geo_census_cb_2010_census_block_groups.geojson",
           "id_property": "geoid"
         },
         {
           "name": "tract",
-          "url": "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/ncr_geo_census_cb_2010_census_tracts/distribution/ncr_geo_census_cb_2010_census_tracts.geojson",
+          "url": "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/Tract/2010/data/distribution/ncr_geo_census_cb_2010_census_tracts.geojson",
           "id_property": "geoid"
         },
         {
           "name": "county",
-          "url": "https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/ncr_geo_census_cb_2010_counties/distribution/ncr_geo_census_cb_2010_counties.geojson",
+          "url": "https://raw.githubusercontent.com/uva-bi-sdad/sdc.geographies/main/NCR/Census%20Geographies/County/2010/data/distribution/ncr_geo_census_cb_2010_counties.geojson",
           "id_property": "geoid"
         }
       ],
@@ -1907,6 +1907,7 @@
         "center": [38.938, -77.315],
         "zoom": 7,
         "height": "400px",
+        "overlays_from_measures": true,
         "subto": ["plot_a", "legend_a"],
         "background_shapes": "tract"
       },
@@ -1944,6 +1945,7 @@
         "center": [38.938, -77.315],
         "zoom": 7,
         "height": "400px",
+        "overlays_from_measures": true,
         "subto": ["plot_b", "legend_b"],
         "background_shapes": "tract"
       },
@@ -1972,7 +1974,7 @@
     "bootstrap": {
       "name": "Bootstrap",
       "url": "https://getbootstrap.com",
-      "version": "5.2.0-beta1"
+      "version": "5.2.1"
     },
     "colorbrewer": {
       "name": "ColorBrewer",
@@ -2007,7 +2009,7 @@
     "plotly": {
       "name": "Plotly",
       "url": "https://plotly.com/javascript/getting-started",
-      "version": "2.12.1"
+      "version": "2.14.0"
     }
   }
 }

@@ -50,8 +50,10 @@ page_navbar(
       input_number(
         "Trace Limit", "settings.trace_limit", default = 20, floating_label = FALSE,
         note = "Limit the number of plot traces that can be drawn, split between extremes of the variable."
-      ),
-      input_button("Clear Settings", "reset_storage", "clear_storage", class = "btn-danger footer")
+      )
+    ),
+    foot = list(
+      input_button("Clear Settings", "reset_storage", "clear_storage", class = "btn-danger")
     )
   ),
   list(

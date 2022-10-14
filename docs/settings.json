@@ -1974,7 +1974,7 @@
     "bootstrap": {
       "name": "Bootstrap",
       "url": "https://getbootstrap.com",
-      "version": "5.2.1"
+      "version": "5.2.2"
     },
     "colorbrewer": {
       "name": "ColorBrewer",
@@ -1989,7 +1989,7 @@
     "leaflet": {
       "name": "Leaflet",
       "url": "https://leafletjs.com",
-      "version": "1.8.0",
+      "version": "1.9.2",
       "description": "A JS library for interactive maps"
     },
     "Stamen toner-light": {

@@ -39,6 +39,7 @@
             "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
           }
         ],
+        "id_length": 12,
         "time": {},
         "profile": "data-resource",
         "created": "2022-06-24 03:55:14",
@@ -527,6 +528,7 @@
             "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
           }
         ],
+        "id_length": 11,
         "time": {},
         "profile": "data-resource",
         "created": "2022-06-24 03:55:15",
@@ -1015,6 +1017,7 @@
             "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
           }
         ],
+        "id_length": 5,
         "time": {},
         "profile": "data-resource",
         "created": "2022-06-24 03:55:14",
@@ -1525,7 +1528,8 @@
           "value": "block_group"
         }
       ],
-      "default": "county"
+      "default": "county",
+      "display": []
     },
     {
       "id": "region_select_a",
@@ -1542,7 +1546,8 @@
           "value": "tract_a"
         }
       ],
-      "default": "county_a"
+      "default": "county_a",
+      "display": []
     },
     {
       "id": "region_a",
@@ -1559,7 +1564,8 @@
           "value": "tract_a"
         }
       ],
-      "default": "county_a"
+      "default": "county_a",
+      "display": []
     },
     {
       "id": "shapes_b",
@@ -1593,7 +1599,8 @@
           "value": "block_group"
         }
       ],
-      "default": "county"
+      "default": "county",
+      "display": []
     },
     {
       "id": "region_select_b",
@@ -1610,7 +1617,8 @@
           "value": "tract_b"
         }
       ],
-      "default": "county_b"
+      "default": "county_b",
+      "display": []
     },
     {
       "id": "region_b",
@@ -1627,7 +1635,8 @@
           "value": "tract_b"
         }
       ],
-      "default": "county_b"
+      "default": "county_b",
+      "display": []
     }
   ],
   "dataviews": {

@@ -22,6 +22,7 @@
           "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
         }
       ],
+      "id_length": 5,
       "time": {},
       "profile": "data-resource",
       "created": "2022-06-24 03:55:14",
@@ -470,6 +471,7 @@
           "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
         }
       ],
+      "id_length": 11,
       "time": {},
       "profile": "data-resource",
       "created": "2022-06-24 03:55:15",
@@ -918,6 +920,7 @@
           "map": "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
         }
       ],
+      "id_length": 12,
       "time": {},
       "profile": "data-resource",
       "created": "2022-06-24 03:55:14",

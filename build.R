@@ -359,7 +359,7 @@ data_add(
     tract = "tracts.csv",
     block_group = "blockgroups.csv"
   ),
-  rep(list(list(
+  list(
     ids = list(
       variable = "GEOID",
       map = "https://raw.githubusercontent.com/uva-bi-sdad/capital_region/main/docs/data/entity_info.json"
@@ -653,7 +653,6 @@ data_add(
         )
       )
     )
-  )), 3),
-  dir = maindir,
-  refresh = TRUE
+  ),
+  dir = maindir
 )

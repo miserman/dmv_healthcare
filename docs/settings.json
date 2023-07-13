@@ -22,7 +22,8 @@
     "table_autosort": true,
     "tracking": false,
     "background_top": false,
-    "background_polygon_outline": 2
+    "background_polygon_outline": 2,
+    "show_empty_times": false
   },
   "metadata": {
     "url": "",
@@ -209,13 +210,9 @@
           "style": "table"
         }
       ],
-      "default": {
-        "title": ""
-      },
       "floating": true,
       "dataview": "view_a",
-      "subto": ["map_a", "plot_a"],
-      "variable_info": false
+      "subto": ["map_a", "plot_a"]
     },
     "info4": {
       "title": "features.name",
@@ -231,13 +228,9 @@
           "style": "table"
         }
       ],
-      "default": {
-        "title": ""
-      },
       "floating": true,
       "dataview": "view_b",
-      "subto": ["map_b", "plot_b"],
-      "variable_info": false
+      "subto": ["map_b", "plot_b"]
     },
     "info7": {
       "title": "variables.short_name",
@@ -248,10 +241,8 @@
           "style": "table"
         }
       ],
-      "default": [],
-      "floating": false,
       "dataview": "view_a",
-      "variable_info": false
+      "variable_info": true
     },
     "info16": {
       "title": "variables.short_name",
@@ -262,10 +253,8 @@
           "style": "table"
         }
       ],
-      "default": [],
-      "floating": false,
       "dataview": "view_b",
-      "variable_info": false
+      "variable_info": true
     }
   },
   "text": {
@@ -446,7 +435,6 @@
           "id_property": "geoid"
         }
       ],
-      "overlays": {},
       "options": {
         "attributionControl": false,
         "scrollWheelZoom": false,
@@ -484,7 +472,6 @@
           "id_property": "geoid"
         }
       ],
-      "overlays": {},
       "options": {
         "attributionControl": false,
         "scrollWheelZoom": false,
@@ -503,8 +490,7 @@
           "url": "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         }
       }
-    },
-    "_raw": []
+    }
   },
   "legend": {
     "legend_a": {
@@ -555,7 +541,7 @@
     "plotly": {
       "name": "Plotly",
       "url": "https://plotly.com/javascript/getting-started",
-      "version": "2.20.0"
+      "version": "2.24.2"
     }
   },
   "aggregated": true

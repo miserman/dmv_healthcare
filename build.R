@@ -52,7 +52,7 @@ library(rmapshaper)
 for (level in names(shapes$dc)) {
   st_write(
     ms_simplify(do.call(rbind, lapply(shapes, "[[", level)), keep_shapes = TRUE),
-    paste0(maindir, paste0(level, ".geojson"))
+    paste0(maindir, paste0(level, ".geojson")), delete_dsn = TRUE
   )
 }
 
@@ -84,7 +84,7 @@ commutes <- sparseMatrix(
 )
 for (d in data) commutes[rownames(d$commutes), colnames(d$commutes)] <- d$commutes
 write.csv(
-  cbind(GEOID = rownames(commutes), as.data.frame(as.matrix(unname(commutes)))),
+  cbind(GEOID = rownames(commutes), as.data.frame(as.matrix(commutes))),
   paste0(maindir, "commutes.csv"),
   row.names = FALSE
 )
